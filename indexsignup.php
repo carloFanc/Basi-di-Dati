@@ -76,14 +76,7 @@ if(isset($_POST['btn-signup']))
         <link rel="stylesheet" href="css/styleLogin.css">
        <link rel="stylesheet" href="css/jquery-ui.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- Favicon and touch icons -->
+    
         <link rel="shortcut icon" href="assets/ico/favicon.png">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
@@ -107,39 +100,7 @@ if(isset($_POST['btn-signup']))
                     </div>
                     
                     <div class="row">
-                        <!-- <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Login</h3>
-	                            		<p>Inserisci email e password per entrare nel sito:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-key"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username">Email</label>
-				                        	<input type="text" name="form-username" placeholder="Email..." class="form-username form-control" id="form-username">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-				                        </div>
-				                        <button type="submit" class="btn">Log in!</button>
-				                    </form>
-			                    </div>
-		                    </div>
-		                
-		        
-	                        
-                        </div>
-                        
-                        <div class="col-sm-1 middle-border"></div>
-                        <div class="col-sm-1"></div> -->
+                     
                         	
                         <div class="col-md-6 col-md-offset-3 ">
                         	
@@ -203,10 +164,6 @@ if(isset($_POST['btn-signup']))
          <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/scriptsLogin.js"></script>
-        <!-- $(function() { $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }); }); -->
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
 
     </body>
 

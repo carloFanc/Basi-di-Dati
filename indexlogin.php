@@ -96,7 +96,7 @@ if(isset($_POST['btn-login']))
 									<form role="form" action="" method="post" class="login-form">
 										<div class="form-group">
 											<label class="sr-only" for="form-mail">Email</label>
-											<input type="text" name="form-mail" placeholder="Email..." class="form-username form-control" id="form-username">
+											<input type="email" name="form-mail" placeholder="Email..." class="form-username form-control" id="form-username">
 										</div>
 										<div class="form-group">
 											<label class="sr-only" for="form-password">Password</label>
@@ -112,60 +112,6 @@ if(isset($_POST['btn-login']))
 		                <label>Non hai ancora un account? <a href="indexsignup.php">Registrati</a></label>
 		        
 	                        
-                        <!--</div>
-                        
-                        <div class="col-sm-1 middle-border"></div>
-                        <div class="col-sm-1"></div>
-                        	
-                         <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-                        		<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Registrati ora</h3>
-	                            		<p>Compila i seguenti campi per registrarti:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-pencil"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="registration-form">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-first-name">Nome</label>
-				                        	<input type="text" name="form-first-name" placeholder="Nome..." class="form-first-name form-control" id="form-first-name">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-last-name">Cognome</label>
-				                        	<input type="text" name="form-last-name" placeholder="Cognome..." class="form-last-name form-control" id="form-last-name">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-email">Email</label>
-				                        	<input type="email" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-date">Data di Nascita</label>
-				                        	<input type="text" name="form-date" placeholder="Data di Nascita..." class="form-date form-control datepicker" id="data">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-luogo">Luogo di Nascita</label>
-				                        	<input type="text" name="form-luogo" placeholder="Luogo di Nascita..." class="form-luogo form-control" id="form-luogo">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-resid">Indirizzo di Residenza</label>
-				                        	<input type="text" name="form-resid" placeholder="Indirizzo di Residenza..." class="form-resid form-control" id="form-resid">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-tel">Recapito Telefonico</label>
-				                        	<input type="text" name="form-tel" placeholder="Recapito Telefonico..." class="form-tel form-control" id="form-tel">
-				                        </div>
-				                        
-				                        <button type="submit" class="btn">Registrati!</button>
-				                    </form>
-			                    </div>
-                        	</div>
-                        	
-                        </div> -->
                     </div>
                     
                 </div>
@@ -179,10 +125,6 @@ if(isset($_POST['btn-login']))
          <script src="js/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/scriptsLogin.js"></script>
-        <!-- $(function() { $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }); }); -->
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
 
     </body>
 
