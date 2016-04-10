@@ -1,0 +1,23 @@
+#bici{
+  visibility: visible;  
+}
+
+#veicoli{
+    visibility: hidden;
+}
+
+#prenotazioni{
+     visibility: hidden;
+}
+
+#inbox{
+     visibility: hidden;
+}
+
+#forum{
+     visibility: hidden;
+}
+
+#altro{
+     visibility: hidden;
+}
