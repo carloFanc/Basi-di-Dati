@@ -60,7 +60,8 @@ class USER
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 			if($stmt->rowCount() == 1)
 			{
-					$_SESSION['user_session'] = $userRow['Email'];
+					$_SESSION['user_email'] = $userRow['Email'];
+					$_SESSION['user_tipologia'] = $userRow['Tipologia'];
 					return true;
 			}
 			else{
@@ -75,7 +76,7 @@ class USER
 	
 	public function is_loggedin()
 	{
-		if(isset($_SESSION['user_session']))
+		if(isset($_SESSION['user_email']))
 		{
 			return true;
 		}
@@ -89,7 +90,7 @@ class USER
 	public function doLogout()
 	{
 		session_destroy();
-		unset($_SESSION['user_session']);
+		unset($_SESSION['user_email']);
 		return true;
 	}
 }

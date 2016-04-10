@@ -5,7 +5,15 @@ $user = new USER();
 
 if($user->is_loggedin()!="")
 {
-	$user->redirect('homeSemplice.php');
+		$tipologia = $_SESSION['user_tipologia'];
+	
+	if(strcmp ($tipologia , "Semplice") ==0 ){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Premium") ==0){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Amministratore") ==0){
+			$login->redirect('homeSemplice.php');
+		}
 }
 
 if(isset($_POST['btn-signup']))

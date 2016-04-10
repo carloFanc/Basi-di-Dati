@@ -2,20 +2,39 @@
 session_start();
 require_once("class.user.php");
 $login = new USER();
-
+if(isset($_SESSION['user_tipologia']) && !empty($_SESSION['user_tipologia'])) {
+  $tipologia = $_SESSION['user_tipologia'];
+    
+}
 if($login->is_loggedin()!="")
 {
-	$login->redirect('homeSemplice.php');
+	
+	
+	if(strcmp ($tipologia , "Semplice") ==0 ){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Premium") ==0){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Amministratore") ==0){
+			$login->redirect('homeSemplice.php');
+		}
 }
 
 if(isset($_POST['btn-login'])) 
 {
 	$umail = strip_tags($_POST['form-mail']);
 	$upass = strip_tags($_POST['form-password']);
-		
+	
 	if($login->doLogin($umail,$upass))
 	{
-		$login->redirect('homeSemplice.php');
+		$tipologia = $_SESSION['user_tipologia'];
+		if(strcmp ($tipologia , "Semplice") ==0 ){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Premium") ==0){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Amministratore") ==0){
+			$login->redirect('homeSemplice.php');
+		}
+		
 	}
 	else
 	{

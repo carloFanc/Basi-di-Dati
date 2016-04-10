@@ -5,8 +5,19 @@
 	require_once("class.user.php");
 	$auth_user = new USER();
 	
+	if($auth_user->is_loggedin()!=""){
+		$tipologia = $_SESSION['user_tipologia'];
 	
-	$umail = $_SESSION['user_session'];
+	if(strcmp ($tipologia , "Semplice") ==0 ){
+			
+		}else if(strcmp ($tipologia , "Premium") ==0){
+			$login->redirect('homeSemplice.php');
+		}else if(strcmp ($tipologia , "Amministratore") ==0){
+			$login->redirect('homeSemplice.php');
+		}
+}
+	
+	$umail = $_SESSION['user_email'];
 	
 	$stmt = $auth_user->runQuery("SELECT * FROM Utente WHERE Email=:umail");
 	$stmt->execute(array(":umail"=>$umail));
@@ -45,7 +56,7 @@
 				<nav class="collapse navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href='#' onclick="cambiaFinestra('bici')">Bici</a>
+							<a href='#' onclick="cambiaFinestra('bici')" >Bici</a>
 						</li>
 						<li>
 							<a href='#' onclick="cambiaFinestra('veicoli')">Veicoli</a>
