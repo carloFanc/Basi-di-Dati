@@ -11,42 +11,29 @@ if($user->is_loggedin()!="")
 if(isset($_POST['btn-signup']))
 {
 	$uname = strip_tags($_POST['form-first-name']);
-	$umail = strip_tags($_POST['txt_umail']);
-	$upass = strip_tags($_POST['txt_upass']);	
+	$ucogn = strip_tags($_POST['form-last-name']);
+	$umail = strip_tags($_POST['form-email']);	
+	$upass = strip_tags($_POST['form-pass']);	
+	$udata = strip_tags($_POST['form-date']);	
+	$uluogo = strip_tags($_POST['form-luogo']);	
+	$uresidenza = strip_tags($_POST['form-resid']);	
+	$utel = strip_tags($_POST['form-tel']);	
 	
-	if($uname=="")	{
-		$error[] = "provide username !";	
-	}
-	else if($umail=="")	{
-		$error[] = "provide email id !";	
-	}
-	else if(!filter_var($umail, FILTER_VALIDATE_EMAIL))	{
-	    $error[] = 'Please enter a valid email address !';
-	}
-	else if($upass=="")	{
-		$error[] = "provide password !";
-	}
-	else if(strlen($upass) < 6){
-		$error[] = "Password must be atleast 6 characters";	
-	}
-	else
-	{
-		try
+	try
 		{
-			$stmt = $user->runQuery("SELECT user_name, user_email FROM users WHERE user_name=:uname OR user_email=:umail");
-			$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
+			$stmt = $user->runQuery("SELECT Email FROM Utente WHERE Email=:umail");
+			$stmt->execute(array(':umail'=>$umail));
 			$row=$stmt->fetch(PDO::FETCH_ASSOC);
 				
-			if($row['user_name']==$uname) {
-				$error[] = "sorry username already taken !";
-			}
-			else if($row['user_email']==$umail) {
-				$error[] = "sorry email id already taken !";
+			if($row['Email']==$umail) {
+				$error[] = "sorry email già esistente !";
 			}
 			else
 			{
-				if($user->register($uname,$umail,$upass)){	
-					$user->redirect('sign-up.php?joined');
+				if($user->register($uname,$ucogn,$umail,$upass,$udata,$uluogo,$uresidenza,$utel)){
+					echo '<script type="text/javascript">alert("Utente registrato correttamente");
+					window.location = \'indexlogin.php\'</script>';	
+				
 				}
 			}
 		}
@@ -55,7 +42,7 @@ if(isset($_POST['btn-signup']))
 			echo $e->getMessage();
 		}
 	}	
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -127,6 +114,10 @@ if(isset($_POST['btn-signup']))
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-email">Email</label>
 				                        	<input type="email" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+				                        </div>
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-pass">Password</label>
+				                        	<input type="text" name="form-pass" placeholder="Password..." class="form-pass form-control" id="form-pass">
 				                        </div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-date">Data di Nascita</label>

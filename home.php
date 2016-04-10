@@ -6,10 +6,10 @@
 	$auth_user = new USER();
 	
 	
-	$user_id = $_SESSION['user_session'];
+	$umail = $_SESSION['user_session'];
 	
-	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
-	$stmt->execute(array(":user_id"=>$user_id));
+	$stmt = $auth_user->runQuery("SELECT * FROM Utente WHERE Email=:umail");
+	$stmt->execute(array(":umail"=>$umail));
 	
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -64,10 +64,14 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">
+						
+					 
 						<li>
-							<a href="#">Logout</a>
+							<a href=#>Ciao <?php echo $userRow['Email']; ?></a>
+							</li>
+						<li>							
+							<a href="logout.php?logout=true">Logout</a>
 						</li>
-
 					</ul>
 				</nav>
 			</div>

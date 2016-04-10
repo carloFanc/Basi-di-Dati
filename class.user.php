@@ -20,21 +20,23 @@ class USER
 		return $stmt;
 	}
 	
-	public function register($uname,$ucogn,$umail,$upass,$udata,$uluogo,$utel)
+	public function register($uname,$ucogn,$umail,$upass,$udata,$uluogo,$uresidenza,$utel)
 	{
 		try
 		{
-			$new_password = password_hash($upass, PASSWORD_DEFAULT);
 			
-			$stmt = $this->conn->prepare("INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) 
-		                                               VALUES(:unmail, :uname, :ucogn, :upass, :udata, :uluogo, :utel)");
+			$utip='Semplice';
+			$stmt = $this->conn->prepare("INSERT INTO Utente(Email, Nome, Cognome, Password, Tipologia, Data_Nascita, Luogo_Nascita, Indirizzo_Residenza, Telefono) 
+		                                               VALUES(:umail, :uname, :ucogn, :upass, :utip, :udata, :uluogo, :uresidenza, :utel)");
 												  
 			$stmt->bindparam(":umail", $umail);
 			$stmt->bindparam(":uname", $uname);
-			$stmt->bindparam(":ucogn", $ucogn);										  
-			$stmt->bindparam(":upass", $new_password);
-			$stmt->bindparam(":udata", $umail);
-			$stmt->bindparam(":uluogo", $uluogo);	
+			$stmt->bindparam(":ucogn", $ucogn);		
+			$stmt->bindparam(":utip", $utip);									  
+			$stmt->bindparam(":upass", $upass);
+			$stmt->bindparam(":udata", $udata);
+			$stmt->bindparam(":uluogo", $uluogo);
+			$stmt->bindparam(":uresidenza", $uresidenza);	
 			$stmt->bindparam(":utel", $utel);
 			$stmt->execute();	
 			
@@ -51,22 +53,19 @@ class USER
 	{
 		try
 		{
-			$stmt = $this->conn->prepare("SELECT * FROM Utente WHERE Email=:umail ");
+			$stmt = $this->conn->prepare("SELECT * FROM Utente WHERE Email=:umail AND Password=:upass ");
 			$stmt->bindparam(":umail", $umail);
+			$stmt->bindparam(":upass", $upass);
 			$stmt->execute();
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-			if($stmt->rowCount() > 0)
+			if($stmt->rowCount() == 1)
 			{
-				if(password_verify($upass, $userRow['Password']))
-				{
 					$_SESSION['user_session'] = $userRow['Email'];
 					return true;
-				}
-				else
-				{
-					return false;
-				}
 			}
+			else{
+				return false;
+				}
 		}
 		catch(PDOException $e)
 		{
