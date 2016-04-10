@@ -141,7 +141,7 @@ if(isset($_POST['btn-signup']))
                         <div class="col-sm-1 middle-border"></div>
                         <div class="col-sm-1"></div> -->
                         	
-                        <div class="col-sm-5">
+                        <div class="col-md-6 col-md-offset-3 ">
                         	
                         	<div class="form-box">
                         		<div class="form-top">
