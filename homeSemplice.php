@@ -28,7 +28,7 @@
 	</head>
 	<body>
 
-<header class="navbar navbar-default navbar-static-top" role="banner">
+<header class="navbar navbar-default navbar-static-top" role="banner"> <!-- QUESTO E' IL DIV DEL MENU' IN ALTO  -->
 			<div class="container">
 				<div class="navbar-header">
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -63,16 +63,17 @@
 							<a href='#' onclick="cambiaFinestra('altro')">Altro</a>
 						</li>
 					</ul>
-					<ul class="nav navbar-nav pull-right">
-						
-					 
-						<li>
-							<a href=#>Ciao <?php echo $userRow['Email']; ?></a>
-							</li>
-						<li>							
-							<a href="logout.php?logout=true">Logout</a>
-						</li>
-					</ul>
+					<ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			  <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?>&nbsp;<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#" onclick="cambiaContenuto('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a></li>
+                <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+              </ul>
+            </li>
+          </ul>
 				</nav>
 			</div>
 		</header>
@@ -80,7 +81,7 @@
 <!-- Begin Body -->
 <div class="container">
 	<div class="row">
-  			<div class="col-md-3" id="leftCol">
+  			<div class="col-md-3" id="leftCol"> <!-- QUESTO E' IL DIV DEL MENU' LATERALE  -->
               	
 				<div id="bici" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
@@ -132,42 +133,15 @@
   				</div>
 
       		</div>  
-      		<div class="col-md-9">
-              	<h1>Contenuto</h1>
-              	
-              	
-      		</div> 
+      		
+      		
+      		<div id="Contenuto" class="col-md-9"> <!-- QUESTO E' IL DIV DEL CONTENUTO  -->
+            </div>
+      		
+      		
+      		
   	</div>
 </div>
-
-
-<script>
-function cambiaFinestra(string) {   
-    $('#bici').hide("fast").css("visibility","hidden");
-    $('#veicoli').hide("fast").css("visibility","hidden");
-    $('#prenotazioni').hide("fast").css("visibility","hidden");
-    $('#inbox').hide("fast").css("visibility","hidden");
-    $('#forum').hide("fast").css("visibility","hidden");
-    $('#altro').hide("fast").css("visibility","hidden");
-    if(string=="bici"){
-        $('#bici').show("fast").css("visibility","visible");
-    }
-       if(string=="veicoli"){
-        $('#veicoli').show("fast").css("visibility","visible");
-    } 
-        if(string=="prenotazioni"){
-        $('#prenotazioni').show("fast").css("visibility","visible");
-    }
-        if(string=="inbox"){
-        $('#inbox').show("fast").css("visibility","visible");
-    }
-        if(string=="forum"){
-        $('#forum').show("fast").css("visibility","visible");
-    }
-        if(string=="altro"){
-        $('#altro').show("fast").css("visibility","visible");
-    }
-}</script>
 
 
 

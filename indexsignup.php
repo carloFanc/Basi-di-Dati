@@ -5,7 +5,7 @@ $user = new USER();
 
 if($user->is_loggedin()!="")
 {
-	$user->redirect('home.php');
+	$user->redirect('homeSemplice.php');
 }
 
 if(isset($_POST['btn-signup']))
@@ -26,7 +26,8 @@ if(isset($_POST['btn-signup']))
 			$row=$stmt->fetch(PDO::FETCH_ASSOC);
 				
 			if($row['Email']==$umail) {
-				$error[] = "sorry email già esistente !";
+				echo '<script type="text/javascript">alert("email già esistente! Riprova");
+					window.location = \'indexsignup.php\'</script>';
 			}
 			else
 			{
@@ -39,7 +40,7 @@ if(isset($_POST['btn-signup']))
 		}
 		catch(PDOException $e)
 		{
-			echo $e->getMessage();
+			echo $e->getMessage('Error');
 		}
 	}	
 
@@ -53,7 +54,7 @@ if(isset($_POST['btn-signup']))
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap Login &amp; Register Templates</title>
+        <title>Login</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -117,7 +118,7 @@ if(isset($_POST['btn-signup']))
 				                        </div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-pass">Password</label>
-				                        	<input type="text" name="form-pass" placeholder="Password..." class="form-pass form-control" id="form-pass">
+				                        	<input type="password" name="form-pass" placeholder="Password..." class="form-pass form-control" id="form-pass">
 				                        </div>
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-date">Data di Nascita</label>

@@ -5,7 +5,7 @@ $login = new USER();
 
 if($login->is_loggedin()!="")
 {
-	$login->redirect('home.php');
+	$login->redirect('homeSemplice.php');
 }
 
 if(isset($_POST['btn-login'])) 
@@ -15,11 +15,11 @@ if(isset($_POST['btn-login']))
 		
 	if($login->doLogin($umail,$upass))
 	{
-		$login->redirect('home.php');
+		$login->redirect('homeSemplice.php');
 	}
 	else
 	{
-		$error = "Wrong Details !";
+		$error = "Dati Errati !";
 	}	
 }
 ?>
