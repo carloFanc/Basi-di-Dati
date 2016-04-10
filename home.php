@@ -143,29 +143,29 @@
 
 <script>
 function cambiaFinestra(string) {   
-    $('#bici').hide("slow").css("visibility","hidden");
-    $('#veicoli').hide("slow").css("visibility","hidden");
-    $('#prenotazioni').hide("slow").css("visibility","hidden");
-    $('#inbox').hide("slow").css("visibility","hidden");
-    $('#forum').hide("slow").css("visibility","hidden");
-    $('#altro').hide("slow").css("visibility","hidden");
+    $('#bici').hide("fast").css("visibility","hidden");
+    $('#veicoli').hide("fast").css("visibility","hidden");
+    $('#prenotazioni').hide("fast").css("visibility","hidden");
+    $('#inbox').hide("fast").css("visibility","hidden");
+    $('#forum').hide("fast").css("visibility","hidden");
+    $('#altro').hide("fast").css("visibility","hidden");
     if(string=="bici"){
-        $('#bici').show("slow").css("visibility","visible");
+        $('#bici').show("fast").css("visibility","visible");
     }
        if(string=="veicoli"){
-        $('#veicoli').show("slow").css("visibility","visible");
+        $('#veicoli').show("fast").css("visibility","visible");
     } 
         if(string=="prenotazioni"){
-        $('#prenotazioni').show("slow").css("visibility","visible");
+        $('#prenotazioni').show("fast").css("visibility","visible");
     }
         if(string=="inbox"){
-        $('#inbox').show("slow").css("visibility","visible");
+        $('#inbox').show("fast").css("visibility","visible");
     }
         if(string=="forum"){
-        $('#forum').show("slow").css("visibility","visible");
+        $('#forum').show("fast").css("visibility","visible");
     }
         if(string=="altro"){
-        $('#altro').show("slow").css("visibility","visible");
+        $('#altro').show("fast").css("visibility","visible");
     }
 }</script>
 
