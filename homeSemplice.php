@@ -51,7 +51,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="/" class="navbar-brand">BolognaGreen</a>
+					<a href=# class="navbar-brand">BolognaGreen</a>
 				</div>
 				<nav class="collapse navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
@@ -96,50 +96,38 @@
               	
 				<div id="bici" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">Section 1</a></li>
-                  <li><a href="#sec2">Section 2</a></li>
-                  <li><a href="#sec3">Section 3</a></li>
-                  <li><a href="#sec4">Section 4</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('postazioni')">Visualizza Postazioni Prelievo</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('pisteciclabili')">Visualizza Piste Ciclabili</a></li>
+                  <li><a href="#">Prenota Bici</a></li>
               	</ul>
   				</div>
   				<div id="veicoli" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">Section 5</a></li>
-                  <li><a href="#sec2">Section 6</a></li>
-                  <li><a href="#sec3">Section 7</a></li>
-                  <li><a href="#sec4">Section 8</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('puntinoleggio')">Visualizza Punti Noleggio</a></li>
+                  <li><a href="#">Prenota Auto</a></li>
+                  <li><a href="#">Prenota Scooter</a></li>
               	</ul>
   				</div>
   				<div id="prenotazioni" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">Section 9</a></li>
-                  <li><a href="#sec2">Section 10</a></li>
-                  <li><a href="#sec3">Section 11</a></li>
-                  <li><a href="#sec4">Section 12</a></li>
+                 <li><a href="#" onclick="cambiaContenuto('prenpassate')">Visualizza prenotazioni passate</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('prenincorso')">Visualizza prenotazioni in corso</a></li>
               	</ul>
   				</div>
   				<div id="inbox" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">Section 13</a></li>
-                  <li><a href="#sec2">Section 14</a></li>
-                  <li><a href="#sec3">Section 15</a></li>
-                  <li><a href="#sec4">Section 16</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('inbox')">Visualizza messaggi Inbox</a></li>
               	</ul>
   				</div>
   				<div id="forum" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">Section 17</a></li>
-                  <li><a href="#sec2">Section 18</a></li>
-                  <li><a href="#sec3">Section 19</a></li>
-                  <li><a href="#sec4">Section 20</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('forum')">Visualizza Forum</a></li>
               	</ul>
   				</div>
   				<div id="altro" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">Section 21</a></li>
-                  <li><a href="#sec2">Section 22</a></li>
-                  <li><a href="#sec3">Section 23</a></li>
-                  <li><a href="#sec4">Section 24</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('classprenbici')">Classifica Utenti in base al n° prenotazioni bici</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('classprenveicoli')">Classifica Utenti in base al n° prenotazioni veicoli</a></li>
               	</ul>
   				</div>
 

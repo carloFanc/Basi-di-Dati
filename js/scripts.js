@@ -34,6 +34,7 @@ function cambiaFinestra(string) {
         $('#altro').show("fast").css("visibility","visible");
         cambiaContenuto('vuoto');
     }
+    
 };
 
 function cambiaContenuto(string){
@@ -43,6 +44,32 @@ function cambiaContenuto(string){
 	if(string=="vuoto"){
         $("#Contenuto").load("function/htmlvuota.html");
     }
-	
-	
+    if(string=="inbox"){
+        $("#Contenuto").load("function/inbox.php");
+    }
+	if(string=="forum"){
+        $("#Contenuto").load("function/forum.php");
+    }
+	if(string=="prenincorso"){
+        $("#Contenuto").load("function/prenincorso.php");
+    }
+    if(string=="prenpassate"){
+        $("#Contenuto").load("function/prenpassate.php");
+    }
+    if(string=="postazioni"){
+        $("#Contenuto").load("function/postazioni.php");
+    }
+    if(string=="pisteciclabili"){
+        $("#Contenuto").load("function/pisteciclabili.php");
+    }
+    if(string=="puntinoleggio"){
+        $("#Contenuto").load("function/puntinoleggio.php");
+    }
+	if(string=="classprenbici"){
+        $("#Contenuto").load("function/classprenbici.php");
+    }
+    if(string=="classprenveicoli"){
+        $("#Contenuto").load("function/classprenveicoli.php");
+    }
+    
 };
