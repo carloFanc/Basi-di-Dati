@@ -48,6 +48,25 @@ class USER
 		}				
 	}
 	
+	public function Insertmsg($mailm,$maild,$text,$data)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio) VALUES (:mailm,:maild,:text,:data)");
+												  
+			$stmt->bindparam(":mailm", $mailm);
+			$stmt->bindparam(":maild", $maild);
+			$stmt->bindparam(":text", $text);		
+			$stmt->bindparam(":data", $data);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}				
+	}
 	
 	public function doLogin($umail,$upass)
 	{

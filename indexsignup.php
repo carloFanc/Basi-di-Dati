@@ -31,10 +31,10 @@ if(isset($_POST['btn-signup']))
 		{
 			$stmt = $user->runQuery("SELECT Email FROM Utente WHERE Email=:umail");
 			$stmt->execute(array(':umail'=>$umail));
-			$row=$stmt->fetch(PDO::FETCH_ASSOC);
+	        $row=$stmt->fetch(PDO::FETCH_ASSOC);
 				
 			if($row['Email']==$umail) {
-				echo '<script type="text/javascript">alert("email già esistente! Riprova");
+			echo '<script type="text/javascript">alert("email già esistente! Riprova");
 					window.location = \'indexsignup.php\'</script>';
 			}
 			else
