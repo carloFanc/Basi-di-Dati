@@ -46,14 +46,35 @@
       					  <th>Data Fine</th>
      					 </tr>
     					</thead>
-  		  						<!-- <tbody>
+  		  						
+      						  <tbody>
       							<tr>
       							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['IdBici']; ?></td>
         						  <td class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							 </tr>
-      						  </tbody> -->
+      						  </tbody>
+  						</table>
+  						<?php endwhile; ?>
+			   </div>
+            <?php $stmt->nextRowset();?>
+            <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+            	<div class="container">
+  						           
+  						<table class="table table-bordered">
+    					<thead>
+      					<tr>
+      					  <th>Id</th>
+      					  <th>Email</th>
+      					  <th>Veicolo</th>
+      					  <th>Prezzo Prenotazione</th>
+      					  <th>Data Inizio</th>
+      					  <th>Data Fine</th>
+     					 </tr>
+    					</thead>
+  		  						
       						  <tbody>
       							<tr>
       							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
@@ -67,6 +88,8 @@
   						</table>
 			   </div>
             <?php endwhile; ?>
+          </div>
+          <?php $stmt->nextRowset();?>
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
@@ -75,27 +98,22 @@
       					<tr>
       					  <th>Id</th>
       					  <th>Email</th>
-      					  <th>Data Inizio</th>
-      					  <th>Data Fine</th>
+      					  <th>Indirizzo</th>
+      					  <th>Slot Inizio</th>
+      					  <th>Slot Fine</th>
+      					  <th>Data Prenotazione</th>
      					 </tr>
     					</thead>
-  		  						<tbody>
+  		  						
+      						  <tbody>
       							<tr>
       							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-        						  <td class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
+        						  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
+     							  <td class="col-md-3"><?php echo $userRow['Slot_Inizio']; ?></td>
+     							  <td class="col-md-3"><?php echo $userRow['Slot_Fine']; ?></td>
+     							  <td class="col-md-3"><?php echo $userRow['Data_pren']; ?></td>
      							 </tr>
-      						  </tbody>
-      						  <tbody>
-      							<!-- <tr>
-      							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-        						  <td class="col-md-3"><?php echo $userRow['Veicolo']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Prezzo_Prenotazione']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
-     							 </tr> -->
       						  </tbody>
   						</table>
 			   </div>

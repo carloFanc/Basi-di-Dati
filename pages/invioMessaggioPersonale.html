@@ -26,7 +26,7 @@
 		<div >
 			<h1>Invia Messaggio Personale</h1>
 
-			<form role="form"  id="invioMessaggio">
+			<form role="form"  id="invioMessaggio" >
 				<div class="form-group">
 					<label for="email">Indirizzo Email:</label>
 					<input name="form-email" type="email" class="form-control" id="form-email">
@@ -34,25 +34,36 @@
 				<div class="form-group">
 					<label for="text">Testo Messaggio:</label>
 					<input name="form-txt" type="text" class="form-control" id="form-text">
+
 				</div>
-				<button type="submit" name="btn-invio-messaggio" class="btn btn-default">
+				<button type="submit" name="btn-invio" class="btn btn-default">
 					Invio
 				</button>
 			</form>
-			
-			<p style="display: none;" id="notification">Thank You!</p>
+
+			<p style="display: none;" id="notification">
+				Thank You!
+			</p>
 			<script>
-				$('#invioMessaggio').submit(function() {
-					var post_data = $('#invioMessaggio').serialize();
-					$.post('../BasiDati/function/inviomsgpersonale.php', post_data, function(data) {
-						$('#notification').show();
+				$('#invioMessaggio').submit(function(e) {
+					e.preventDefault();
+					var email = $('#form-email').val();
+					var text = $('#form-text').val();
+					$.ajax({
+						type : "POST",
+						url : "/BasiDati/function/inviomsgpersonale.php",
+						data : "email=" + email + "&text=" + text
+					}).done(function() {
+						alert("Dati salvati!");
+						cambiaContenuto('vuoto');
 					});
 				});
 
 			</script>
-		</div>
-		<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
-		<script src="../BasiDati/js/jquery-ui.js"></script>
-		<script src="../BasiDati/js/bootstrap.min.js"></script>
-	</body>
+			</div>
+			<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
+			<script src="../BasiDati/js/jquery-ui.js"></script>
+			<script src="../BasiDati/js/bootstrap.min.js"></script>
+			<script src="../BasiDati/js/scripts.js"></script>
+			</body>
 </html>

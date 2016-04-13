@@ -36,6 +36,10 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
+	    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/form-elementsLogin.css">
+		<link rel="stylesheet" href="css/styleLogin.css">
+		<link rel="stylesheet" href="css/jquery-ui.css">
 	</head>
 	<body>
 
@@ -153,6 +157,7 @@
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+	    <script src="js/jquery-ui.js"></script>
 		<script src="js/scripts.js"></script>
 	</body>
 </html>
