@@ -13,9 +13,9 @@ if($login->is_loggedin()!="")
 	if(strcmp ($tipologia , "Semplice") ==0 ){
 			$login->redirect('homeSemplice.php');
 		}else if(strcmp ($tipologia , "Premium") ==0){
-			$login->redirect('homeSemplice.php');
+			$login->redirect('homePremium.php');
 		}else if(strcmp ($tipologia , "Amministratore") ==0){
-			$login->redirect('homeSemplice.php');
+			$login->redirect('homeAmministratore.php');
 		}
 }
 
@@ -30,9 +30,9 @@ if(isset($_POST['btn-login']))
 		if(strcmp ($tipologia , "Semplice") ==0 ){
 			$login->redirect('homeSemplice.php');
 		}else if(strcmp ($tipologia , "Premium") ==0){
-			$login->redirect('homeSemplice.php');
+			$login->redirect('homePremium.php');
 		}else if(strcmp ($tipologia , "Amministratore") ==0){
-			$login->redirect('homeSemplice.php');
+			$login->redirect('homeAmministratore.php');
 		}
 		
 	}

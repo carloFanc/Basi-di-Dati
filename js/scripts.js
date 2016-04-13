@@ -71,5 +71,13 @@ function cambiaContenuto(string){
     if(string=="classprenveicoli"){
         $("#Contenuto").load("function/classprenveicoli.php");
     }
-    
+    if(string=="visbici"){
+        $("#Contenuto").load("function/visualizzabici.php");
+    }
+    if(string=="visveicoli"){
+        $("#Contenuto").load("function/visualizzaveicoli.php");
+    }
+    if(string=="inviomsgpersonale"){
+        $("#Contenuto").load("function/inviomsgpersonale.php");
+    }
 };

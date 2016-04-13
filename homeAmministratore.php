@@ -9,11 +9,11 @@
 		$tipologia = $_SESSION['user_tipologia'];
 	
 	if(strcmp ($tipologia , "Semplice") ==0 ){
-			
+			$auth_user->redirect('homeSemplice.php');
 		}else if(strcmp ($tipologia , "Premium") ==0){
 			$auth_user->redirect('homePremium.php');
 		}else if(strcmp ($tipologia , "Amministratore") ==0){
-			$auth_user->redirect('homeAmministratore.php');
+			
 		}
 }
 	
@@ -30,7 +30,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Profilo Utente Semplice</title>
+		<title>Profilo Utente Amministratore</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -96,33 +96,31 @@
               	
 				<div id="bici" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              		<li><a href="#" onclick="cambiaContenuto('visbici')">Visualizza Bici</a></li>
+              	  <li><a href="#" onclick="">Visualizza Bici</a></li>
                   <li><a href="#" onclick="cambiaContenuto('postazioni')">Visualizza Postazioni Prelievo</a></li>
                   <li><a href="#" onclick="cambiaContenuto('pisteciclabili')">Visualizza Piste Ciclabili</a></li>
-                  <li><a href="#">Prenota Bici</a></li>
               	</ul>
   				</div>
   				<div id="veicoli" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              		<li><a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a></li>
+              		<li><a href="#" onclick="">Visualizza Veicoli</a></li>
                   <li><a href="#" onclick="cambiaContenuto('puntinoleggio')">Visualizza Punti Noleggio</a></li>
-                  <li><a href="#">Prenota Veicolo Elettrico</a></li>
               	</ul>
   				</div>
   				<div id="prenotazioni" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
                  <li><a href="#" onclick="cambiaContenuto('prenpassate')">Visualizza Prenotazioni Passate</a></li>
-                  <li><a href="#" onclick="cambiaContenuto('prenincorso')">Visualizza Prenotazioni in Corso</a></li>
               	</ul>
   				</div>
   				<div id="inbox" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              		<li><a href="#" onclick="cambiaContenuto('inviomsgpersonale')">Invia Messaggio Personale</a></li>
+              	  <li><a href="#" onclick="">Invia Messaggio Personale</a></li>
                   <li><a href="#" onclick="cambiaContenuto('inbox')">Visualizza Messaggi Inbox</a></li>
               	</ul>
   				</div>
   				<div id="forum" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
+              		<li><a href="#" onclick="">Inserisci nuovo Post</a></li>
                   <li><a href="#" onclick="cambiaContenuto('forum')">Visualizza Forum</a></li>
               	</ul>
   				</div>
@@ -143,12 +141,6 @@
       		
   	</div>
 </div>
-
-
-
-
-
-
 
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

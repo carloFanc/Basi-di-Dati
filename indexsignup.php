@@ -10,9 +10,9 @@ if($user->is_loggedin()!="")
 	if(strcmp ($tipologia , "Semplice") ==0 ){
 			$login->redirect('homeSemplice.php');
 		}else if(strcmp ($tipologia , "Premium") ==0){
-			$login->redirect('homeSemplice.php');
+			$login->redirect('homePremium.php');
 		}else if(strcmp ($tipologia , "Amministratore") ==0){
-			$login->redirect('homeSemplice.php');
+			$login->redirect('homeAmministratore.php');
 		}
 }
 
@@ -41,7 +41,7 @@ if(isset($_POST['btn-signup']))
 			{
 				if($user->register($uname,$ucogn,$umail,$upass,$udata,$uluogo,$uresidenza,$utel)){
 					echo '<script type="text/javascript">alert("Utente registrato correttamente");
-					window.location = \'indexlogin.php\'</script>';	
+					window.location = \'index.php\'</script>';	
 				
 				}
 			}
@@ -149,7 +149,7 @@ if(isset($_POST['btn-signup']))
 				                    </form>
 			                    </div>
                         	</div>
-                        	<label>Hai già un account? <a href="indexlogin.php">Loggati</a></label>
+                        	<label>Hai già un account? <a href="index.php">Loggati</a></label>
                         </div>
                     </div>
                     
