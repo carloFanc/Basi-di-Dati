@@ -1,10 +1,11 @@
 <?php
 	
 	//require_once('../session.php');
-	require_once('../class.user.php');
-	  //  $user = new USER();
-		if(isset($_POST['btn-invio']))
-		{
+	   require_once(dirname(dirname(__FILE__)).'/class.user.php');
+	   $user = new USER();
+	  $stmt =  $user->runQuery('INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio) VALUES (\'pippo@gmail.com\',\'carlo@gmail.com\',\'ciao ciao come va?\',\'2016-06-24 03:44:22\');');
+	  $stmt ->execute();	
+		if(isset($_POST['btn-invio-messaggio'])){
 	    $mailm = $_SESSION['user_email'];
 	    $maild = strip_tags($_POST['form-email']);
 	    $text = strip_tags($_POST['form-txt']);
@@ -14,45 +15,17 @@
 			//$stmt = $user->runQuery("SELECT Email FROM Utente WHERE Email=:umail");
 			//$stmt->execute(array(':umail'=>$maild));
 			//$row=$stmt->fetch(PDO::FETCH_ASSOC);
-
-				if($user->Insertmsg($mailm,$maild,$text,$data)){
-					echo '<script type="text/javascript">alert("Messaggio inviato correttamente");
-					window.location = \'index.php\'</script>';	
-				}
+         // $user->Insertmsg($mailm,$maild,$text,$data);
+			
+					echo '<script type="text/javascript">alert("Messaggio inviato correttamente"); </script>';	
+				
 		}
 		catch(PDOException $e)
 		{
 			echo $e->getMessage('Error');
+			echo '<script type="text/javascript">alert("Messaggio inviato asdasd"); </script>';
 		}
 		}
-		// /*try
-		// {
-		// /*$stmt = $auth_user->runQuery("SELECT Email FROM Utente WHERE Email=:umail");
-		// $stmt->execute(array(':umail' =>$maild));
-		// $row=$stmt->fetch(PDO::FETCH_ASSOC);*/
-// 
-		// //if($row['Email']==$maild) {
-			// //$stmt = $auth_user->runQuery("INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio) VALUES (:mailm,:maild,:text,:data)");
-			// //$stmt -> execute(array(':mailm'=>$mailm,':maild'=>$maild,':text'=>$text,':data'=>$data));
-			// $stmt =$thi->runQuery("INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio) VALUES (:mailm,:maild,:text,:data)");
-				// /*	$stmt -> bindParam(":mailm", $mailm);
-					// $stmt -> bindParam(":maild", $maild);
-					// $stmt -> bindParam(":text", $text);
-					// $stmt -> bindParam(":data", $data);
-					// $stmt->execute();*/
-			// $stmt -> execute(array(':mailm'=>$mailm,':maild'=>$maild,':text'=>$text,':data'=>$data));
-					// echo '<script type="text/javascript">alert("Messaggio inviato correttamente");
-					// window.location = \'index.php\'</script>';
-// 						
-		// /*else
-				// {
-			// echo ' <script type="text/javascript"> alert("email inesistente"); window.location = \'inviomsgpersonale.php\'</script>';	}*/
-		// }
-		// catch(PDOException $e)
-		// {
-		// echo $e->getMessage('Error');
-		// }
-		// }
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +42,12 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="../BasiDati/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../BasiDati/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../BasiDati/css/form-elementsLogin.css">
+        <link rel="stylesheet" href="../BasiDati/css/styleLogin.css">
+       <link rel="stylesheet" href="../BasiDati/css/jquery-ui.css">
 		
 	</head>
 
@@ -85,11 +64,14 @@
 					<label for="text">Testo Messaggio:</label>
 					<input name="form-txt" type="text" class="form-control" id="form-text">
 				</div>
-				<button type="submit" name="btn-invio" class="btn btn-default">
+				<button type="submit" name="btn-invio-messaggio" class="btn btn-default">
 					Invio
 				</button>
 			</form>
 
 			</div>
+			<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
+         <script src="../BasiDati/js/jquery-ui.js"></script>
+        <script src="../BasiDati/js/bootstrap.min.js"></script>
 </body>
 </html>
