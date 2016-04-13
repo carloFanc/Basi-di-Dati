@@ -78,6 +78,6 @@ function cambiaContenuto(string){
         $("#Contenuto").load("function/visualizzaveicoli.php");
     }
     if(string=="inviomsgpersonale"){
-        $("#Contenuto").load("function/inviomsgpersonale.php");
+        $("#Contenuto").load("pages/invioMessaggioPersonale.html");
     }
 };
