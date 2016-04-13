@@ -13,20 +13,20 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="../BasiDati/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../BasiDati/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+		<link rel="stylesheet" href="../BasiDati/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../BasiDati/fonts/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../BasiDati/css/form-elementsLogin.css">
-        <link rel="stylesheet" href="../BasiDati/css/styleLogin.css">
-       <link rel="stylesheet" href="../BasiDati/css/jquery-ui.css">
-		
+		<link rel="stylesheet" href="../BasiDati/css/styleLogin.css">
+		<link rel="stylesheet" href="../BasiDati/css/jquery-ui.css">
+
 	</head>
 
 	<body>
 		<div >
-			<h1>Invia Messaggio Personale</h1> 
-			
-			 <form role="form" action="../BasiDati/function/inviomsgpersonale.php" method="post">
+			<h1>Invia Messaggio Personale</h1>
+
+			<form role="form"  id="invioMessaggio">
 				<div class="form-group">
 					<label for="email">Indirizzo Email:</label>
 					<input name="form-email" type="email" class="form-control" id="form-email">
@@ -39,10 +39,20 @@
 					Invio
 				</button>
 			</form>
+			
+			<p style="display: none;" id="notification">Thank You!</p>
+			<script>
+				$('#invioMessaggio').submit(function() {
+					var post_data = $('#invioMessaggio').serialize();
+					$.post('../BasiDati/function/inviomsgpersonale.php', post_data, function(data) {
+						$('#notification').show();
+					});
+				});
 
-			</div>
-			<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
-         <script src="../BasiDati/js/jquery-ui.js"></script>
-        <script src="../BasiDati/js/bootstrap.min.js"></script>
-</body>
+			</script>
+		</div>
+		<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
+		<script src="../BasiDati/js/jquery-ui.js"></script>
+		<script src="../BasiDati/js/bootstrap.min.js"></script>
+	</body>
 </html>
