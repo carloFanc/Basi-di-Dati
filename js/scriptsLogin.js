@@ -63,13 +63,6 @@ jQuery(document).ready(function() {
         showButtonPanel: true,
    	yearRange: "-100:+0",
    	dateFormat: 'yy-mm-dd' }); 
-
-$( ".datepicker2" ).datepicker({ 
-   	    changeMonth: true,
-        changeYear: true,
-        showButtonPanel: true,
-        use24hours: true,
-   	yearRange: "-100:+0",
-   	dateFormat: 'yy-mm-dd',
-    timeFormat:  "hh:mm:ss" }); 
-   });
+   	
+});
+ 

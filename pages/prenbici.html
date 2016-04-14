@@ -13,66 +13,56 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-		<link rel="stylesheet" href="../BasiDati/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../BasiDati/fonts/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../BasiDati/css/form-elementsLogin.css">
-		<link rel="stylesheet" href="../BasiDati/css/styleLogin.css">
-		<link rel="stylesheet" href="../BasiDati/css/jquery-ui.css">
-
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">	
+		<link rel="stylesheet" href="/BasiDati/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/BasiDati/css/form-elementsLogin.css">
+		<link rel="stylesheet" href="/BasiDati/css/styleLogin.css">
+		<link rel="stylesheet" href="/BasiDati/css/bootstrap-datetimepicker.min.css">
 	</head>
 
 	<body>
 		<div >
 			<h1>Prenotazioni bici</h1>
 
-			<form role="form"  id="PrenBici" >
-				<div class="form-group">
-					<label for="bici">Id Bici:</label>
-					<input name="form-bici" type="text" class="form-control" id="form-bici">
-				</div>
-				<div class="form-group">
-					<label for="date1">Data Inizio:</label>
-					<input name="form-date1" type="text" class="form-date form-control datepicker2" id="form-date1">
+	
+		
+  <div id="datetimepicker" class="input-append date">
+    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+</div>
+		
 
-				</div>
-				<div class="form-group">
-					<label for="date2">Data Fine:</label>
-					<input name="form-date2" type="text" class="form-date form-control datepicker2" id="form-date2">
-
-				</div>
-				<button type="submit" name="btn-invio" class="btn btn-default">
-					Invio
-				</button>
-			</form>
-
-			<p style="display: none;" id="notification">
-				Thank You!
-			</p>
-			<script>
-				$('#PrenBici').submit(function(e) {
-					e.preventDefault();
-					var id = $('#form-bici').val();
-					var date1 = $('#form-date1').val();
-					var date2 = $('#form-date2').val();
-					$.ajax({
-						type : "POST",
-						url : "/BasiDati/function/prenbici.php",
-						data : "bici=" + id + "&date1=" + date1 + "&date2=" + date2
-					}).done(function() {
-						alert("Dati salvati!");
-						cambiaContenuto('vuoto');
-					});
+		<p style="display: none;" id="notification">
+			Thank You!
+		</p>
+		<script>
+			$('#PrenBici').submit(function(e) {
+				e.preventDefault();
+				var id = $('#form-bici').val();
+				var date1 = $('#form-date1').val();
+				var date2 = $('#form-date2').val();
+				$.ajax({
+					type : "POST",
+					url : "/BasiDati/function/prenbici.php",
+					data : "bici=" + id + "&date1=" + date1 + "&date2=" + date2
+				}).done(function() {
+					alert("Dati salvati!");
+					cambiaContenuto('vuoto');
 				});
+			});
 
-			</script>
-			</div>
-			<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
-			<script src="../BasiDati/js/jquery-ui.js"></script>
-			<script src="../BasiDati/js/bootstrap.min.js"></script>
-			<script src="../BasiDati/js/scripts.js"></script>
-			<script src="../BasiDati/js/scriptsLogin.js"></script>
-			
-			
-			</body>
+		</script>
+		</div>
+		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
+		<script src="/BasiDati/js/bootstrap.min.js"></script>
+		<script src="/BasiDati/js/scripts.js"></script>
+		<script src="/BasiDati/js/prenBici.js"></script>
+		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="/BasiDati/js/bootstrap-datetimepicker.it.js"></script>
+	</body>
 </html>
