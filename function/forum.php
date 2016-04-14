@@ -35,7 +35,7 @@
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
+  						<table class="table table-striped table-bordered table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Email Mittente</th>
@@ -46,10 +46,10 @@
     					</thead>
     						<tbody>
      							 <tr>
-     							   <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-      								  <td class="col-md-3"><?php echo $userRow['Titolo']; ?></td>
-      							      <td class="col-md-3"><?php echo $userRow['Testo_Messaggio']; ?></td>
-       								  <td class="col-md-3"><?php echo $userRow['Data_Inserimento']; ?></td>
+     							   <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
+      								  <td align="left" class="col-md-3"><?php echo $userRow['Titolo']; ?></td>
+      							      <td align="left" class="col-md-3"><?php echo $userRow['Testo_Messaggio']; ?></td>
+       								  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inserimento']; ?></td>
       							 </tr>
                             </tbody>
                         </table>

@@ -18,7 +18,6 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
 		<title>Inbox</title>
 		<meta name="description" content="profilo">
 		<meta name="author" content="Carlof">
@@ -37,7 +36,7 @@
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
+  						<table class="table table-striped table-bordered table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Email Mittente</th>
@@ -47,9 +46,9 @@
     					</thead>
   		  						<tbody>
       							<tr>
-      							  <td class="col-md-3"><?php echo $userRow['Email_Mittente']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['Testo_Messaggio']; ?></td>
-        						  <td class="col-md-3"><?php echo $userRow['DataInvio']; ?></td>
+      							  <td align="left" class="col-md-3"><?php echo $userRow['Email_Mittente']; ?></td>
+     						      <td align="left" class="col-md-3"><?php echo $userRow['Testo_Messaggio']; ?></td>
+        						  <td align="left" class="col-md-3"><?php echo $userRow['DataInvio']; ?></td>
      							 </tr>
       						  </tbody>
   						</table>

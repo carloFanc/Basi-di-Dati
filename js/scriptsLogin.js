@@ -59,9 +59,17 @@ jQuery(document).ready(function() {
    $( ".datepicker" ).datepicker({ 
    	changeMonth: true,
         changeYear: true,
+        pick12HourFormat: true,
         showButtonPanel: true,
    	yearRange: "-100:+0",
    	dateFormat: 'yy-mm-dd' }); 
 
-   
-});
+$( ".datepicker2" ).datepicker({ 
+   	    changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        use24hours: true,
+   	yearRange: "-100:+0",
+   	dateFormat: 'yy-mm-dd',
+    timeFormat:  "hh:mm:ss" }); 
+   });

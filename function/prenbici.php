@@ -3,18 +3,19 @@ require_once (dirname(dirname(__FILE__)) . '/session.php');
 require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 
 $user = new USER();
-echo $_POST['email'] ;
+
 if (isset($_POST['email']) && isset($_POST['text'])) {
 
 	try {
 		$mailm = $_SESSION['user_email'];
-		$maild = $_POST['email'];
-		$text = $_POST['text'];
-		$data = date("Y-m-d H:i:s");
+		$id = $_POST['id'];
+		$date1 = $_POST['date1'];
+		$date2 = $_POST['date1'];
+		
 
-		if ($maild != NULL && $text != NULL) {
-			if ($user -> Insertmsg($mailm, $maild, $text, $data)) {
-				echo '<script type="text/javascript">alert("Messaggio inviato correttamente");</script>';
+		if ($id != NULL && $date1 != NULL && $date2 != NULL) {
+			if ($user -> InsertBici($mailm, $id, $date1, $date2)) {
+				echo '<script type="text/javascript">alert("Prenotazione effettuata");</script>';
 
 			}
 

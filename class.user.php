@@ -67,6 +67,25 @@ class USER
 			echo $e->getMessage();
 		}				
 	}
+	public function InsertBici($mailm, $id, $date1, $date2)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (:mailm,:id,:date1,:date2)");
+												  
+			$stmt->bindparam(":mailm", $mailm);
+			$stmt->bindparam(":id", $id);
+			$stmt->bindparam(":date1", $date1);		
+			$stmt->bindparam(":date2", $date2);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}				
+	}
 	
 	public function doLogin($umail,$upass)
 	{

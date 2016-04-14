@@ -103,7 +103,7 @@
               		<li><a href="#" onclick="cambiaContenuto('visbici')">Visualizza Bici</a></li>
                   <li><a href="#" onclick="cambiaContenuto('postazioni')">Visualizza Postazioni Prelievo</a></li>
                   <li><a href="#" onclick="cambiaContenuto('pisteciclabili')">Visualizza Piste Ciclabili</a></li>
-                  <li><a href="#">Prenota Bici</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('prenbici')">Prenota Bici</a></li>
               	</ul>
   				</div>
   				<div id="veicoli" class="well"> 

@@ -80,4 +80,7 @@ function cambiaContenuto(string){
     if(string=="inviomsgpersonale"){
         $("#Contenuto").load("pages/invioMessaggioPersonale.html");
     }
+    if(string=="prenbici"){
+        $("#Contenuto").load("pages/prenbici.html");
+    }
 };

@@ -33,10 +33,11 @@
 	<body>
 		<div >
 			<h1>Prenotazioni in corso</h1> 
+			<h2>Prenotazioni Bici</h2>
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
+  						<table class="table table-striped table-bordered table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Id</th>
@@ -49,21 +50,22 @@
   		  						
       						  <tbody>
       							<tr>
-      							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['IdBici']; ?></td>
-        						  <td class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
+      							  <td align="left" class="col-md-3"><?php echo $userRow['Id']; ?></td>
+     						      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
+     						      <td align="left" class="col-md-3"><?php echo $userRow['IdBici']; ?></td>
+        						  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							 </tr>
       						  </tbody>
   						</table>
   						<?php endwhile; ?>
 			   </div>
             <?php $stmt->nextRowset();?>
+            <h2>Prenotazioni Veicoli</h2>
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
+  						<table class="table table-striped table-bordered table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Id</th>
@@ -77,12 +79,12 @@
   		  						
       						  <tbody>
       							<tr>
-      							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-        						  <td class="col-md-3"><?php echo $userRow['Veicolo']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Prezzo_Prenotazione']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
+      							  <td align="left" class="col-md-3"><?php echo $userRow['Id']; ?></td>
+     						      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
+        						  <td align="left" class="col-md-3"><?php echo $userRow['Veicolo']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Prezzo_Prenotazione']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							 </tr>
       						  </tbody>
   						</table>
@@ -90,10 +92,11 @@
             <?php endwhile; ?>
           </div>
           <?php $stmt->nextRowset();?>
+          <h2>Prenotazioni Colonnine</h2>
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
+  						<table class="table table-striped table-bordered table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Id</th>
@@ -107,12 +110,12 @@
   		  						
       						  <tbody>
       							<tr>
-      							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-        						  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Slot_Inizio']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Slot_Fine']; ?></td>
-     							  <td class="col-md-3"><?php echo $userRow['Data_pren']; ?></td>
+      							  <td align="left" class="col-md-3"><?php echo $userRow['Id']; ?></td>
+     						      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
+        						  <td align="left" class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Slot_Inizio']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Slot_Fine']; ?></td>
+     							  <td align="left" class="col-md-3"><?php echo $userRow['Data_pren']; ?></td>
      							 </tr>
       						  </tbody>
   						</table>
