@@ -13,8 +13,8 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">	
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
 		<link rel="stylesheet" href="/BasiDati/fonts/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/BasiDati/css/form-elementsLogin.css">
 		<link rel="stylesheet" href="/BasiDati/css/styleLogin.css">
@@ -22,24 +22,30 @@
 	</head>
 
 	<body>
-		<div >
-			<h1>Prenotazioni bici</h1>
+		 <div>
+			<h1>Prenotazione bici</h1>
 
-	
-		
-  <div id="datetimepicker" class="input-append date">
-    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
-    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-  </div>
-</div>
-		
+			 <div id="datetimepicker" class="input-append date">
+			<label for="date1">Data Inizio:</label>
+			<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+			<span class="add-on">
+			<i data-time-icon="icon-time" data-date-icon="icon-calendar">   </i>
+			</span>
+			</div>  
 
-		<p style="display: none;" id="notification">
+			 <div id="datetimepicker2" class="input-append date">
+			<label for="date2">Data Fine:</label>
+			<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+			<span class="add-on">
+			<i data-time-icon="icon-time" data-date-icon="icon-calendar">  </i>
+			</span>
+			</div> 
+
+		</div>  
+		
+		 <p style="display: none;" id="notification">
 			Thank You!
-		</p>
+		</p> 
 		<script>
 			$('#PrenBici').submit(function(e) {
 				e.preventDefault();
@@ -51,18 +57,21 @@
 					url : "/BasiDati/function/prenbici.php",
 					data : "bici=" + id + "&date1=" + date1 + "&date2=" + date2
 				}).done(function() {
+					
+					
+					
 					alert("Dati salvati!");
 					cambiaContenuto('vuoto');
 				});
 			});
 
 		</script>
-		</div>
+		
 		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
 		<script src="/BasiDati/js/bootstrap.min.js"></script>
 		<script src="/BasiDati/js/scripts.js"></script>
 		<script src="/BasiDati/js/prenBici.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="/BasiDati/js/bootstrap-datetimepicker.it.js"></script>
+		<script src="/BasiDati/js/bootstrap-datetimepicker.it.js"></script>
 	</body>
-</html>
+	</html>

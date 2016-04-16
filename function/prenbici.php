@@ -10,7 +10,7 @@ if (isset($_POST['email']) && isset($_POST['text'])) {
 		$mailm = $_SESSION['user_email'];
 		$id = $_POST['id'];
 		$date1 = $_POST['date1'];
-		$date2 = $_POST['date1'];
+		$date2 = $_POST['date2'];
 		
 
 		if ($id != NULL && $date1 != NULL && $date2 != NULL) {
