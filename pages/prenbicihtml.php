@@ -37,9 +37,9 @@ $stmt -> execute();
 			<form role="form"  id="PrenBici" >
 				<div class="form-group">
 					<label for="bici">Bici:</label>
-					<select name="maker" class="form-control" id="form-bici">
+					<select name="form-bici" class="form-control" id="form-bici">
   					<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
-					<option value="<?php echo $userRow["id"] ?>"><?php echo $userRow["id"] ?></option>
+					<option  value="<?php echo $userRow["id"] ?>"><?php echo $userRow["id"] ?></option>
 					<?php endwhile; ?>
 					</select>	
 				</div>
@@ -59,34 +59,34 @@ $stmt -> execute();
 			</form>
 			
 		<script>
-		$('#PrenBici').submit(function(e) {
-				e.preventDefault();
-				var id = $('#form-bici').val();
-				var date1 = $('#form-date1').val();
-				var date2 = $('#form-date2').val();
-				$.ajax({
-				type : "POST",
-				url : "/BasiDati/function/prenbici.php",
-				data : "id=" + id + "&date1=" + date1 + "&date2=" + date2,
-				}).done(function(e) {
-					var typeError1 = "prenotabile";
-					var typeError2 = "prenotare";
-					var errorMessage = e.success;
-					alert(e.success);
-					if (!e.success) {
-						if (errorMessage.indexOf(typeError1) > -1) {
-							alert("Bici non prenotabile");
-							cambiaContenuto('prenbici');
-						} else if (errorMessage.indexOf(typeError2) > -1) {
-							alert("Non si puo prenotare per piu di 12 ore");
-							cambiaContenuto('prenbici');
-						} else {
-							alert("Errore connessione al database");
-							cambiaContenuto('prenbici');
-						}
-					}
-				});
-				});
+		// $('#PrenBici').submit(function(e) {
+				// e.preventDefault();
+				// var id = $('#form-bici').val();
+				// var date1 = $('#form-date1').val();
+				// var date2 = $('#form-date2').val();
+				// $.ajax({
+				// type : "POST",
+				// url : "/BasiDati/function/prenbici.php",
+				// data : "id=" + id + "&date1=" + date1 + "&date2=" + date2,
+				// }).done(function(e) {
+					// var typeError1 = "prenotabile";
+					// var typeError2 = "prenotare";
+					// var errorMessage = e.success;
+					// alert(e.success);
+					// if (!e.success) {
+						// if (errorMessage.indexOf(typeError1) > -1) {
+							// alert("Bici non prenotabile");
+							// cambiaContenuto('prenbici');
+						// } else if (errorMessage.indexOf(typeError2) > -1) {
+							// alert("Non si puo prenotare per piu di 12 ore");
+							// cambiaContenuto('prenbici');
+						// } else {
+							// alert("Errore connessione al database");
+							// cambiaContenuto('prenbici');
+						// }
+					// }
+				// });
+				// });
 
 		</script>
 		</div>

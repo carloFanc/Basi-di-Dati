@@ -20,7 +20,8 @@ jQuery(document).ready(function() {
 		//Validate fields if required using jQuery
 
 		var postForm = {//Fetch form data
-			'id' : $('input[name=form-bici]').val(),
+			
+			'id' : $( "#form-bici option:selected" ).text(),
 			'date1' : $('input[name=form-date1]').val() ,
 			'date2' : $('input[name=form-date2]').val()  //Store name fields value
 		};
@@ -32,10 +33,20 @@ jQuery(document).ready(function() {
 			dataType : 'json',
 			success : function(data) {
 				if (!data.success) {//If fails
-					if (data.errors) {//Returned if any error from process.php
-						alert("Errore");
-						//$('.throw_error').fadeIn(1000).html(data.errors);
-						//Throw relevant error
+					if (data.errors) {
+						var typeError1 = "prenotabile";
+					    var typeError2 = "prenotare";
+					//Returned if any error from process.php
+						if (data.errors.indexOf(typeError1) > -1) {
+							alert("Bici non prenotabile");
+							cambiaContenuto('prenbici');
+						} else if (data.errors.indexOf(typeError2) > -1) {
+							alert("Non si puo prenotare per piu di 12 ore");
+							cambiaContenuto('prenbici');
+						} else {
+							alert("Errore connessione al database");
+							cambiaContenuto('prenbici');
+						}
 					}
 				} else {
 					alert("Successo");
