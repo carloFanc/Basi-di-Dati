@@ -32,12 +32,14 @@ jQuery(document).ready(function() {
 			dataType : 'json',
 			success : function(data) {
 				if (!data.success) {//If fails
-					if (data.errors.name) {//Returned if any error from process.php
-						$('.throw_error').fadeIn(1000).html(data.errors.name);
+					if (data.errors) {//Returned if any error from process.php
+						alert("Errore");
+						//$('.throw_error').fadeIn(1000).html(data.errors);
 						//Throw relevant error
 					}
 				} else {
-					$('#success').fadeIn(1000).append('<p>' + data.posted + '</p>');
+					alert("Successo");
+					//$('#success').fadeIn(1000).append('<p>' + data.posted + '</p>');
 					//If successful, than throw a success message
 				}
 			}

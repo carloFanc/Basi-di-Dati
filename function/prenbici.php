@@ -21,6 +21,7 @@ $form_data = array(); //Pass back the data to `form.php`
 	   if(strcmp($error, "")==0){
 	    $form_data['success'] = true;
         $form_data['errors']  = "";	
+	    $form_data['posted'] = 'Data Was Posted Successfully';
 	   }else{
 	   	$form_data['success'] = false;
         $form_data['errors']  = $error;				   	 
