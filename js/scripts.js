@@ -81,6 +81,6 @@ function cambiaContenuto(string){
         $("#Contenuto").load("pages/invioMessaggioPersonale.html");
     }
     if(string=="prenbici"){
-        $("#Contenuto").load("pages/prenbici.html");
+        $("#Contenuto").load("pages/prenbicihtml.php");
     }
 };

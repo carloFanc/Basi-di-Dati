@@ -6,7 +6,7 @@ class USER
 {	
 
 	private $conn;
-	
+	public $error="";
 	public function __construct()
 	{
 		$database = new Database();
@@ -19,7 +19,14 @@ class USER
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	
+	public function errorGetter(){
+		return $this->error;
+		
+	}
+	public function errorSetter($data){
+		$this->error= $data;
+		
+	}
 	public function register($uname,$ucogn,$umail,$upass,$udata,$uluogo,$uresidenza,$utel)
 	{
 		try
@@ -83,7 +90,8 @@ class USER
 		}
 		catch(PDOException $e)
 		{
-			echo $e->getMessage();
+			
+			$this->errorSetter($e->getMessage());
 		}				
 	}
 	
@@ -131,5 +139,6 @@ class USER
 		unset($_SESSION['user_email']);
 		return true;
 	}
+
 }
 ?>
