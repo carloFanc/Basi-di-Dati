@@ -54,5 +54,50 @@
 			   </div>
             <?php endwhile; ?>
           </div>
+          <div>
+           <?php $stmt2 = $auth_user->runQuery('SELECT Latitudine,Longitudine FROM Postazione_Prelievo;');
+	$stmt2->execute();?>
+			<section id="wrapper">
+				<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+				<script>
+					function success(position) {
+						var mapcanvas = document.createElement('div');
+						mapcanvas.id = 'mapcontainer';
+						mapcanvas.style.height = '400px';
+						mapcanvas.style.width = '600px';
+
+						document.querySelector('article').appendChild(mapcanvas);
+					<?php while ($userRow2=$stmt2->fetch(PDO::FETCH_ASSOC)): ?>
+						var coords = new google.maps.LatLng($userRow2['Latitudine'];, $userRow2['Longitudine'];);
+						
+
+						var options = {
+							zoom : 15,
+							center : coords,
+							mapTypeControl : false,
+							navigationControlOptions : {
+								style : google.maps.NavigationControlStyle.SMALL
+							},
+							mapTypeId : google.maps.MapTypeId.ROADMAP
+						};
+						var map = new google.maps.Map(document.getElementById("mapcontainer"), options);
+					 
+						var marker = new google.maps.Marker({
+							position : coords,
+							map : map,
+							title : "Postazione Prelievo"
+						});
+						<?php endwhile; ?>
+					}
+
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(success);
+					} else {
+						error('Geo Location is not supported');
+					}
+
+				</script>
+			</section>
+		</div>
 </body>
 </html>

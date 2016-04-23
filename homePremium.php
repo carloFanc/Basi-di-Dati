@@ -36,6 +36,10 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
+	    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/form-elementsLogin.css">
+		<link rel="stylesheet" href="css/styleLogin.css">
+		<link rel="stylesheet" href="css/jquery-ui.css">
 	</head>
 	<body>
 
@@ -96,19 +100,19 @@
               	
 				<div id="bici" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              		<li><a href="#" onclick="">Visualizza Bici</a></li>
+              		<li><a href="#" onclick="cambiaContenuto('visbici')">Visualizza Bici</a></li>
                   <li><a href="#" onclick="cambiaContenuto('postazioni')">Visualizza Postazioni Prelievo</a></li>
                   <li><a href="#" onclick="cambiaContenuto('pisteciclabili')">Visualizza Piste Ciclabili</a></li>
-                  <li><a href="#">Prenota Bici</a></li>
-                  <li><a href="#" onclick="">Inserisci Segnalazione pista Ciclabile</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('prenbici')">Prenota Bici</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('inssegnalaz')">Inserisci Segnalazione Pista Ciclabile</a></li>
               	</ul>
   				</div>
   				<div id="veicoli" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-           		<li><a href="#" onclick="">Visualizza Veicoli</a></li>
+           		<li><a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a></li>
                   <li><a href="#" onclick="cambiaContenuto('puntinoleggio')">Visualizza Punti Noleggio</a></li>
-                  <li><a href="#">Visualizza Colonnine di Ricarica</a></li>
-                  <li><a href="#">Prenota Veicolo Elettrico</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('viscolonnine')">Visualizza Colonnine di Ricarica</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('prenveicoli')">Prenota Veicolo Elettrico</a></li>
                   <li><a href="#">Prenota Operazione di Ricarica in una Colonnina</a></li>
               	</ul>
   				</div>
@@ -120,7 +124,7 @@
   				</div>
   				<div id="inbox" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              	  <li><a href="#" onclick="">Invia Messaggio Personale</a></li>
+              	  <li><a href="#" onclick="cambiaContenuto('inviomsgpersonale')">Invia Messaggio Personale</a></li>
                   <li><a href="#" onclick="cambiaContenuto('inbox')">Visualizza Messaggi Inbox</a></li>
               	</ul>
   				</div>
@@ -133,6 +137,7 @@
               	<ul class="nav nav-stacked" id="sidebar">
                   <li><a href="#" onclick="cambiaContenuto('classprenbici')">Classifica Utenti in base al n° prenotazioni bici</a></li>
                   <li><a href="#" onclick="cambiaContenuto('classprenveicoli')">Classifica Utenti in base al n° prenotazioni veicoli</a></li>
+              	  <li><a href="#" onclick="">Utilizzo medio Colonnine di Ricarica</a></li>
               	</ul>
   				</div>
 
@@ -150,6 +155,7 @@
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script src="js/scripts.js"></script>
 	</body>
 </html>

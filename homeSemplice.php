@@ -110,7 +110,7 @@
               	<ul class="nav nav-stacked" id="sidebar">
               		<li><a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a></li>
                   <li><a href="#" onclick="cambiaContenuto('puntinoleggio')">Visualizza Punti Noleggio</a></li>
-                  <li><a href="#">Prenota Veicolo Elettrico</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('prenveicoli')">Prenota Veicolo Elettrico</a></li>
               	</ul>
   				</div>
   				<div id="prenotazioni" class="well"> 

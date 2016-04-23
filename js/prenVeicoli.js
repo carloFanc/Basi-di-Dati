@@ -21,35 +21,31 @@ jQuery(document).ready(function() {
 
 		var postForm = {//Fetch form data
 			
-			'id' : $( "#form-bici option:selected" ).text(),
+			'Targa' : $( "#form-targa option:selected" ).text(),
 			'date1' : $('input[name=form-date1]').val() ,
 			'date2' : $('input[name=form-date2]').val()  //Store name fields value
 		};
 
 		$.ajax({//Process the form using $.ajax()
 			type : 'POST', //Method type
-			url : '/BasiDati/function/prenbici.php', //Your form processing file URL
+			url : '/BasiDati/function/prenveicoli.php', //Your form processing file URL
 			data : postForm, //Forms name
 			dataType : 'json',
 			success : function(data) {
 				if (!data.success) {//If fails
 					if (data.errors) {
 						var typeError1 = "prenotabile";
-					    var typeError2 = "prenotare";
 					//Returned if any error from process.php
 						if (data.errors.indexOf(typeError1) > -1) {
-							alert("Bici non prenotabile");
-							cambiaContenuto('prenbici');
-						} else if (data.errors.indexOf(typeError2) > -1) {
-							alert("Non si puo prenotare per piu di 12 ore");
-							cambiaContenuto('prenbici');
+							alert("veicolo non prenotabile");
+							cambiaContenuto('prenveicoli');
 						} else {
 							alert("Errore connessione al database");
-							cambiaContenuto('prenbici');
+							cambiaContenuto('prenveicoli');
 						}
 					}
 				} else {
-					alert("Bici Prenotata");
+					alert("Veicolo Prenotato");
 					cambiaContenuto('vuoto');
 					//$('#success').fadeIn(1000).append('<p>' + data.posted + '</p>');
 					//If successful, than throw a success message

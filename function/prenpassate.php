@@ -19,7 +19,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Prenotazioni in Corso</title>
+		<title>Prenotazioni Passate</title>
 		<meta name="description" content="profilo">
 		<meta name="author" content="Carlof">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
@@ -32,7 +32,7 @@
 
 	<body>
 		<div >
-			<h1>Prenotazioni in corso</h1> 
+			<h1>Prenotazioni Passate</h1> 
 			<h2>Prenotazioni Bici</h2>
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
@@ -91,7 +91,7 @@
 			   </div>
             <?php endwhile; ?>
           </div>
-          <?php $stmt->nextRowset();?>
+          <!-- <?php $stmt->nextRowset();?>
           <h2>Prenotazioni Colonnina</h2> 
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
@@ -120,7 +120,7 @@
       						  </tbody>
   						</table>
 			   </div>
-            <?php endwhile; ?>
+            <?php endwhile; ?> -->
           </div>
 </body>
 </html>

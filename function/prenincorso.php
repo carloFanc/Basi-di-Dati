@@ -32,7 +32,7 @@
 
 	<body>
 		<div >
-			<h1>Prenotazioni in corso</h1> 
+			<h1>Prenotazioni in Corso</h1> 
 			<h2>Prenotazioni Bici</h2>
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
@@ -91,7 +91,7 @@
 			   </div>
             <?php endwhile; ?>
           </div>
-          <?php $stmt->nextRowset();?>
+          <!-- <?php $stmt->nextRowset();?>
           <h2>Prenotazioni Colonnine</h2>
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
@@ -120,7 +120,7 @@
       						  </tbody>
   						</table>
 			   </div>
-            <?php endwhile; ?>
+            <?php endwhile; ?> -->
           </div>
 </body>
 </html>

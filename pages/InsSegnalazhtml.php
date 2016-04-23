@@ -3,7 +3,7 @@ require_once (dirname(dirname(__FILE__)) . '/session.php');
 require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 
 $user = new USER();
-$stmt = $user -> runQuery('SELECT id from Bici');
+$stmt = $user -> runQuery('SELECT id FROM Pista_Ciclabile');
 $stmt -> execute();
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ $stmt -> execute();
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Prenotazioni bici</title>
+		<title>Inserimento Segnalazione</title>
 		<meta name="description" content="profilo">
 		<meta name="author" content="Carlof">
 
@@ -26,32 +26,31 @@ $stmt -> execute();
 		<link rel="stylesheet" href="/BasiDati/fonts/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/BasiDati/css/form-elementsLogin.css">
 		<link rel="stylesheet" href="/BasiDati/css/styleLogin.css">
-		<link rel="stylesheet" href="/BasiDati/css/bootstrap-datetimepicker.min.css">
 	</head>
 
 	<body>
 		 <div>
-			<h1>Prenotazione bici</h1>
+			<h1>Inserimento Segnalazione</h1>
 			
 			
-			<form role="form"  id="PrenBici" >
+			<form role="form"  id="InsSegn" >
 				<div class="form-group">
-					<label for="bici">Bici:</label>
-					<select name="form-bici" class="form-control" id="form-bici">
+					<label for="bici">Piste Ciclabili:</label>
+					<select name="form-piste" class="form-control" id="form-piste">
   					<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
 					<option  value="<?php echo $userRow["id"] ?>"><?php echo $userRow["id"] ?></option>
 					<?php endwhile; ?>
 					</select>	
 				</div>
-				<div id="datetimepicker" class="input-append date">
-					<label for="date1">Data Inizio:</label>
-					<input name="form-date1" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date1"> </input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
+				<div class="form-group">
+					<label for="text">Titolo:</label>
+					<input name="form-titolo" type="text" class="form-control" id="form-titolo">
+
 				</div>
-				<div id="datetimepicker2" class="input-append date" class="form-group">
-					<label for="date2">Data Fine:</label>
-					<input name="form-date2" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date2"> </input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
+				<div class="form-group">
+					<label for="text">Testo Messaggio:</label>
+					<input name="form-testo" type="text" class="form-control" id="form-testo">
+
 				</div>
 				<button type="submit" name="btn-invio" class="btn btn-default">
 					Invio
@@ -61,8 +60,7 @@ $stmt -> execute();
 		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
 		<script src="/BasiDati/js/bootstrap.min.js"></script>			
 		<script src="/BasiDati/js/jquery-ui.js"></script>
-		<script src="/BasiDati/js/prenBici.js"></script>
-		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
-		<script src="/BasiDati/js/bootstrap-datetimepicker.it.js"></script>
+		<script src="/BasiDati/js/InsSegnalaz.js"></script>
+		
 	</body>
 	</html>

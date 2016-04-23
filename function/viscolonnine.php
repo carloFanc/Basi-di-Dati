@@ -8,7 +8,7 @@
 	
 	$umail = $_SESSION['user_email'];
 	
-	$stmt = $auth_user->runQuery('CALL ClassificaPrenVeicoli()');
+	$stmt = $auth_user->runQuery('CALL VisualizzaColonnine();');
 	$stmt->execute();
 	
 
@@ -19,7 +19,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Classifica Prenotazioni Veicoli</title>
+		<title>Visualizza Colonnine</title>
 		<meta name="description" content="profilo">
 		<meta name="author" content="Carlof">
 
@@ -33,21 +33,29 @@
 
 	<body>
 		<div >
-			<h1>Classifica in base alle prenotazioni Veicoli</h1> 
+			<h1>Colonnine</h1> 
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
   						<table class="table table-bordered">
     					<thead>
       					<tr>
-      					  <th>Email Utente</th>
-      					  <th>Numero Prenotazioni Veicoli</th>
+      					  <th>Indirizzo</th>
+      					  <th>Ente Fornitore</th>
+      					  <th>Max KWH</th>
+      					  <th>Data Inserimento</th>
+      					  <th>Latitudine</th>
+     					  <th>Longitudine</th>
      					 </tr>
     					</thead>
   		  						<tbody>
       							<tr>
-      							  <td class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['Numero_Prenotazioni_Veicoli']; ?></td>
+      							  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Ente_Fornitore']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Max_KWH']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Data_Inserimento']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Latitudine']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Longitudine']; ?></td>
      							 </tr>
       						  </tbody>
   						</table>

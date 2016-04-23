@@ -94,7 +94,46 @@ class USER
 			$this->errorSetter($e->getMessage());
 		}				
 	}
-	
+	public function InsertVeicoli($mailm, $targa, $date1, $date2)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL PrenotazioneVeicolo(:mailm,:targa,:date1,:date2)");
+												  
+			$stmt->bindparam(":mailm", $mailm);
+			$stmt->bindparam(":targa", $targa);
+			$stmt->bindparam(":date1", $date1);		
+			$stmt->bindparam(":date2", $date2);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
+	public function InsertSegnalazione($id,$mailm, $titolo, $testo)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL InserimentoSegnalazione(:id,:mailm,:titolo,:testo)");
+												  
+			$stmt->bindparam(":id", $id);
+			$stmt->bindparam(":mailm", $mailm);
+			$stmt->bindparam(":titolo", $titolo);		
+			$stmt->bindparam(":testo", $testo);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
 	public function doLogin($umail,$upass)
 	{
 		try

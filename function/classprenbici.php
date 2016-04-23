@@ -41,7 +41,7 @@
     					<thead>
       					<tr>
       					  <th>Email Utente</th>
-      					  <th>Numero_Prenotazioni_Bici</th>
+      					  <th>Numero Prenotazioni Bici</th>
      					 </tr>
     					</thead>
   		  						<tbody>

@@ -3,7 +3,7 @@ require_once (dirname(dirname(__FILE__)) . '/session.php');
 require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 
 $user = new USER();
-$stmt = $user -> runQuery('SELECT id from Bici');
+$stmt = $user -> runQuery('SELECT Targa FROM Veicolo_elettrico');
 $stmt -> execute();
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ $stmt -> execute();
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Prenotazioni bici</title>
+		<title>Prenotazioni Veicoli</title>
 		<meta name="description" content="profilo">
 		<meta name="author" content="Carlof">
 
@@ -31,15 +31,15 @@ $stmt -> execute();
 
 	<body>
 		 <div>
-			<h1>Prenotazione bici</h1>
+			<h1>Prenotazione Veicoli</h1>
 			
 			
-			<form role="form"  id="PrenBici" >
+			<form role="form"  id="PrenVeicolo" >
 				<div class="form-group">
-					<label for="bici">Bici:</label>
-					<select name="form-bici" class="form-control" id="form-bici">
+					<label for="targa">Targa Veicolo:</label>
+					<select name="form-targa" class="form-control" id="form-targa">
   					<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
-					<option  value="<?php echo $userRow["id"] ?>"><?php echo $userRow["id"] ?></option>
+					<option  value="<?php echo $userRow["Targa"] ?>"><?php echo $userRow["Targa"] ?></option>
 					<?php endwhile; ?>
 					</select>	
 				</div>
@@ -49,7 +49,7 @@ $stmt -> execute();
 					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 				</div>
 				<div id="datetimepicker2" class="input-append date" class="form-group">
-					<label for="date2">Data Fine:</label>
+					<label for="date1">Data Fine:</label>
 					<input name="form-date2" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date2"> </input>
 					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 				</div>
@@ -61,7 +61,7 @@ $stmt -> execute();
 		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
 		<script src="/BasiDati/js/bootstrap.min.js"></script>			
 		<script src="/BasiDati/js/jquery-ui.js"></script>
-		<script src="/BasiDati/js/prenBici.js"></script>
+		<script src="/BasiDati/js/prenVeicoli.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.it.js"></script>
 	</body>

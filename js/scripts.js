@@ -83,4 +83,13 @@ function cambiaContenuto(string){
     if(string=="prenbici"){
         $("#Contenuto").load("pages/prenbicihtml.php");
     }
+    if(string=="prenveicoli"){
+        $("#Contenuto").load("pages/prenveicolihtml.php");
+    }
+    if(string=="inssegnalaz"){
+        $("#Contenuto").load("pages/InsSegnalazhtml.php");
+    }
+    if(string=="viscolonnine"){
+        $("#Contenuto").load("function/viscolonnine.php");
+    }
 };
