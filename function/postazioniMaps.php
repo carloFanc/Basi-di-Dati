@@ -14,22 +14,23 @@
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    var marker;
+   
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
             $.ajax({
-            url: 'function/get_locations.php',
+            url: 'function/get_postazioni.php',
             success:function(data){
             	   //oop through each location.
                  $.each(data, function(){
-                 	var contenuto = '<p><b>'+this.Nome+'</p></b><br>'+'Telefono: ' + this.Telefono +'<br>'+'Email: '+this.Email+'<br>'+'Indirizzo: '+this.Indirizzo+'<br>'+'Sito web: <a href="'+this.Sito_Web+'">'+this.Sito_Web+'</a>';
+                 	var marker;
+                 	var contenuto = '<p><b>'+this.Indirizzo+'</p></b><br>'+'Numero Bici Totali: ' + this.Numero_Bici_Totale +'<br>'+'Numero Bici Disponibili: '+this.Numero_Bici_Disponibili+'<br>';
                  	var infowindow = new google.maps.InfoWindow({
    					 content: contenuto
      					});
                     //Plot the location as a marker
-                    console.log(data);
+                    
                     var pos = new google.maps.LatLng(this.Latitudine,this.Longitudine); 
                     bounds.extend(pos);
-                    var titolo = this.Nome;
+                    var titolo = this.Indirizzo;
                     marker = new google.maps.Marker({
                         position: pos,
                         map: map,
@@ -39,26 +40,19 @@
                      infowindow.open(map, marker);
                     });
  
-                    
                  });
+            map.fitBounds(bounds);
             }
         });
-      map.fitBounds(bounds);
+      
   }
 </script>
 </head>
 
 
 <body>
-	<!-- <script type="text/javascript">
 
-    //When the Window finishes loading...
-   $(function () {
-    //Carry out an Ajax request.
-
-    });
-</script> -->
-  <div id="map_canvas" style="width:400px; height:300px"></div>
+  <div id="map_canvas" style="width:900px; height:500px"></div>
      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8bBvuhva38_N5T8ZZb2JetjgBITIKrwI&callback=initMap&v=3"
   type="text/javascript"></script>
 </body>

@@ -81,7 +81,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 					<ul class="nav navbar-nav navbar-right">
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?>&nbsp;<span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?><span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="#" onclick="cambiaContenuto('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a>
@@ -107,35 +107,57 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 							<li>
 								<a href="#" onclick="cambiaContenuto('visbici')">Visualizza Bici</a>
 							</li>
-							<li>
-								<a href="#" onclick="cambiaContenuto('postazioni')">Visualizza Postazioni Prelievo</a>
+
+							<li data-toggle="collapse" data-parent="#p1" href="#pv1">
+								<a class="nav-sub-container">Visualizza Postazioni Prelievo<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv1">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('postazioni')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('postazionimaps')">Su Google Maps</a>
+									</li>
+								</ul>
 							</li>
-							<li>
-								<a href="#" onclick="cambiaContenuto('pisteciclabili')">Visualizza Piste Ciclabili</a>
+
+							<li data-toggle="collapse" data-parent="#p1" href="#pv2">
+								<a class="nav-sub-container">Visualizza Piste Ciclabili<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv2">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('pisteciclabili')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('pisteciclabilimaps')">Su Google Maps</a>
+									</li>
+								</ul>
 							</li>
 							<li>
 								<a href="#" onclick="cambiaContenuto('prenbici')">Prenota Bici</a>
 							</li>
 						</ul>
 					</div>
+
 					<div id="veicoli" class="well">
 						<ul class="nav nav-stacked  " id="sidebar">
 							<li>
 								<a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a>
 							</li>
-							<li data-toggle="collapse" data-parent="#p1" href="#pv1">
-								<a class="nav-sub-container">Public Views <span class="caret arrow"></span><div class="caret-container">	
-								</div></a>
-							
-							<ul class="nav nav-pills nav-stacked collapse" id="pv1">
-								<li>
-									<a href="#"  onclick="cambiaContenuto('blablabla')">View One</a>
-								</li>
-								<li>
-									<a href="#">View Two</a>
-								</li>
-							</ul>
+
+							<li data-toggle="collapse" data-parent="#p1" href="#pv3">
+								<a class="nav-sub-container">Visualizza Punti Noleggio<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv3">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('puntinoleggio')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('visveicolimaps')">Su Google Maps</a>
+									</li>
+								</ul>
 							</li>
+
 							<li>
 								<a href="#" onclick="cambiaContenuto('prenveicoli')">Prenota Veicolo Elettrico</a>
 							</li>
