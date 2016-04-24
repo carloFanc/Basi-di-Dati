@@ -37,7 +37,7 @@
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
+  						<table class="table table-striped table-bordered">
     					<thead>
       					<tr>
       					  <th>Id</th>

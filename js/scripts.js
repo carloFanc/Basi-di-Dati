@@ -62,6 +62,9 @@ function cambiaContenuto(string){
     if(string=="postazionimaps"){
         $("#Contenuto").load("function/postazioniMaps.php");
     }
+    if(string=="getDistanceLatLong"){
+        $("#Contenuto").load("pages/scegliDistanzaMapsBici.html");
+    }
     if(string=="pisteciclabili"){
         $("#Contenuto").load("function/pisteciclabili.php");
     }

@@ -116,7 +116,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 										<a href="#"  onclick="cambiaContenuto('postazioni')">Su Tabella</a>
 									</li>
 									<li>
-										<a href="#" onclick="cambiaContenuto('postazionimaps')">Su Google Maps</a>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLong')">Su Google Maps</a>
 									</li>
 								</ul>
 							</li>

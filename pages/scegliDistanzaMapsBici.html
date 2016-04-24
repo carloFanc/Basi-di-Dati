@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Scegli distanza di visualizzazione</title>
+		<meta name="description" content="profilo">
+		<meta name="author" content="Carlof">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+		<link rel="stylesheet" href="../BasiDati/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../BasiDati/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../BasiDati/css/form-elementsLogin.css">
+		<link rel="stylesheet" href="../BasiDati/css/styleLogin.css">
+		<link rel="stylesheet" href="../BasiDati/css/jquery-ui.css">
+
+	</head>
+
+	<body>
+		<div id="content" >
+			<h1>Scegli distanza massima di visualizzazione bici</h1>
+
+			<form role="form"  id="invioCoordinate" >
+				<div class="form-group">
+					<label for="distanza">Distanza:</label>
+					<input name="distanzaInKm" type="number" class="form-control" id="distanza" style="text-align:right;"  > 
+				</div>
+				<div class="form-group">
+					<label for="lat tudine">Latitudine:</label>
+					<input name="latitudine" type="text" class="form-control" id="latitudine"  style="text-align:right;" readonly>
+
+				</div>
+				<div class="form-group">
+					<label for="long tudine">Longitudine:</label>
+					<input name="longitudine" type="text" class="form-control" id="longitudine" style="text-align:right;" readonly>
+
+				</div>
+				<button type="submit" name="btn-invio" class="btn btn-default">
+					Invio
+				</button>
+			</form>
+
+			<script>
+				$('#invioCoordinate').submit(function(e) {
+					e.preventDefault();
+					var distanza = $('#distanza').val();
+					var latitudine = $('#latitudine').val();
+					var longitudine = $('#longitudine').val();
+					$.ajax({
+						type : "GET",
+						url : "/BasiDati/function/ajaxToSession.php",
+						data : {
+							distanza : distanza,
+							latitudine : latitudine,
+							longitudine : longitudine,
+						},
+					}).done(function() {
+						$.ajax({
+							type : "POST",
+							url : "/BasiDati/function/postazioniMaps.php",
+						}).done(function(data) {
+							$('#content').html(data);
+						});
+
+					});
+
+				});
+
+			</script>
+			<script>
+				$(function() {
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(function(position) {
+
+							var lat = position.coords.latitude;
+							var lng = position.coords.longitude;
+							$('input[name="latitudine"]').val(lat);
+							$('input[name="longitudine"]').val(lng);
+
+						});
+					} else {
+						// Browser doesn't support Geolocation
+						alert("Non riesco a prendere le coordinate");
+					}
+
+				});
+
+			</script>
+		</div>
+		<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
+		<script src="../BasiDati/js/jquery-ui.js"></script>
+		<script src="../BasiDati/js/bootstrap.min.js"></script>
+
+	</body>
+</html>
