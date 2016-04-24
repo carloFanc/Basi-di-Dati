@@ -28,7 +28,19 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		
+		<style type="text/css">
+			DIV.container {
+				width: inherit;
+				text-align: center;
+			}
+			table, thead, tr, tbody, th, td {
+				text-align: center;
+			}
+
+			.table td {
+				text-align: center;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -37,8 +49,8 @@
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
   						           
-  						<table class="table table-bordered">
-    					<thead>
+  						<table class="table table-striped table-bordered">
+    					<thead class="personale">
       					<tr>
       					  <th>Targa</th>
       					  <th>Punto Noleggio</th>

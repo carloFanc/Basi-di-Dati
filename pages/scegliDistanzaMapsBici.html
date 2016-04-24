@@ -24,12 +24,12 @@
 
 	<body>
 		<div id="content" >
-			<h1>Scegli distanza massima di visualizzazione bici</h1>
+			<h1>Scegli distanza massima di visualizzazione</h1>
 
 			<form role="form"  id="invioCoordinate" >
 				<div class="form-group">
 					<label for="distanza">Distanza:</label>
-					<input name="distanzaInKm" type="number" class="form-control" id="distanza" style="text-align:right;"  > 
+					<input name="distanzaInKm" type="number" class="form-control" id="distanza" style="text-align:right;"  >
 				</div>
 				<div class="form-group">
 					<label for="lat tudine">Latitudine:</label>
@@ -48,6 +48,7 @@
 
 			<script>
 				$('#invioCoordinate').submit(function(e) {
+
 					e.preventDefault();
 					var distanza = $('#distanza').val();
 					var latitudine = $('#latitudine').val();

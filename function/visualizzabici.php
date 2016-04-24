@@ -1,17 +1,13 @@
 <?php
+require_once ("../session.php");
 
-	require_once("../session.php");
-	
-	require_once("../class.user.php");
-	$auth_user = new USER();
-	
-	
-	$umail = $_SESSION['user_email'];
-	
-	$stmt = $auth_user->runQuery('SELECT * FROM Bici;');
-	$stmt->execute();
-	
+require_once ("../class.user.php");
+$auth_user = new USER();
 
+$umail = $_SESSION['user_email'];
+
+$stmt = $auth_user -> runQuery('SELECT * FROM Bici;');
+$stmt -> execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,17 +24,29 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		
+		<style type="text/css">
+			DIV.container {
+				width: inherit;
+				text-align: center;
+			}
+			table, thead, tr, tbody, th, td {
+				text-align: center;
+			}
+
+			.table td {
+				text-align: center;
+			}
+		</style>
 	</head>
 
 	<body>
 		<div >
 			<h1>Bici</h1> 
 			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
-            	<div class="container">
+            	<div class="container"  >
   						           
   						<table class="table table-striped table-bordered">
-    					<thead>
+    					<thead class="personale">
       					<tr>
       					  <th>Id</th>
       					  <th>Postazione Prelievo</th>

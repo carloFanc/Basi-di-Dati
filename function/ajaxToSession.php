@@ -1,6 +1,15 @@
 <?php
  session_start();
-$_SESSION['distanza']=$_GET['distanza'];
-$_SESSION['latitudine']=$_GET['latitudine'];
-$_SESSION['longitudine']=$_GET['longitudine'];
+ if(isset($_GET['distanza'])){
+ 	$_SESSION['distanza']=$_GET['distanza'];
+ }
+ if(isset($_GET['latitudine'])){
+ 	$_SESSION['latitudine']=$_GET['latitudine'];
+ }
+ if(isset($_GET['longitudine'])){
+ 	$_SESSION['longitudine']=$_GET['longitudine'];
+ }
+  if(isset($_GET['origine'])){
+ 	$_SESSION['origine']=$_GET['origine'];
+ }
 ?>  

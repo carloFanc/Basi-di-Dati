@@ -2,14 +2,18 @@
  session_start();
 if (isset($_GET['distanza'])) {
     // return requested value
- echo $_SESSION['distanza'];
+ print json_encode ($_SESSION['distanza']);
 } 
 if (isset($_GET['latitudine'])) {
     // return requested value
-     $_SESSION['latitudine'];
+    print json_encode ($_SESSION['latitudine']);
 } 
 if (isset($_GET['longitudine'])) {
     // return requested value
-     $_SESSION['longitudine'];
+  print json_encode   ($_SESSION['longitudine']);
+} 
+if (isset($_GET['requested'])) {
+    // return requested value
+  print json_encode   ($_SESSION['origine']);
 } 
 ?>

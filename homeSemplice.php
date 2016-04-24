@@ -116,12 +116,12 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 										<a href="#"  onclick="cambiaContenuto('postazioni')">Su Tabella</a>
 									</li>
 									<li>
-										<a href="#" onclick="cambiaContenuto('getDistanceLatLong')">Su Google Maps</a>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongBici')">Su Google Maps</a>
 									</li>
 								</ul>
 							</li>
 
-							<li data-toggle="collapse" data-parent="#p1" href="#pv2">
+							<li data-toggle="collapse" data-parent="#p2" href="#pv2">
 								<a class="nav-sub-container">Visualizza Piste Ciclabili<span class="caret arrow"></span><div class="caret-container"></div></a>
 
 								<ul class="nav nav-pills nav-stacked collapse" id="pv2">
@@ -129,7 +129,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 										<a href="#"  onclick="cambiaContenuto('pisteciclabili')">Su Tabella</a>
 									</li>
 									<li>
-										<a href="#" onclick="cambiaContenuto('pisteciclabilimaps')">Su Google Maps</a>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongPisteCiclabili')">Su Google Maps</a>
 									</li>
 								</ul>
 							</li>
@@ -145,7 +145,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 								<a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a>
 							</li>
 
-							<li data-toggle="collapse" data-parent="#p1" href="#pv3">
+							<li data-toggle="collapse" data-parent="#p3" href="#pv3">
 								<a class="nav-sub-container">Visualizza Punti Noleggio<span class="caret arrow"></span><div class="caret-container"></div></a>
 
 								<ul class="nav nav-pills nav-stacked collapse" id="pv3">
@@ -153,7 +153,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 										<a href="#"  onclick="cambiaContenuto('puntinoleggio')">Su Tabella</a>
 									</li>
 									<li>
-										<a href="#" onclick="cambiaContenuto('visveicolimaps')">Su Google Maps</a>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongPuntiNoleggio')">Su Google Maps</a>
 									</li>
 								</ul>
 							</li>

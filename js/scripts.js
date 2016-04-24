@@ -60,16 +60,26 @@ function cambiaContenuto(string){
         $("#Contenuto").load("function/postazioni.php");
     }
     if(string=="postazionimaps"){
-        $("#Contenuto").load("function/postazioniMaps.php");
+      $("#Contenuto").load("function/postazioniMaps.php");     
     }
-    if(string=="getDistanceLatLong"){
-        $("#Contenuto").load("pages/scegliDistanzaMapsBici.html");
-    }
+    if(string=="getDistanceLatLongBici"
+    ||string=="getDistanceLatLongPisteCiclabili"
+    ||string=="getDistanceLatLongPuntiNoleggio"
+    ||string=="getDistanceLatLongColonnine"){
+    	var origine = string;
+    			$.ajax({
+						type : "GET",
+						url : "/BasiDati/function/ajaxToSession.php",
+						data : {
+							origine : origine,
+						},
+					}).done(function() {
+						   $("#Contenuto").load("pages/scegliDistanzaMapsBici.html");
+					});
+    	
+ }
     if(string=="pisteciclabili"){
         $("#Contenuto").load("function/pisteciclabili.php");
-    }
-    if(string=="pisteciclabilimaps"){
-        $("#Contenuto").load("function/pisteciclabiliMaps.php");
     }
     if(string=="puntinoleggio"){
         $("#Contenuto").load("function/puntinoleggio.php");
@@ -85,9 +95,6 @@ function cambiaContenuto(string){
     }
     if(string=="visveicoli"){
         $("#Contenuto").load("function/visualizzaveicoli.php");
-    }
-    if(string=="visveicolimaps"){
-        $("#Contenuto").load("function/visualizzaveicoliMaps.php");
     }
     if(string=="inviomsgpersonale"){
         $("#Contenuto").load("pages/invioMessaggioPersonale.html");
