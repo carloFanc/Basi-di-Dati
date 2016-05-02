@@ -32,6 +32,11 @@
 					<input name="form-email" type="email" class="form-control" id="form-email">
 				</div>
 				<div class="form-group">
+					<label for="text">Titolo:</label>
+					<input name="form-titolo" type="text" class="form-control" id="form-titolo">
+
+				</div>
+				<div class="form-group">
 					<label for="text">Testo Messaggio:</label>
 					<input name="form-txt" type="text" class="form-control" id="form-text">
 
@@ -46,11 +51,12 @@
 				$('#invioMessaggio').submit(function(e) {
 					e.preventDefault();
 					var email = $('#form-email').val();
+					var titolo = $('#form-titolo').val();
 					var text = $('#form-text').val();
 					$.ajax({
 						type : "POST",
 						url : "/BasiDati/function/inviomsgpersonale.php",
-						data : "email=" + email + "&text=" + text
+						data : "email=" + email + "&titolo=" + titolo + "&text=" + text
 					}).done(function() {
 						alert("Dati salvati!");
 						cambiaContenuto('vuoto');

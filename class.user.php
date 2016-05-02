@@ -55,14 +55,16 @@ class USER
 		}				
 	}
 	
-	public function Insertmsg($mailm,$maild,$text,$data)
+	public function Insertmsg($mailm,$maild,$titolo,$tipo,$text,$data)
 	{
 		try
 		{
-			$stmt = $this->conn->prepare("INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio) VALUES (:mailm,:maild,:text,:data)");
-												  
+			$stmt = $this->conn->prepare("INSERT INTO Messaggio(Email_Mittente,Email_Destinatario,Titolo,Tipo,Testo_Messaggio,DataInvio) VALUES (:mailm,:maild,:titolo,:tipo,:text,:data)");
+								  
 			$stmt->bindparam(":mailm", $mailm);
 			$stmt->bindparam(":maild", $maild);
+			$stmt->bindparam(":titolo",$titolo);
+			$stmt->bindparam(":tipo",$tipo);
 			$stmt->bindparam(":text", $text);		
 			$stmt->bindparam(":data", $data);									  
 			$stmt->execute();	

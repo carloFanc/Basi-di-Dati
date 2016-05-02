@@ -104,7 +104,7 @@
 									//oop through each location.
 									$.each(data, function() {
 										var marker;
-										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Numero Bici Totali: ' + this.Numero_Bici_Totale + '<br>' + 'Numero Bici Disponibili: ' + this.Numero_Bici_Disponibili + '<br>';
+										var contenuto = '<p>Punto di inizio<b>'+ '</p></b><br>' + 'Chilometri: ' + this.Chilometri + '<br>' + 'Pendenza Media: ' + this.Pendenza_Media + '<br>';
 										var infowindow = new google.maps.InfoWindow({
 											content : contenuto
 										});
@@ -112,7 +112,7 @@
 
 										var pos = new google.maps.LatLng(this.Latitudine, this.Longitudine);
 
-										var titolo = this.Indirizzo;
+										var titolo = this.Id;
 										if (getDistanceFromLatLonInKm(latitudineUtente, longitudineUtente, this.Latitudine, this.Longitudine, distanzaUtente)) {
 
 											marker = new google.maps.Marker({
@@ -141,12 +141,12 @@
 							case "getDistanceLatLongPuntiNoleggio":
 							$('#titolo').html("<h1>Visualizza Punti Noleggio disponibili</h1>");
 							$.ajax({
-								url : 'function/get_punti_noleggio.php',
+								url : 'function/get_noleggio.php',
 								success : function(data) {
 									//oop through each location.
 									$.each(data, function() {
 										var marker;
-										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Numero Bici Totali: ' + this.Numero_Bici_Totale + '<br>' + 'Numero Bici Disponibili: ' + this.Numero_Bici_Disponibili + '<br>';
+										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Ente Fornitore: ' + this.Ente_Fornitore + '<br>' + 'Max KWH: ' + this.Max_KWH + '<br>'+ 'Email: ' + this.Email + '<br>'+ 'Data Inserimento: ' + this.Data_Inserimento + '<br>';
 										var infowindow = new google.maps.InfoWindow({
 											content : contenuto
 										});
@@ -188,7 +188,7 @@
 									//oop through each location.
 									$.each(data, function() {
 										var marker;
-										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Numero Bici Totali: ' + this.Numero_Bici_Totale + '<br>' + 'Numero Bici Disponibili: ' + this.Numero_Bici_Disponibili + '<br>';
+										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Ente Fornitore: ' + this.Ente_Fornitore + '<br>' + 'Max KWH: ' + this.Max_KWH + '<br>'+ 'Email: ' + this.Email + '<br>'+ 'Data Inserimento: ' + this.Data_Inserimento + '<br>';
 										var infowindow = new google.maps.InfoWindow({
 											content : contenuto
 										});

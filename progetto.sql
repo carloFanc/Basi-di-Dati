@@ -7,7 +7,7 @@ USE PIATTAFORMA;
 CREATE TABLE IF NOT EXISTS Punto_Noleggio(
 
 	Nome VARCHAR(20) NOT NULL PRIMARY KEY,
-	Sito_Web VARCHAR(20),
+	Sito_Web VARCHAR(50),
 	Email VARCHAR(40),
 	Telefono VARCHAR(20),
 	Indirizzo VARCHAR(40),
@@ -72,25 +72,19 @@ CREATE TABLE IF NOT EXISTS Utente(
 	Telefono VARCHAR(20)
 	) ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS Messaggio_Personale( 
+CREATE TABLE IF NOT EXISTS Messaggio( 
 
 	Id_Messaggio INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	Email_Mittente VARCHAR(20) NOT NULL,
+	Titolo VARCHAR(20),
 	Email_Destinatario VARCHAR(20) NOT NULL,
-	Testo_Messaggio VARCHAR(500) NOT NULL,
+	Tipo ENUM('Personale','Globale'),
+	Testo_Messaggio VARCHAR(500),
 	DataInvio DATETIME,
 	FOREIGN KEY (Email_Mittente) REFERENCES Utente(Email),
 	FOREIGN KEY (Email_Destinatario) REFERENCES Utente(Email)
 	) ENGINE=INNODB;
 	
-CREATE TABLE IF NOT EXISTS Messaggio_Globale(
-
-	Id_Messaggio INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Email_Mittente VARCHAR(20),
-	Testo_Messaggio VARCHAR(500) NOT NULL,
-	DataInvio DATETIME,
-	FOREIGN KEY (Email_Mittente) REFERENCES Utente(Email)
-	) ENGINE=INNODB;
 	
 CREATE TABLE IF NOT EXISTS Prenotazione_Veicolo(
 
@@ -118,7 +112,7 @@ CREATE TABLE IF NOT EXISTS ForumPost(
 
 	Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	EmailUtente VARCHAR(20) NOT NULL,
-	Titolo VARCHAR(40),
+	Titolo VARCHAR(20),
 	Testo_Messaggio VARCHAR(500),
 	Data_Inserimento DATETIME,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
@@ -225,7 +219,7 @@ BEGIN
 	INSERT INTO ErrorMessages(Message) VALUES (@rowcount);
  		WHILE (@rowcount > 0)  DO
  			SET @email_dest = (SELECT Email FROM foo WHERE Id = @rowcount);
- 			INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio)  VALUES (NEW.EmailUtente,@email_dest,NEW.Testo_Messaggio, NEW.Data_Inserimento);
+ 			INSERT INTO Messaggio(Email_Mittente,Titolo,Email_Destinatario,Tipo,Testo_Messaggio,DataInvio)  VALUES (NEW.EmailUtente,NEW.Titolo,@email_dest,'Personale',NEW.Testo_Messaggio, NEW.Data_Inserimento);
  			SET @rowcount = @rowcount -1;
  		END WHILE;
 END
@@ -260,7 +254,8 @@ CREATE TRIGGER InserimentoMessaggioInbox AFTER INSERT ON ForumPost
      SET @testo = 'Nuova news inserita nel forum '; 
      SET @dat = NEW.Data_Inserimento;
      SET @email = NEW.EmailUtente;
-	  INSERT INTO Messaggio_Globale(Email_Mittente,Testo_Messaggio,DataInvio) VALUES (@email,@testo,@dat);
+     SET @tit = NEW.Titolo;
+	  INSERT INTO Messaggio(Email_Mittente,Titolo,Email_Destinatario,Tipo,Testo_Messaggio,DataInvio) VALUES (@email,@tit,'admin@gmail.com','Globale',@testo,@dat);
      END
 *
 DELIMITER ;
@@ -558,9 +553,17 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaINBOX(IN Email VARCHAR(50))
 visu:BEGIN
-SELECT Email_Mittente,Testo_Messaggio,DataInvio FROM Messaggio_Personale WHERE (Email_Destinatario = Email)
-UNION
-SELECT Email_Mittente,Testo_Messaggio,DataInvio FROM Messaggio_Globale;
+SELECT Id_Messaggio,Email_Mittente,Titolo,Email_Destinatario,Tipo,Testo_Messaggio,DataInvio FROM Messaggio WHERE (Email_Destinatario = Email) OR (Tipo = 'Globale');
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAMSGINBOX----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaINBOX(IN Id VARCHAR(50))
+visu:BEGIN
+DELETE FROM Messaggio WHERE (Id_Messaggio = Id);
 END;
 ^
 DELIMITER ;
@@ -742,14 +745,14 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Colonnina(
 /* -------------------------------------------------------------*/
 /* --------------Inserimento dati nelle tabelle-----------------*/
 
-INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Noleggio1','www.lollo.it','lollo@gmail.com',0576123123,'via prova 1', 44.493647, 11.359051);
-INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Noleggio2','www.proviamoci.it','xalonf@gmail.com',123860349,'via bulld 111', 44.498918, 11.352963);
-INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Noleggio3','www.noleggio3.it','noleggio3@gmail.com',0578564512,'via cazzarol 13',44.498037, 11.339796);
+INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Hertz','www.hertz.it','hertz@gmail.com',3441908587,'Via Boldrini, 4',44.491131, 11.335640);
+INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Car Italy','www.caritaly.it','caritaly@gmail.com',0515876770,'Via Milazzo 12/A', 44.486025, 11.347772);
+INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Avis','www.avisautonoleggio.it','avis@gmail.com',0516341632,'Via Nicolò Dall Arca 2',44.506678, 11.330749);
 
 
-INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('123ABC456','Noleggio1','Auto','TT','Grigio',20,213,2000,4,120,NULL);
-INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('4BCG554KS','Noleggio1','Scooter','Vespa','Rosso',5,20,500,NULL,NULL,NULL);
-INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('LAL123TFG','Noleggio2','Auto','Maggiolino','Azzurro',12,100,1000,4,120,NULL);
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('123ABC456','Hertz','Auto','TT','Grigio',20,213,2000,4,120,NULL);
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('4BCG554KS','Hertz','Scooter','Vespa','Rosso',5,20,500,NULL,NULL,NULL);
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('LAL123TFG','Avis','Auto','Maggiolino','Azzurro',12,100,1000,4,120,NULL);
 
 
 
@@ -767,6 +770,7 @@ INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VA
 
 INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) VALUES ('carlo@gmail.com','carlo','Paoluci','password','Semplice','1989-12-12','Monteparco','via santoparco',331231231);
 INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) VALUES ('pippo@gmail.com','Pippo','Ponti','password123','Premium','1993-05-11','Bononia','via ciaociao 3',323333222);
+INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) VALUES ('prova@gmail.com','Prova','Prova','password123','Premium','1993-05-11','Bononia','via ciaociao 3',323333222);
 INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) VALUES ('admin@gmail.com','Zeus','Dei','admin','Amministratore','1969-05-01','Olimpo','via degli dei 66',12345678);
 
 
@@ -776,7 +780,7 @@ INSERT INTO Prenotazione_Veicolo(EmailUtente,Veicolo,Prezzo_Prenotazione,Data_In
 
 
 	
-INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('pippo@gmail.com','01','2016-03-12 02:05:22','2016-03-12 03:55:22');	
+INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('prova@gmail.com','01','2016-05-02 01:05:22','2016-05-02 03:55:22');
 INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('pippo@gmail.com','01','2016-03-12 04:05:22','2016-03-12 07:55:22');	
 INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('carlo@gmail.com','01','2016-04-18 16:05:22','2016-04-18 16:55:22');	
 
@@ -795,4 +799,3 @@ INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,D
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento/*,Foto*/) VALUES ('01','pippo@gmail.com','Segnalazioneprova','incidente','2015-11-12 13:49:02');
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento/*Foto*/) VALUES ('01','pippo@gmail.com','Segnalazioneprova2','incidente','2016-04-18 16:17:02');
 
-INSERT INTO Messaggio_Personale(Email_Mittente,Email_Destinatario,Testo_Messaggio,DataInvio) VALUES ('pippo@gmail.com','carlo@gmail.com','ciao ciao come vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?','2016-06-24 03:44:22');

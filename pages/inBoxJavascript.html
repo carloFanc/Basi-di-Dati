@@ -9,29 +9,17 @@
 		<!-- Date: 2016-05-01 -->
 		 <script type="text/javascript" src="../BasiDati/js/jquery-1.11.1.min.js"></script>
 		  <script type="text/javascript" src="../BasiDati/js/jquery-ui.js"></script>
-		  <script type="text/javascript" src="../BasiDati/js/scripts.js"></script>
 		  <script type="text/javascript" src="../BasiDati/js/bootstrap.min.js"></script>
-		  <style type="text/css">
-			DIV.container {
-				width: inherit;
-				text-align: center;
-			}
-			table, thead, tr, tbody, th, td {
-				text-align: center;
-			}
-
-			.table td {
-				text-align: center;
-			}
-		</style>
 	</head>
-	<body> 
+	<body>
+<button type='button' name='getdata' id='getdata'>Get Data.</button>
+
 <div id='result_table'>
-<h1>Messaggi Inbox</h1> 
+
 </div>
 
 <script type='text/javascript' language='javascript'>
-$( document ).ready(function(){
+$('#getdata').click(function(){
 
 $.ajax({
         url: '/BasiDati/function/getTabletInbox.php',
@@ -47,3 +35,4 @@ $.ajax({
 
 	</body>
 </html>
+

@@ -74,7 +74,7 @@ function cambiaContenuto(string){
 							origine : origine,
 						},
 					}).done(function() {
-						   $("#Contenuto").load("pages/scegliDistanzaMapsBici.html");
+						   $("#Contenuto").load("pages/scegliDistanzaMaps.html");
 					});
     	
  }

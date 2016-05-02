@@ -35,7 +35,7 @@
 	<body>
 		<div >
 			<h1>Dati Profilo</h1>
-			
+			   
 		 <div class="list-group">
   			<a  class="list-group-item"><b>Nome: </b><?php echo $userRow['Nome']; ?></a>
   			<a  class="list-group-item"><b>Cognome: </b><?php echo $userRow['Cognome']; ?></a>

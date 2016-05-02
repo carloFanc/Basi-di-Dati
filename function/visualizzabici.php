@@ -56,7 +56,7 @@ $stmt -> execute();
      					 </tr>
     					</thead>
   		  						<tbody>
-      							<tr>
+      							<tr >
       							  <td class="col-md-3"><?php echo $userRow['Id']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Postazione_Prelievo']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Marca']; ?></td>

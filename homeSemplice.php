@@ -40,6 +40,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		<link rel="stylesheet" href="css/styleLogin.css">
 		<link rel="stylesheet" href="css/jquery-ui.css">
 	</head>
+	
 	<body>
 
 		<header class="navbar navbar-default navbar-static-top" role="banner">
@@ -55,11 +56,11 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href=# class="navbar-brand">BolognaGreen</a>
+					<a href='#' class="navbar-brand">BolognaGreen</a>
 				</div>
 				<nav class="collapse navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
-						<li>
+						<li >
 							<a href='#' onclick="cambiaFinestra('bici')" >Bici</a>
 						</li>
 						<li>
@@ -81,7 +82,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 					<ul class="nav navbar-nav navbar-right">
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?><span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?></a>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="#" onclick="cambiaContenuto('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a>
