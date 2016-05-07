@@ -39,6 +39,23 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		<link rel="stylesheet" href="css/form-elementsLogin.css">
 		<link rel="stylesheet" href="css/styleLogin.css">
 		<link rel="stylesheet" href="css/jquery-ui.css">
+		<script type="text/javascript">
+        window.onload = function() {
+        document.getElementById("HomeImg").onclick = function() {
+         cambiaFinestra('vuoto')
+        };
+        }; 
+        </script>
+		<style>
+			li.fontMenu{
+				color: red;
+				font-family: "Times New Roman", Times, serif;
+				font-weight: bold;
+				font-size: 20px;
+				/*color: rgb(86,241,210);*/
+				
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -56,10 +73,10 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href='#' class="navbar-brand">BolognaGreen</a>
-				</div>
+                    <img id="HomeImg" src="/BasiDati/img/Logo.png" height="55" width="150">
+                    </div>
 				<nav class="collapse navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav">
+					<ul class="nav navbar-nav fontMenu">
 						<li >
 							<a href='#' onclick="cambiaFinestra('bici')" >Bici</a>
 						</li>

@@ -55,7 +55,7 @@ class USER
 		}				
 	}
 	
-	public function Insertmsg($mailm,$maild,$titolo,$tipo,$text,$data)
+	public function Insertmsg($mailm,$maild,$titolo,$tipo,$text,$data) 
 	{
 		try
 		{
@@ -67,6 +67,24 @@ class USER
 			$stmt->bindparam(":tipo",$tipo);
 			$stmt->bindparam(":text", $text);		
 			$stmt->bindparam(":data", $data);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}				
+	}
+	public function InsertPost($mailm,$titolo,$text)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL InserimentoPost(:mailm,:titolo,:text)");
+								  
+			$stmt->bindparam(":mailm", $mailm);
+			$stmt->bindparam(":titolo",$titolo);
+			$stmt->bindparam(":text", $text);									  
 			$stmt->execute();	
 			
 			return $stmt;	

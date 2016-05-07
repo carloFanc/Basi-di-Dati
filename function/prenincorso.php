@@ -7,7 +7,7 @@
 	
 	
 	$umail = $_SESSION['user_email'];
-	
+	$tipo = $_SESSION['user_tipologia'];
 	$stmt = $auth_user->runQuery('CALL VisualizzaPrenotazioninCorso(:umail)');
 	$stmt->execute(array(":umail"=>$umail));
 	
@@ -102,8 +102,8 @@
   						</table>
 			   </div>
             <?php endwhile; ?>
-          </div>
-          <!-- <?php $stmt->nextRowset();?>
+          <?php if ($tipo == 'Premium' || $tipo== 'Amministratore'): ?>
+           <?php $stmt->nextRowset();?>
           <h2>Prenotazioni Colonnine</h2>
             <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
             	<div class="container">
@@ -132,7 +132,8 @@
       						  </tbody>
   						</table>
 			   </div>
-            <?php endwhile; ?> -->
+            <?php endwhile; ?> 
+            <?php endif; ?>
           </div>
 </body>
 </html>

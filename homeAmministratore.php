@@ -36,6 +36,23 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
+		<script type="text/javascript">
+        window.onload = function() {
+        document.getElementById("HomeImg").onclick = function() {
+         cambiaContenuto('Home');
+        };
+        }; 
+        </script>
+		<style>
+			ul.fontMenu{
+				color: red;
+				font-family: "Times New Roman", Times, serif;
+				font-weight: bold;
+				font-size: 20px;
+				/*color: rgb(86,241,210);*/
+				
+			}
+		</style>
 	</head>
 	<body>
 
@@ -51,26 +68,26 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href=# class="navbar-brand">BolognaGreen</a>
+					<img id="HomeImg" src="/BasiDati/img/Logo.png" height="55" width="150">
 				</div>
 				<nav class="collapse navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav">
-						<li>
+					<ul class="nav navbar-nav fontMenu">
+						<li >
 							<a href='#' onclick="cambiaFinestra('bici')" >Bici</a>
 						</li>
-						<li>
+						<li >
 							<a href='#' onclick="cambiaFinestra('veicoli')">Veicoli</a>
 						</li>
-						<li>
+						<li >
 							<a href='#' onclick="cambiaFinestra('prenotazioni')">Prenotazioni</a>
 						</li>
-						<li>
+						<li >
 							<a href='#' onclick="cambiaFinestra('inbox')">Inbox</a>
 						</li>
-						<li>
+						<li >
 							<a href='#' onclick="cambiaFinestra('forum')">Forum</a>
 						</li>
-						<li>
+						<li >
 							<a href='#' onclick="cambiaFinestra('altro')">Altro</a>
 						</li>
 					</ul>
@@ -91,43 +108,93 @@
 
 <!-- Begin Body -->
 <div class="container">
+	<div id="Home">
+	</div>
 	<div class="row">
   			<div class="col-md-3" id="leftCol"> <!-- QUESTO E' IL DIV DEL MENU' LATERALE  -->
               	
 				<div id="bici" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              	  <li><a href="#" onclick="">Visualizza Bici</a></li>
-                  <li><a href="#" onclick="cambiaContenuto('postazioni')">Visualizza Postazioni Prelievo</a></li>
-                  <li><a href="#" onclick="cambiaContenuto('pisteciclabili')">Visualizza Piste Ciclabili</a></li>
+              	  <li><a href="#" onclick="">Inserisci Bici</a></li>
+              	  <li><a href="#" onclick="cambiaContenuto('visbici')">Visualizza Bici</a></li>
+                  <li data-toggle="collapse" data-parent="#p1" href="#pv1">
+								<a class="nav-sub-container">Visualizza Postazioni Prelievo<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv1">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('postazioni')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongBici')">Su Google Maps</a>
+									</li>
+								</ul>
+							</li>
+
+							<li data-toggle="collapse" data-parent="#p2" href="#pv2">
+								<a class="nav-sub-container">Visualizza Piste Ciclabili<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv2">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('pisteciclabili')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongPisteCiclabili')">Su Google Maps</a>
+									</li>
+								</ul>
+							</li>
               	</ul>
   				</div>
   				<div id="veicoli" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              		<li><a href="#" onclick="">Visualizza Veicoli</a></li>
-                  <li><a href="#" onclick="cambiaContenuto('puntinoleggio')">Visualizza Punti Noleggio</a></li>
-              	</ul>
+              	  <li><a href="#" onclick="">Inserisci Veicolo</a></li>
+              		<li><a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a></li>
+                  <li data-toggle="collapse" data-parent="#p3" href="#pv3">
+								<a class="nav-sub-container">Visualizza Punti Noleggio<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv3">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('puntinoleggio')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongPuntiNoleggio')">Su Google Maps</a>
+									</li>
+								</ul>
+							</li>
+				  <li data-toggle="collapse" data-parent="#p4" href="#pv4">
+								<a class="nav-sub-container">Visualizza Colonnine Ricarica<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv4">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('viscolonnine')">Su Tabella</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('getDistanceLatLongColonnine')">Su Google Maps</a>
+									</li>
+								</ul>
+							</li>
+                  </ul>
   				</div>
   				<div id="prenotazioni" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                 <li><a href="#" onclick="cambiaContenuto('prenpassate')">Visualizza Prenotazioni Passate</a></li>
+              		<li><a href="#" onclick="cambiaContenuto('prenpassate')">Visualizza Prenotazioni Passate</a></li>
+                 <li><a href="#" onclick="cambiaContenuto('prenincorso')">Visualizza Prenotazioni in Corso</a></li>
               	</ul>
   				</div>
   				<div id="inbox" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              	  <li><a href="#" onclick="">Invia Messaggio Personale</a></li>
+              	  <li><a href="#" onclick="cambiaContenuto('inviomsgpersonale')">Invia Messaggio Personale</a></li>
                   <li><a href="#" onclick="cambiaContenuto('inbox')">Visualizza Messaggi Inbox</a></li>
               	</ul>
   				</div>
   				<div id="forum" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              		<li><a href="#" onclick="">Inserisci nuovo Post</a></li>
+              		<li><a href="#" onclick="cambiaContenuto('post')">Inserisci Post</a></li>
                   <li><a href="#" onclick="cambiaContenuto('forum')">Visualizza Forum</a></li>
               	</ul>
   				</div>
   				<div id="altro" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#" onclick="cambiaContenuto('classprenbici')">Classifica Utenti in base al n° prenotazioni bici</a></li>
-                  <li><a href="#" onclick="cambiaContenuto('classprenveicoli')">Classifica Utenti in base al n° prenotazioni veicoli</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('vuoto')">Lista Utenti</a></li>
               	</ul>
   				</div>
 

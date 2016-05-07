@@ -10,6 +10,10 @@ function cambiaFinestra(string) {
     $('#inbox').hide("fast").css("visibility","hidden");
     $('#forum').hide("fast").css("visibility","hidden");
     $('#altro').hide("fast").css("visibility","hidden");
+    if(string=="vuoto"){
+        cambiaContenuto('vuoto');
+    }
+    
     if(string=="bici"){
         $('#bici').show("fast").css("visibility","visible");
         cambiaContenuto('vuoto');
@@ -41,6 +45,9 @@ function cambiaContenuto(string){
 	 if(string=="profilo"){
         $("#Contenuto").load("function/profilo.php");
     }
+    if(string=="Home"){
+        $("#Home").load("pages/VisualizzaTestoHome.html");
+    }
 	if(string=="vuoto"){
         $("#Contenuto").load("function/htmlvuota.html");
     }
@@ -49,6 +56,9 @@ function cambiaContenuto(string){
     }
 	if(string=="forum"){
         $("#Contenuto").load("function/forum.php");
+    }
+    if(string=="post"){
+        $("#Contenuto").load("pages/invioPost.html");
     }
 	if(string=="prenincorso"){
         $("#Contenuto").load("function/prenincorso.php");

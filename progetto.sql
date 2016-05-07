@@ -544,7 +544,8 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaForum()
 visu:BEGIN
-SELECT * FROM ForumPost;
+SELECT * FROM ForumPost
+ORDER BY Data_Inserimento DESC;
 END;
 ^
 DELIMITER ;
@@ -553,7 +554,9 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaINBOX(IN Email VARCHAR(50))
 visu:BEGIN
-SELECT Id_Messaggio,Email_Mittente,Titolo,Email_Destinatario,Tipo,Testo_Messaggio,DataInvio FROM Messaggio WHERE (Email_Destinatario = Email) OR (Tipo = 'Globale');
+SELECT Id_Messaggio,Email_Mittente,Titolo,Email_Destinatario,Tipo,Testo_Messaggio,DataInvio 
+FROM Messaggio WHERE (Email_Destinatario = Email) OR (Tipo = 'Globale')
+ORDER BY DataInvio DESC;
 END;
 ^
 DELIMITER ;

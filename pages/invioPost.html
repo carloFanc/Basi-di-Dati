@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Invio Post Forum</title>
+		<meta name="description" content="profilo">
+		<meta name="author" content="Carlof">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+		<link rel="stylesheet" href="../BasiDati/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../BasiDati/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../BasiDati/css/form-elementsLogin.css">
+		<link rel="stylesheet" href="../BasiDati/css/styleLogin.css">
+		<link rel="stylesheet" href="../BasiDati/css/jquery-ui.css">
+
+	</head>
+
+	<body>
+		<div >
+			<h1>Scrivi Post Forum</h1>
+
+			<form role="form"  id="invioPost" >
+				<div class="form-group">
+					<label for="text">Titolo:</label>
+					<input name="form-titolo" type="text" class="form-control" id="form-titolo">
+
+				</div>
+				<div class="form-group">
+					<label for="text">Testo Messaggio:</label>
+					<input name="form-txt" type="text" class="form-control" id="form-text">
+
+				</div>
+				<button type="submit" name="btn-invio" class="btn btn-default">
+					Invio
+				</button>
+			</form>
+
+		
+			<script>
+				$('#invioPost').submit(function(e) {
+					e.preventDefault();
+					var titolo = $('#form-titolo').val();
+					var text = $('#form-text').val();
+					$.ajax({
+						type : "POST",
+						url : "/BasiDati/function/invioPost.php",
+						data : "titolo=" + titolo + "&text=" + text
+					}).done(function() {
+						alert("Dati salvati!");
+						cambiaContenuto('vuoto');
+					});
+				});
+
+			</script>
+			</div>
+			<script src="../BasiDati/js/jquery-1.11.1.min.js"></script>
+			<script src="../BasiDati/js/jquery-ui.js"></script>
+			<script src="../BasiDati/js/bootstrap.min.js"></script>
+			
+			</body>
+</html>
