@@ -615,7 +615,31 @@ INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUE
 END;
 ^
 DELIMITER ;
+/*----------------------------------------------------------------*/
+/*--------------------------inserimento NUOVA BICI---------------------*/
+DELIMITER ^ /*-Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione)-----*/
+CREATE PROCEDURE InserimentonewBici(IN Postazione VARCHAR(50),IN Marca VARCHAR(50),IN Testo_Messaggio VARCHAR(50))
+visu:BEGIN
+DECLARE timenow DATETIME;
+SET timenow = NOW();
+INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES (EmailUtente,Titolo,Testo_Messaggio,timenow);
+END;
+^
+DELIMITER ;
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*--------------------------inserimento NUOVO VEICOLO---------------------*/
+DELIMITER ^/*-- Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto)-----*/
+CREATE PROCEDURE InserimentonewVeicolo(IN EmailUtente VARCHAR(50),IN Titolo VARCHAR(50),IN Testo_Messaggio VARCHAR(50))
+visu:BEGIN
+DECLARE timenow DATETIME;
+SET timenow = NOW();
+INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES (EmailUtente,Titolo,Testo_Messaggio,timenow);
+END;
+^
+DELIMITER ;
 
+/*----------------------------------------------------------------*/
 /*----------------------------------------------------------------*/
 /*------------- ELIMINAZIONE PRENOTAZIONI passate----------------*/
 DELIMITER ^
@@ -809,7 +833,7 @@ INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inseriment
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',5,7,'2016-11-15');
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via riproviamo 123',3,4,'2016-04-01');
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',3,4,'2016-08-15');
-
+INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',7,9,'2016-08-15');
 
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento/*,Foto*/) VALUES ('01','pippo@gmail.com','Segnalazioneprova','incidente','2015-11-12 13:49:02');
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento/*Foto*/) VALUES ('01','pippo@gmail.com','Segnalazioneprova2','incidente','2016-04-18 16:17:02');

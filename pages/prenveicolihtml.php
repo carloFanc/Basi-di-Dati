@@ -21,11 +21,8 @@ $stmt -> execute();
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-		<link rel="stylesheet" href="/BasiDati/fonts/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/BasiDati/css/form-elementsLogin.css">
-		<link rel="stylesheet" href="/BasiDati/css/styleLogin.css">
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/s/css/bootstrap-combined.min.css" rel="stylesheet">
+
 		<link rel="stylesheet" href="/BasiDati/css/bootstrap-datetimepicker.min.css">
 	</head>
 

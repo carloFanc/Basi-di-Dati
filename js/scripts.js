@@ -89,6 +89,10 @@ function cambiaContenuto(string){
 						},
 					}).done(function() {
 						   $("#Contenuto").load("pages/scegliDistanzaMaps.html");
+						   $("#Contenuto").html("<button class='btn btn-primary'>ddddd</button>");
+						   
+						          
+                    $(this).trigger("pagecreate");
 					});
     	
  }
@@ -128,4 +132,9 @@ function cambiaContenuto(string){
     if(string=="listautenti"){
         $("#Contenuto").load("function/ListaUtenti.php");
     }
+    if(string=="prenColonnina"){
+        $("#Contenuto").load("pages/prenota_colonnina.php");
+    }
+    
+    
 };

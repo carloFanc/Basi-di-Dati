@@ -35,10 +35,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-		<link href="css/home.css" rel="stylesheet">
-		<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/form-elementsLogin.css">
-		<link rel="stylesheet" href="css/styleLogin.css">
+		<link href="css/home.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<script type="text/javascript">
         window.onload = function() {
@@ -193,7 +190,7 @@
 								<a href="#" onclick="cambiaContenuto('prenveicoli')">Prenota Veicolo Elettrico</a>
 							</li>
 							<li>
-								<a href="#">Prenota Operazione di Ricarica in una Colonnina</a>
+								<a href="#" onclick="cambiaContenuto('prenColonnina')">Prenota Operazione di Ricarica in una Colonnina</a>
 								</li>
 						</ul>
 					</div>
@@ -248,7 +245,7 @@
 		</div>
 
 		<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/scripts.js"></script>
