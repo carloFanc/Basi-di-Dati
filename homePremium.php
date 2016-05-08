@@ -42,21 +42,15 @@
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<script type="text/javascript">
         window.onload = function() {
+        $('#menuEContenuto').hide("fast").css("visibility","hidden");
+        cambiaContenuto('Home');
+         
         document.getElementById("HomeImg").onclick = function() {
-         cambiaFinestra('vuoto')
+         $('#menuEContenuto').hide("fast").css("visibility","hidden");
+         cambiaContenuto('Home');
         };
         }; 
         </script>
-		<style>
-			li.fontMenu{
-				color: red;
-				font-family: "Times New Roman", Times, serif;
-				font-weight: bold;
-				font-size: 20px;
-				/*color: rgb(86,241,210);*/
-				
-			}
-		</style>
 	</head>
 	
 	<body>
@@ -117,7 +111,10 @@
 
 		<!-- Begin Body -->
 		<div class="container">
-			<div class="row">
+			<div id="Home">
+		
+	        </div>
+			<div class="row" id="menuEContenuto">
 				<div class="col-md-3" id="leftCol">
 					<!-- QUESTO E' IL DIV DEL MENU' LATERALE  -->
 

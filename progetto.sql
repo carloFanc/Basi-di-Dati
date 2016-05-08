@@ -671,7 +671,19 @@ select * from colonnineslot;
 END;
 ^
 DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------- LISTA UTENTI----------------*/
+DELIMITER ^
+CREATE PROCEDURE ListaUtenti()
+visu:BEGIN
+SELECT Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono 
+FROM Utente;
 
+END;
+^
+DELIMITER ;
+
+/*------------------------------------------------------------------*/
 /*CREATE TEMPORARY TABLE Appoggio  
 SELECT Indirizzo, 
 								
@@ -750,7 +762,7 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Colonnina(
 
 INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Hertz','www.hertz.it','hertz@gmail.com',3441908587,'Via Boldrini, 4',44.491131, 11.335640);
 INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Car Italy','www.caritaly.it','caritaly@gmail.com',0515876770,'Via Milazzo 12/A', 44.486025, 11.347772);
-INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Avis','www.avisautonoleggio.it','avis@gmail.com',0516341632,'Via Nicolò Dall Arca 2',44.506678, 11.330749);
+INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Avis','www.avisautonoleggio.it','avis@gmail.com',0516341632,'Via Nicolo Dall Arca 2',44.506678, 11.330749);
 
 
 INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('123ABC456','Hertz','Auto','TT','Grigio',20,213,2000,4,120,NULL);

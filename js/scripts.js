@@ -10,10 +10,16 @@ function cambiaFinestra(string) {
     $('#inbox').hide("fast").css("visibility","hidden");
     $('#forum').hide("fast").css("visibility","hidden");
     $('#altro').hide("fast").css("visibility","hidden");
+    if($('#Home').is(":visible")){
+    	$('#Home').hide("fast").css("visibility","hidden");
+        $('#menuEContenuto').show("fast").css("visibility","visible");
+    }
     if(string=="vuoto"){
         cambiaContenuto('vuoto');
     }
-    
+    if(string=="profilo"){
+        $("#Contenuto").load("function/profilo.php");
+    }
     if(string=="bici"){
         $('#bici').show("fast").css("visibility","visible");
         cambiaContenuto('vuoto');
@@ -42,11 +48,9 @@ function cambiaFinestra(string) {
 };
 
 function cambiaContenuto(string){
-	 if(string=="profilo"){
-        $("#Contenuto").load("function/profilo.php");
-    }
     if(string=="Home"){
         $("#Home").load("pages/VisualizzaTestoHome.html");
+        $('#Home').show("fast").css("visibility","visible");
     }
 	if(string=="vuoto"){
         $("#Contenuto").load("function/htmlvuota.html");
@@ -120,5 +124,8 @@ function cambiaContenuto(string){
     }
     if(string=="viscolonnine"){
         $("#Contenuto").load("function/viscolonnine.php");
+    }
+    if(string=="listautenti"){
+        $("#Contenuto").load("function/ListaUtenti.php");
     }
 };

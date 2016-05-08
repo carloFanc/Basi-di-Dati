@@ -1,17 +1,14 @@
 <?php
 
-	require_once("../session.php");
-	
-	require_once("../class.user.php");
-	$auth_user = new USER();
-	
-	
-	$umail = $_SESSION['user_email'];
-	
-	$stmt = $auth_user->runQuery('CALL VisualizzaForum()');
-	$stmt->execute();
-	
+require_once ("../session.php");
 
+require_once ("../class.user.php");
+$auth_user = new USER();
+
+$umail = $_SESSION['user_email'];
+
+$stmt = $auth_user -> runQuery('CALL VisualizzaForum()');
+$stmt -> execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,12 +40,10 @@
 	<body>
 		<div >
 			<h1>Messaggi Forum</h1> 
-			
-            <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+			<?php if ($stmt->rowCount()!=0): ?>
             	<div class="container">
-  						
-    					        
-  						<table class="table table-striped table-bordered table-hover table-condensed">
+  						      
+  						<table class="table table-striped table-hover table-condensed">
     					<thead class="personale">   
       					<tr>
       					  <th>Email Mittente</th>
@@ -59,15 +54,17 @@
     					</thead>
     						<tbody>
      							 <tr>
-     							   <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
+     							 	<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+     							      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
       								  <td align="left" class="col-md-3"><?php echo $userRow['Titolo']; ?></td>
       							      <td align="left" class="col-md-3"><?php echo $userRow['Testo_Messaggio']; ?></td>
        								  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inserimento']; ?></td>
       							 </tr>
+      							  <?php endwhile; ?>
                             </tbody>
                         </table>
                 </div>
-             <?php endwhile; ?>
+              <?php endif; ?>
           </div>
      </body>
 </html>

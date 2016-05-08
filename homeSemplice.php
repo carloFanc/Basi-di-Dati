@@ -37,25 +37,19 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		<link href="css/home.css" rel="stylesheet">
 		<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/form-elementsLogin.css">
-		<link rel="stylesheet" href="css/styleLogin.css">
+		<!-- <link rel="stylesheet" href="css/styleLogin.css">-->
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<script type="text/javascript">
         window.onload = function() {
+        $('#menuEContenuto').hide("fast").css("visibility","hidden");
+        cambiaContenuto('Home');
+         
         document.getElementById("HomeImg").onclick = function() {
-         cambiaFinestra('vuoto')
+         $('#menuEContenuto').hide("fast").css("visibility","hidden");
+         cambiaContenuto('Home');
         };
         }; 
         </script>
-		<style>
-			li.fontMenu{
-				color: red;
-				font-family: "Times New Roman", Times, serif;
-				font-weight: bold;
-				font-size: 20px;
-				/*color: rgb(86,241,210);*/
-				
-			}
-		</style>
 	</head>
 	
 	<body>
@@ -102,7 +96,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?></a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#" onclick="cambiaContenuto('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a>
+									<a href="#" onclick="cambiaFinestra('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a>
 								</li>
 								<li>
 									<a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
@@ -116,7 +110,10 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 		<!-- Begin Body -->
 		<div class="container">
-			<div class="row">
+			<div id="Home">
+		
+	        </div>
+			<div class="row" id="menuEContenuto">
 				<div class="col-md-3" id="leftCol">
 					<!-- QUESTO E' IL DIV DEL MENU' LATERALE  -->
 

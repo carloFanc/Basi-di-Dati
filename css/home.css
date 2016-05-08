@@ -21,3 +21,34 @@
 #altro{
      visibility: hidden;
 }
+
+.navbar-default .navbar-brand {
+  color: #2a0d95;
+  
+}
+.navbar-default .navbar-text {
+  color: #2a0d95;
+  
+}
+.navbar-default .navbar-nav > li > a {
+  color: #2a0d95;
+  font-size:      1.3em;
+  font-weight: bold;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #2a0d95;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #2a0d95;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #2a0d95;
+}
+.navbar-default .navbar-link {
+  color: #2a0d95;
+}
+@media (max-width: 900px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #2a0d95;
+  }}

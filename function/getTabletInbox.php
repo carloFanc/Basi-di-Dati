@@ -10,7 +10,7 @@ $stmt = $auth_user -> runQuery('CALL VisualizzaInbox(:umail)');
 
 $stmt -> execute(array(":umail" => $umail));
 $output_string = '';
-$output_string .= '<table  style="border: 0;"class="table table-striped table-bordered">';
+$output_string .= '<table  style="border: 0;"class="table table-striped">';
 $output_string .= '<tr> <th>Email Mittente</th><th>Titolo</th><th>Testo Messaggio</th><th>Data di Invio</th><th style="border: 0;"></th></tr>' ;
 while ($userRow = $stmt -> fetch(PDO::FETCH_ASSOC)) :
 $output_string .= '<tr>';

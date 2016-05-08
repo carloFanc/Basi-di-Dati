@@ -46,10 +46,11 @@
 		<div >
 			<h1>Prenotazioni in Corso</h1> 
 			<h2>Prenotazioni Bici</h2>
-			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+			<?php if ($stmt->rowCount()!=0): ?>
             	<div class="container">
   						           
-  						<table class="table table-striped table-bordered">
+  						<table class="table table-striped">
+  						
     					<thead class="personale">
       					<tr>
       					  <th>Id</th>
@@ -61,6 +62,7 @@
     					</thead>
   		  						
       						  <tbody>
+      						  	<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
       							<tr>
       							  <td align="left" class="col-md-3"><?php echo $userRow['Id']; ?></td>
      						      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
@@ -68,16 +70,17 @@
         						  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							 </tr>
+     							 <?php endwhile; ?>
       						  </tbody>
   						</table>
-  						<?php endwhile; ?>
 			   </div>
+			   <?php endif; ?>
             <?php $stmt->nextRowset();?>
             <h2>Prenotazioni Veicoli</h2>
-            <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                <?php if ($stmt->rowCount()!=0): ?>
             	<div class="container">
   						           
-  						<table class="table table-striped table-bordered table-hover table-condensed">
+  						<table class="table table-striped table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Id</th>
@@ -90,6 +93,7 @@
     					</thead>
   		  						
       						  <tbody>
+      						  	<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
       							<tr>
       							  <td align="left" class="col-md-3"><?php echo $userRow['Id']; ?></td>
      						      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
@@ -98,17 +102,19 @@
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							 </tr>
+     							 <?php endwhile; ?>
       						  </tbody>
   						</table>
 			   </div>
-            <?php endwhile; ?>
+			   <?php endif; ?>
+            
           <?php if ($tipo == 'Premium' || $tipo== 'Amministratore'): ?>
            <?php $stmt->nextRowset();?>
           <h2>Prenotazioni Colonnine</h2>
-            <?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+            	<?php if ($stmt->rowCount()!=0): ?>
             	<div class="container">
   						           
-  						<table class="table table-striped table-bordered table-hover table-condensed">
+  						<table class="table table-striped table-hover table-condensed">
     					<thead>
       					<tr>
       					  <th>Id</th>
@@ -121,6 +127,7 @@
     					</thead>
   		  						
       						  <tbody>
+      						  	<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
       							<tr>
       							  <td align="left" class="col-md-3"><?php echo $userRow['Id']; ?></td>
      						      <td align="left" class="col-md-3"><?php echo $userRow['EmailUtente']; ?></td>
@@ -129,11 +136,14 @@
      							  <td align="left" class="col-md-3"><?php echo $userRow['Slot_Fine']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_pren']; ?></td>
      							 </tr>
+     							 <?php endwhile; ?> 
       						  </tbody>
   						</table>
 			   </div>
-            <?php endwhile; ?> 
+			   <?php endif; ?>
+            
             <?php endif; ?>
+            
           </div>
 </body>
 </html>

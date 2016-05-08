@@ -36,23 +36,21 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
+	    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css"> 
+		<link rel="stylesheet" href="css/form-elementsLogin.css">
+		 <!-- <link rel="stylesheet" href="css/styleLogin.css">  --> 
+		<link rel="stylesheet" href="css/jquery-ui.css">
 		<script type="text/javascript">
         window.onload = function() {
+        $('#menuEContenuto').hide("fast").css("visibility","hidden");
+        cambiaContenuto('Home');
+         
         document.getElementById("HomeImg").onclick = function() {
+         $('#menuEContenuto').hide("fast").css("visibility","hidden");
          cambiaContenuto('Home');
         };
         }; 
         </script>
-		<style>
-			ul.fontMenu{
-				color: red;
-				font-family: "Times New Roman", Times, serif;
-				font-weight: bold;
-				font-size: 20px;
-				/*color: rgb(86,241,210);*/
-				
-			}
-		</style>
 	</head>
 	<body>
 
@@ -71,7 +69,7 @@
 					<img id="HomeImg" src="/BasiDati/img/Logo.png" height="55" width="150">
 				</div>
 				<nav class="collapse navbar-collapse" role="navigation">
-					<ul class="nav navbar-nav fontMenu">
+					<ul class="fontMenu nav navbar-nav ">
 						<li >
 							<a href='#' onclick="cambiaFinestra('bici')" >Bici</a>
 						</li>
@@ -109,8 +107,9 @@
 <!-- Begin Body -->
 <div class="container">
 	<div id="Home">
+		
 	</div>
-	<div class="row">
+	<div class="row" id="menuEContenuto">
   			<div class="col-md-3" id="leftCol"> <!-- QUESTO E' IL DIV DEL MENU' LATERALE  -->
               	
 				<div id="bici" class="well"> 
@@ -194,7 +193,7 @@
   				</div>
   				<div id="altro" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#" onclick="cambiaContenuto('vuoto')">Lista Utenti</a></li>
+                  <li><a href="#" onclick="cambiaContenuto('listautenti')">Lista Utenti</a></li>
               	</ul>
   				</div>
 
@@ -212,6 +211,7 @@
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script src="js/scripts.js"></script>
 	</body>
 </html>

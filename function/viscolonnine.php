@@ -46,10 +46,10 @@
 	<body>
 		<div >
 			<h1>Colonnine</h1> 
-			<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
+			<?php if ($stmt->rowCount()!=0): ?>
             	<div class="container">
   						           
-  						<table class="table table-striped table-bordered">
+  						<table class="table table-striped">
     					<thead class="personale">
       					<tr>
       					  <th>Indirizzo</th>
@@ -61,6 +61,7 @@
      					 </tr>
     					</thead>
   		  						<tbody>
+  		  							<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
       							<tr>
       							  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Ente_Fornitore']; ?></td>
@@ -69,10 +70,11 @@
      						      <td class="col-md-3"><?php echo $userRow['Latitudine']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Longitudine']; ?></td>
      							 </tr>
+     							 <?php endwhile; ?>
       						  </tbody>
   						</table>
 			   </div>
-            <?php endwhile; ?>
+            <?php endif; ?>
           </div>
 </body>
 </html>
