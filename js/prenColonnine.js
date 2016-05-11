@@ -4,7 +4,7 @@ $('#datetimepicker').datetimepicker({
 $("#datetimepicker").on("dp.change", function(e) {
 
 	var indirizzo = $("#colonnina option:selected").text();
- alert(indirizzo);
+  
 	var dataFinal = timeConverter(e.date); 
 	var orariSlot =["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30",
 					"04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30",

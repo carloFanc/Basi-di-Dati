@@ -13,41 +13,11 @@
 	
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-		<title>Visualizza Colonnine</title>
-		<meta name="description" content="profilo">
-		<meta name="author" content="Carlof">
-
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<style type="text/css">
-			DIV.container {
-				width: inherit;
-				text-align: center;
-			}
-			table, thead, tr, tbody, th, td {
-				text-align: center;
-			}
-
-			.table td {
-				text-align: center;
-			}
-		</style>
-	</head>
-
-	<body>
+<body>
 		<div >
 			<h1>Colonnine</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
-            	<div class="container">
+            	<div>
   						           
   						<table class="table table-striped">
     					<thead class="personale">
@@ -77,4 +47,3 @@
             <?php endif; ?>
           </div>
 </body>
-</html>

@@ -5,7 +5,7 @@ require_once ("../class.user.php");
 $auth_user = new USER();
 
 $umail = $_SESSION['user_email'];
-
+$tipouser= $_SESSION['user_tipologia'];
 $stmt = $auth_user -> runQuery('CALL VisualizzaInbox(:umail)');
 
 $stmt -> execute(array(":umail" => $umail));
@@ -19,10 +19,16 @@ $output_string .= '<td class="col-md-3">' . $userRow['Email_Mittente'] . '</td>'
 $output_string .= '<td class="col-md-3">' . $userRow['Titolo'] . '</td>';
 $output_string .= '<td class="col-md-3">' . $userRow['Testo_Messaggio'] . '</td>';
 $output_string .= '<td class="col-md-3">' . $userRow['DataInvio'] . '</td>';
+if($tipouser=="Amministratore"){
+	$output_string .= '<td style="border: 0;" class="col-md-3"><div class="cancella" id="'.$userRow['Id_Messaggio'].'"><img src="/BasiDati/img/delete.png"></img></div></td>';
+}else{
 if($userRow['Tipo']=="Personale"){
 $output_string .= '<td style="border: 0;" class="col-md-3"><div class="cancella" id="'.$userRow['Id_Messaggio'].'"><img src="/BasiDati/img/delete.png"></img></div></td>';		
 }
+}
 $output_string .= '</tr>';
+
+
 endwhile;
 $output_string .= '</table>';
 $output_string .= '<script type=\'text/javascript\' language=\'javascript\'>

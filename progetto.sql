@@ -251,7 +251,7 @@ CREATE TRIGGER InserimentoMessaggioInbox AFTER INSERT ON ForumPost
      DECLARE testo VARCHAR(500);
      DECLARE dat DATETIME;
      DECLARE email VARCHAR(20);
-     SET @testo = 'Nuova news inserita nel forum '; 
+     SET @testo = 'Nuova news inserita nel forum'; 
      SET @dat = NEW.Data_Inserimento;
      SET @email = NEW.EmailUtente;
      SET @tit = NEW.Titolo;
@@ -259,7 +259,17 @@ CREATE TRIGGER InserimentoMessaggioInbox AFTER INSERT ON ForumPost
      END
 *
 DELIMITER ;
-
+/*Elimino Messaggi Globali in inbox dopo che un admin ha tolto un messaggio nel forum*/
+DELIMITER * 
+CREATE TRIGGER AggiornaInbox AFTER DELETE ON ForumPost
+     FOR EACH ROW 
+     BEGIN
+     DECLARE id INT;
+     SET @id = Id; 
+     DELETE FROM Messaggio WHERE (Id_Messaggio = @id);
+	  END
+*
+DELIMITER ;
 
 /*Controllo che la prenotazione non superi le 12 ore*/
 DELIMITER *  
@@ -571,6 +581,16 @@ END;
 ^
 DELIMITER ;
 /*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPOST----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPOST(IN Id VARCHAR(50))
+visu:BEGIN
+DELETE FROM ForumPost WHERE (Id = Id);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
 /*------------- VISUALIZZACOLONNINE----------------*/
 
 DELIMITER ^
@@ -823,8 +843,6 @@ INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (
 INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('pippo@gmail.com','01','2016-03-12 04:05:22','2016-03-12 07:55:22');	
 INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('carlo@gmail.com','01','2016-04-18 16:05:22','2016-04-18 16:55:22');	
 
-
-INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES ('admin@gmail.com','Provamsg','ciaociao','2016-12-24 03:44:22');	
 INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES ('admin@gmail.com','Bona','chebellofunziona','2016-02-21 17:13:22');	
 
 INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via panto cane 5','Enel',150,'2012-10-02',44.501218, 11.361283);

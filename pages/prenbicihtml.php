@@ -62,7 +62,7 @@ $stmt -> execute();
 		<script src="/BasiDati/js/bootstrap.min.js"></script>			
 		<script src="/BasiDati/js/jquery-ui.js"></script>
 		<script src="/BasiDati/js/prenBici.js"></script>
+		<script  src="/BasiDati/js/moment.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
-		<script src="/BasiDati/js/bootstrap-datetimepicker.it.js"></script>
 	</body>
 	</html>

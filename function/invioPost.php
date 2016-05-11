@@ -9,7 +9,6 @@ if (isset($_POST['titolo']) && isset($_POST['text'])) {
 		$mailm = $_SESSION['user_email'];
 		$text = $_POST['text'];
 		$titolo = $_POST['titolo'];
-		//$data = date("Y-m-d H:i:s");
 		
 		if ($titolo != NULL && $text != NULL) {
 			if ($user -> InsertPost($mailm,$titolo,$text)) {

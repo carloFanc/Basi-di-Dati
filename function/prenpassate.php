@@ -13,41 +13,14 @@
 	
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-		<title>Prenotazioni Passate</title>
-		<meta name="description" content="profilo">
-		<meta name="author" content="Carlof">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<style type="text/css">
-			DIV.container {
-				width: inherit;
-				text-align: center;
-			}
-			table, thead, tr, tbody, th, td {
-				text-align: center;
-			}
-
-			.table td {
-				text-align: center;
-			}
-		</style>
-	</head>
 
 	<body>
 		<div >
 			<h1>Prenotazioni Passate</h1> 
-			<h2>Prenotazioni Bici</h2>
+			
 			<?php if ($stmt->rowCount()!=0): ?>
-            	<div class="container">
+				<h2>Prenotazioni Bici</h2>
+            	<div>
   						            
   						<table class="table table-striped">
     					<thead class="personale">
@@ -73,15 +46,12 @@
       						  </tbody>
   						</table>
 			   </div>
-			   <? else: ?>
-			   <div>
-			   	<h2>No Result</h2>
-			   </div>
-			   <?php endif; ?>
+			<?php endif; ?>
             <?php $stmt->nextRowset();?>
-            <h2>Prenotazioni Veicoli</h2> 
+            
             <?php if ($stmt->rowCount()!=0): ?>
-            	<div class="container">
+            	<h2>Prenotazioni Veicoli</h2> 
+            	<div >
   						          
   						<table class="table table-striped table-hover table-condensed">
     					<thead>
@@ -109,17 +79,14 @@
       						  </tbody>
   						</table>
 			   </div>
-			    <? else: ?>
-			   <div>
-			   	<h2>No Result</h2>
-			   </div>
-            <?php endif; ?>
+			   <?php endif; ?>
           
           <?php if ($tipo == 'Premium' || $tipo== 'Amministratore'): ?>
            <?php $stmt->nextRowset();?>
-          <h2>Prenotazioni Colonnina</h2> 
+          
             <?php if ($stmt->rowCount()!=0): ?>
-            	<div class="container">
+            	<h2>Prenotazioni Colonnina</h2> 
+            	<div>
   						          
   						<table class="table table-striped table-hover table-condensed">
     					<thead>
@@ -147,12 +114,7 @@
       						  </tbody>
   						</table>
 			   </div>
-			    <?php else: ?>
-			   <div>
-			   	<h2>No Result</h2>
-			   </div>
-            <?php endif; ?>
+			   <?php endif; ?>
           <?php endif; ?>
           </div>
 </body>
-</html>
