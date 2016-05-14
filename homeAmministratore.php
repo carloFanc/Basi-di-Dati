@@ -95,7 +95,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 			  <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?>&nbsp;<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#" onclick="cambiaContenuto('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a></li>
+                <li><a href="#" onclick="cambiaFinestra('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a></li>
                 <li><a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
               </ul>
             </li>
@@ -114,10 +114,24 @@
               	
 				<div id="bici" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              	  <li><a href="#" onclick="">Inserisci Bici</a></li>
+              	   <li data-toggle="collapse" data-parent="#p6" href="#pv6">
+								<a class="nav-sub-container">Inserisci<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv6">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('nuovabici')">Bici</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('nuovapostazione')">Postazioni Prelievo</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('nuovapista')">Piste Ciclabili</a>
+									</li>
+								</ul>
+							</li>
               	  <li><a href="#" onclick="cambiaContenuto('visbici')">Visualizza Bici</a></li>
                   <li data-toggle="collapse" data-parent="#p1" href="#pv1">
-								<a class="nav-sub-container">Visualizza Postazioni Prelievo<span class="caret arrow"></span><div class="caret-container"></div></a>
+								<a class="nav-sub-container">Visualizza Post. Prelievo<span class="caret arrow"></span><div class="caret-container"></div></a>
 
 								<ul class="nav nav-pills nav-stacked collapse" id="pv1">
 									<li>
@@ -145,7 +159,21 @@
   				</div>
   				<div id="veicoli" class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-              	  <li><a href="#" onclick="">Inserisci Veicolo</a></li>
+              	  <li data-toggle="collapse" data-parent="#p7" href="#pv7">
+								<a class="nav-sub-container">Inserisci<span class="caret arrow"></span><div class="caret-container"></div></a>
+
+								<ul class="nav nav-pills nav-stacked collapse" id="pv7">
+									<li>
+										<a href="#"  onclick="cambiaContenuto('nuovoveicolo')">Veicolo</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('nuovopuntonoleggio')">Punto Noleggio</a>
+									</li>
+									<li>
+										<a href="#" onclick="cambiaContenuto('nuovacolonnina')">Colonnina di Ricarica</a>
+									</li>
+								</ul>
+							</li>
               		<li><a href="#" onclick="cambiaContenuto('visveicoli')">Visualizza Veicoli</a></li>
                   <li data-toggle="collapse" data-parent="#p3" href="#pv3">
 								<a class="nav-sub-container">Visualizza Punti Noleggio<span class="caret arrow"></span><div class="caret-container"></div></a>
@@ -160,7 +188,7 @@
 								</ul>
 							</li>
 				  <li data-toggle="collapse" data-parent="#p4" href="#pv4">
-								<a class="nav-sub-container">Visualizza Colonnine Ricarica<span class="caret arrow"></span><div class="caret-container"></div></a>
+								<a class="nav-sub-container">Visualizza Colonn. Ricarica<span class="caret arrow"></span><div class="caret-container"></div></a>
 
 								<ul class="nav nav-pills nav-stacked collapse" id="pv4">
 									<li>

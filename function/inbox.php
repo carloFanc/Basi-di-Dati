@@ -1,6 +1,6 @@
 	<body> 
 <div id='result_table'>
-<h1>Messaggi Inbox</h1> 
+<h1 align="center">Messaggi Inbox</h1> 
 </div>
 
 <script type='text/javascript' language='javascript'>

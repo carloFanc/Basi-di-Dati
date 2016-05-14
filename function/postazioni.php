@@ -24,6 +24,7 @@
       					<tr>
       					  <th>Indirizzo</th>
       					  <th>Numero Bici Disponibili</th>
+      					  <th>Numero Bici Totali</th>
      					 </tr>
     					</thead>
   		  						<tbody>
@@ -31,6 +32,7 @@
       							<tr>
       							  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Numero_Bici_Disponibili']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Numero_Bici_Totale']; ?></td>
      							 </tr>
      							 <?php endwhile; ?>
       						  </tbody>

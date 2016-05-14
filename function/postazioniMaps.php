@@ -145,12 +145,12 @@
 								url : 'function/get_noleggio.php',
 								type: 'post',
 								success : function(data) {
-									alert("ciso");
+									
 									//oop through each location.
 									$.each(data, function() {
-										alert(data);
+										
 										var marker;
-										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Ente Fornitore: ' + this.Ente_Fornitore + '<br>' + 'Max KWH: ' + this.Max_KWH + '<br>'+ 'Email: ' + this.Email + '<br>'+ 'Data Inserimento: ' + this.Data_Inserimento + '<br>';
+										var contenuto = '<p><b>' + this.Nome + '</p></b><br>'+ 'Sito Web: ' +  this.Sito_Web + '<br>' + 'Telefono: ' + this.Telefono + '<br>'+ 'Email: ' + this.Email + '<br>'+ 'Indirizzo: ' + this.Indirizzo + '<br>';
 										var infowindow = new google.maps.InfoWindow({
 											content : contenuto
 										});

@@ -6,30 +6,32 @@
 		//Validate fields if required using jQuery
 
 		var postForm = {//Fetch form data
-			
-			'id' : $( "#form-piste option:selected" ).text(),
-			'titolo' : $('input[name=form-titolo]').val() ,
-			'testo' : $('input[name=form-testo]').val()  //Store name fields value
+			'nome' : $('input[name=form-nome]').val() ,
+			'sito' : $( 'input[name=form-sito]' ).val(),
+			'email' : $('input[name=form-email]').val() ,
+			'tel' : $('input[name=form-tel]').val(),
+			'ind' : $('input[name=form-ind]').val(),
+			'lat' : $('input[name=form-lat]').val() ,
+			'long' : $('input[name=form-long]').val()
 		};
 
 		$.ajax({//Process the form using $.ajax()
 			type : 'POST', //Method type
-			url : '/BasiDati/function/InsSegnalaz.php', //Your form processing file URL
+			url : '/BasiDati/function/InsPuntiNoleggio.php', 
 			data : postForm, //Forms name
 			dataType : 'json',
 			success : function(data) {
-				if (!data.success) {//If fails
+				if (!data.success) {
 					if (data.errors) {
-						alert("Errore connessione al database");
-						cambiaContenuto('inssegalaz');
+						alert("Errore");
+						cambiaContenuto('nuovopuntonoleggio');
 					}
 				} else {
-					alert("Segnalazione Inviata");
+					alert("Punto Noleggio Inserito");
 					cambiaContenuto('vuoto');
 				}
 			}
 		});
 		event.preventDefault();
-		//Prevent the default submit
 	});
 //});

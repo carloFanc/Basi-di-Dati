@@ -28,7 +28,7 @@ $stmt -> execute();
 
 	<body>
 		 <div>
-			<h1>Prenotazione Veicoli</h1>
+			<h1 align="center">Prenotazione Veicoli</h1>
 			
 			
 			<form role="form"  id="PrenVeicolo" >
@@ -50,7 +50,7 @@ $stmt -> execute();
 					<input name="form-date2" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date2"> </input>
 					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
 				</div>
-				<button type="submit" name="btn-invio" class="btn btn-default">
+				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>
 			</form>

@@ -12,7 +12,7 @@ $stmt -> execute();
 ?>
 	<body>
 		<div >
-			<h1>Messaggi Forum</h1> 
+			<h1 align="center">Messaggi Forum</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
             	<div >    
   						<table class="table table-striped table-hover table-condensed">

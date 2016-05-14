@@ -15,7 +15,7 @@
 ?>
 	<body>
 		<div >
-			<h1>Piste Ciclabili</h1> 
+			<h1 align="center">Piste Ciclabili</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
             	<div >
   						           

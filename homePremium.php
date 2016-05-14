@@ -94,7 +94,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span>&nbsp;Ciao <?php echo $userRow['Nome']; ?></a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#" onclick="cambiaContenuto('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a>
+									<a href="#" onclick="cambiaFinestra('profilo')"><span class="glyphicon glyphicon-user"></span>&nbsp;Vedi Profilo</a>
 								</li>
 								<li>
 									<a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>

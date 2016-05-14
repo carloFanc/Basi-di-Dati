@@ -15,7 +15,7 @@
 ?>
 <body>
 		<div >
-			<h1>Punti Noleggio</h1> 
+			<h1 align="center">Punti Noleggio</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
             	<div>
   						           

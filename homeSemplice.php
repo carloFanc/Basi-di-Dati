@@ -34,10 +34,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
-		<link href="css/home.css" rel="stylesheet">
-		<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/form-elementsLogin.css">
-		<!-- <link rel="stylesheet" href="css/styleLogin.css">-->
+		<link href="css/home.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<script type="text/javascript">
         window.onload = function() {

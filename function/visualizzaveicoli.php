@@ -15,7 +15,7 @@
 ?>
 <body>
 		<div >
-			<h1>Veicoli</h1> 
+			<h1 align="center">Veicoli</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
             	<div>
   						           
@@ -48,7 +48,8 @@
      						      <td class="col-md-3"><?php echo $userRow['Autonomia_km']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Max_Passeggeri']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Chilometraggio_Attuale']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['Foto']; ?></td>
+     						      <td><img src="data:image/jpg;base64,<?php echo base64_encode($userRow['Foto']); ?>" /></td>
+     						      
      							 </tr>
      							 <?php endwhile; ?>
       						  </tbody>

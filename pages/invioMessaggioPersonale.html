@@ -1,6 +1,6 @@
 
 		<div >
-			<h1>Invia Messaggio Personale</h1>
+			<h1 align="center">Invia Messaggio Personale</h1>
 
 			<form role="form"  id="invioMessaggio" >
 				<div class="form-group">
@@ -17,7 +17,7 @@
 					<input name="form-txt" type="text" class="form-control" id="form-text">
 
 				</div>
-				<button type="submit" name="btn-invio" class="btn btn-default">
+				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>
 			</form>
@@ -34,7 +34,7 @@
 						url : "/BasiDati/function/inviomsgpersonale.php",
 						data : "email=" + email + "&titolo=" + titolo + "&text=" + text
 					}).done(function() {
-						alert("Dati salvati!");
+						alert("Messaggio Inviato!");
 						cambiaContenuto('vuoto');
 					});
 				});

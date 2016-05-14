@@ -15,7 +15,7 @@
 ?>
 <body>
 		<div >
-			<h1>Classifica in base alle prenotazioni Veicoli</h1> 
+			<h1 align="center">Classifica in base alle prenotazioni Veicoli</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
             	<div>
   						           

@@ -11,7 +11,7 @@ $stmt -> execute();
 ?>
 <body>
 		<div >
-			<h1>Bici</h1> 
+			<h1 align="center">Bici</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
             	<div>
   						           

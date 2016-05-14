@@ -8,15 +8,20 @@
 	
 	$umail = $_SESSION['user_email'];
 	$tipo = $_SESSION['user_tipologia'];
+	if($tipo=="Amministratore"){
+		$stmt = $auth_user->runQuery('CALL VisualizzaPrenotazioniTotaliPassate()');
+		$stmt->execute();
+	}
+	else{
 	$stmt = $auth_user->runQuery('CALL VisualizzaPrenotazioniPassate(:umail)');
 	$stmt->execute(array(":umail"=>$umail));
-	
+	}
 
 ?>
 
 	<body>
 		<div >
-			<h1>Prenotazioni Passate</h1> 
+			<h1 align="center">Prenotazioni Passate</h1> 
 			
 			<?php if ($stmt->rowCount()!=0): ?>
 				<h2>Prenotazioni Bici</h2>

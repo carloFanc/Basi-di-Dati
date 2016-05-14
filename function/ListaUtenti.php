@@ -16,11 +16,11 @@
 
 	<body>
 		<div > 
-			<h1>Lista Utenti</h1> 
+			<h1 align="center">Lista Utenti</h1> 
 			
             	<div>
   						
-<div class="btn-group" data-toggle="buttons" id="toggleColumns">
+<div class="btn-group" data-toggle="buttons" id="toggleColumns"  style="width: 870px;">
     <label class="btn btn-primary active">
         <input type="checkbox" checked="checked"
                value="1"/> Email
@@ -57,6 +57,10 @@
         <input type="checkbox" checked="checked"
                value="9"/> Telefono
     </label> 
+    <label style="background-color:red" class="btn btn-primary active">
+        <input type="checkbox" checked="checked"
+               value="10"/> Del
+    </label> 
 </div>        
 <div class="row resizeRow">
   						<table class="table table-striped">
@@ -85,7 +89,9 @@
      						      <td class="7"><?php echo $userRow['Luogo_Nascita']; ?></td>
      						      <td class="8"><?php echo $userRow['Indirizzo_Residenza']; ?></td>
      						      <td class="9"><?php echo $userRow['Telefono']; ?></td>
-     						   
+     						      <?php if($umail != $userRow['Email']): ?>
+     						      <td class="10" style="border: 0;" class="col-md-3"><div class="cancella" id="<?php echo $userRow['Email']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
+     						      <?php endif; ?>
      							 </tr>
      							 <?php endwhile; ?>
       						  </tbody>
@@ -100,5 +106,18 @@
   $('.'+this.value).toggle(); 
 });
 
+</script>
+<script type='text/javascript' language='javascript'>
+$('.cancella').click(function(){
+    var id = $(this).attr('id');
+      $.ajax({
+        url: '/BasiDati/function/EliminaUtente.php',
+        type:'POST',
+        data : "id=" + id
+        }).done(function(){
+                cambiaContenuto('listautenti');
+            } ); 
+         
+});
 </script>
 </body>

@@ -1,3 +1,7 @@
+$('#datetimepicker').datetimepicker({
+	format : 'YYYY-MM-DD'
+});
+
 	$('form').submit(function(event) {//Trigger on form submit
 		$('#name + .throw_error').empty();
 		//Clear the messages first
@@ -6,30 +10,30 @@
 		//Validate fields if required using jQuery
 
 		var postForm = {//Fetch form data
-			
-			'id' : $( "#form-piste option:selected" ).text(),
-			'titolo' : $('input[name=form-titolo]').val() ,
-			'testo' : $('input[name=form-testo]').val()  //Store name fields value
+			'ind' : $('input[name=form-ind]').val() ,
+			'ente' : $( 'input[name=form-ente]' ).val(),
+			'max' : $('input[name=form-max]').val() ,
+			'data' : $('input[name=form-data]').val(),
+			'lat' : $('input[name=form-lat]').val() ,
+			'long': $('input[name=form-long]').val()
 		};
-
 		$.ajax({//Process the form using $.ajax()
 			type : 'POST', //Method type
-			url : '/BasiDati/function/InsSegnalaz.php', //Your form processing file URL
+			url : '/BasiDati/function/InsColonnine.php', 
 			data : postForm, //Forms name
 			dataType : 'json',
 			success : function(data) {
-				if (!data.success) {//If fails
+				if (!data.success) {
 					if (data.errors) {
-						alert("Errore connessione al database");
-						cambiaContenuto('inssegalaz');
+						alert("Errore");
+						cambiaContenuto('nuovacolonnina');
 					}
 				} else {
-					alert("Segnalazione Inviata");
+					alert("Colonnina Inserita");
 					cambiaContenuto('vuoto');
 				}
 			}
 		});
 		event.preventDefault();
-		//Prevent the default submit
 	});
 //});

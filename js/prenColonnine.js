@@ -17,8 +17,8 @@ $("#datetimepicker").on("dp.change", function(e) {
 		url : "/BasiDati/function/richiediPrenotazionisuColonnine.php",
 		data : "indirizzo=" + indirizzo + "&data=" + dataFinal
 	}).done(function(data) {
-	 var outputSelectInizio =" <select name=\"slotDisponibiliInizio\" id=\"slotDisponibiliInizio\">";
-	 var outputSelectFine ="  <select  name=\"slotDisponibiliFine\" id=\"slotDisponibiliFine\">";
+	 var outputSelectInizio =" <h4>Dalle ore</h4>  <select name=\"slotDisponibiliInizio\" id=\"slotDisponibiliInizio\">";
+	 var outputSelectFine ="  <h4>Alle ore</h4>  <select  name=\"slotDisponibiliFine\" id=\"slotDisponibiliFine\">";
 	        for( i=0; i<orariSlot.length;i++){
 	        	var flag = true;
 	        	    $.each(data, function(j, item){

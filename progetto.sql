@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS Veicolo_elettrico(
 	Chilometraggio_Attuale INT,
 	Foto BLOB,
 	FOREIGN KEY (Punto_Noleggio) REFERENCES Punto_Noleggio(Nome) 
+	ON DELETE CASCADE
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Postazione_Prelievo(
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS Bici(
 	Colore VARCHAR(20),
 	Anno_Acquisizione INT,
 	FOREIGN KEY (Postazione_Prelievo) REFERENCES Postazione_Prelievo(Indirizzo) 
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Pista_Ciclabile(
@@ -81,8 +83,10 @@ CREATE TABLE IF NOT EXISTS Messaggio(
 	Tipo ENUM('Personale','Globale'),
 	Testo_Messaggio VARCHAR(500),
 	DataInvio DATETIME,
-	FOREIGN KEY (Email_Mittente) REFERENCES Utente(Email),
+	FOREIGN KEY (Email_Mittente) REFERENCES Utente(Email)
+	ON DELETE CASCADE,
 	FOREIGN KEY (Email_Destinatario) REFERENCES Utente(Email)
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 	
 	
@@ -94,8 +98,10 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Veicolo(
 	Prezzo_Prenotazione INT,
 	Data_Inizio DATETIME, 
 	Data_Fine DATETIME,
-	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
+	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
+	ON DELETE CASCADE,
 	FOREIGN KEY (Veicolo) REFERENCES Veicolo_elettrico(Targa)
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Prenotazione_Bici(
@@ -104,8 +110,10 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Bici(
 	IdBici INT NOT NULL,
 	Data_Inizio DATETIME, 
 	Data_Fine DATETIME,
-	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
+	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
+	ON DELETE CASCADE,
 	FOREIGN KEY (IdBici) REFERENCES Bici(Id)
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS ForumPost(
@@ -116,6 +124,7 @@ CREATE TABLE IF NOT EXISTS ForumPost(
 	Testo_Messaggio VARCHAR(500),
 	Data_Inserimento DATETIME,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 	
 CREATE TABLE IF NOT EXISTS Segnalazione(
@@ -127,8 +136,10 @@ CREATE TABLE IF NOT EXISTS Segnalazione(
 	Testo_Messaggio VARCHAR(500),
 	Data_Inserimento DATETIME,
 	/*Foto BLOB,*/
-	FOREIGN KEY (Pista_Ciclabile) REFERENCES Pista_Ciclabile(Id),
+	FOREIGN KEY (Pista_Ciclabile) REFERENCES Pista_Ciclabile(Id)
+	ON DELETE CASCADE,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Colonnina_Elettrica(
@@ -149,8 +160,10 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Colonnina(
 	Slot_Inizio INT, 
 	Slot_Fine INT,
 	Data_pren DATE,
-	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email),
+	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
+	ON DELETE CASCADE,
 	FOREIGN KEY (Indirizzo) REFERENCES Colonnina_Elettrica(Indirizzo)
+	ON DELETE CASCADE
 	) ENGINE=INNODB;
 
 	
@@ -406,7 +419,7 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPostazioni()
 BEGIN
-SELECT Indirizzo,Numero_Bici_Disponibili FROM Postazione_Prelievo;
+SELECT Indirizzo,Numero_Bici_Disponibili,Numero_Bici_Totale FROM Postazione_Prelievo;
 END;
 ^
 DELIMITER ;
@@ -550,6 +563,27 @@ END;
 ^
 DELIMITER ;
 /*------------------------------------------------------------------*/
+DELIMITER ^
+CREATE PROCEDURE VisualizzaPrenotazioniTotaliPassate()
+visu:BEGIN
+SELECT * FROM Prenotazione_Bici WHERE (Data_Inizio < NOW());
+SELECT * FROM Prenotazione_Veicolo WHERE (Data_Inizio < NOW());
+SELECT * FROM Prenotazione_Colonnina WHERE (Data_pren < NOW());
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+DELIMITER ^
+CREATE PROCEDURE VisualizzaPrenotazioniTotaliinCorso()
+visu:BEGIN
+SELECT * FROM Prenotazione_Bici WHERE (Data_Inizio > NOW()) ;
+SELECT * FROM Prenotazione_Veicolo WHERE (Data_Inizio > NOW()) ;
+SELECT * FROM Prenotazione_Colonnina WHERE (Data_pren > NOW()) ;
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
 /*------------- VISUALIZZAPOSTFORUM----------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaForum()
@@ -587,6 +621,16 @@ DELIMITER ^
 CREATE PROCEDURE EliminaPOST(IN Id VARCHAR(50))
 visu:BEGIN
 DELETE FROM ForumPost WHERE (Id = Id);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAUTENTE----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaUTENTE(IN EmailInserito VARCHAR(50))
+visu:BEGIN
+DELETE FROM Utente WHERE (Email = EmailInserito);
 END;
 ^
 DELIMITER ;
@@ -637,29 +681,68 @@ END;
 DELIMITER ;
 /*----------------------------------------------------------------*/
 /*--------------------------inserimento NUOVA BICI---------------------*/
-DELIMITER ^ /*-Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione)-----*/
-CREATE PROCEDURE InserimentonewBici(IN Postazione VARCHAR(50),IN Marca VARCHAR(50),IN Testo_Messaggio VARCHAR(50))
+DELIMITER ^ 
+CREATE PROCEDURE InserimentonewBici(IN Id INT , IN Postazione VARCHAR(20),IN Marca VARCHAR(20),IN Colore VARCHAR(20),IN Anno INT)
 visu:BEGIN
-DECLARE timenow DATETIME;
-SET timenow = NOW();
-INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES (EmailUtente,Titolo,Testo_Messaggio,timenow);
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES (Id,Postazione,Marca,Colore,Anno);
 END;
 ^
 DELIMITER ;
 /*----------------------------------------------------------------*/
 /*----------------------------------------------------------------*/
 /*--------------------------inserimento NUOVO VEICOLO---------------------*/
-DELIMITER ^/*-- Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto)-----*/
-CREATE PROCEDURE InserimentonewVeicolo(IN EmailUtente VARCHAR(50),IN Titolo VARCHAR(50),IN Testo_Messaggio VARCHAR(50))
+DELIMITER ^ 
+CREATE PROCEDURE InserimentonewVeicolo(IN Targa VARCHAR(20),IN PuntoNoleggio VARCHAR(20) , IN Tipologia VARCHAR(20),IN NomeModello VARCHAR(40),IN Colore VARCHAR(40),IN CostoH INT,IN Cilindrata INT,IN AutonomiaKm INT,IN MaxPasseggeri INT,IN Km_Attuale INT,IN Foto BLOB)
 visu:BEGIN
-DECLARE timenow DATETIME;
-SET timenow = NOW();
-INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES (EmailUtente,Titolo,Testo_Messaggio,timenow);
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES (Targa,PuntoNoleggio,Tipologia,NomeModello,Colore,CostoH,Cilindrata,AutonomiaKm,MaxPasseggeri,Km_Attuale,Foto);
 END;
 ^
 DELIMITER ;
 
 /*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*--------------------------inserimento NUOVA POSTAZIONE---------------------*/
+DELIMITER ^ 
+CREATE PROCEDURE InserimentonewPostazione(IN Indirizzo VARCHAR(40),IN Numero_Bici_Totale INT, IN Numero_Bici_Disponibili INT,IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
+visu:BEGIN
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES (Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine);
+END;
+^
+DELIMITER ;
+
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*--------------------------inserimento NUOVA PISTA CICLABILE---------------------*/
+DELIMITER ^ 
+CREATE PROCEDURE InserimentonewPistaCiclabile(IN Chilometri INT,IN Pendenza_Media DECIMAL(6,4), IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
+visu:BEGIN
+INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (Chilometri,Pendenza_Media,Latitudine,Longitudine);
+END;
+^
+DELIMITER ;
+
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*--------------------------inserimento NUOVO PUNTO NOLEGGIO---------------------*/
+DELIMITER ^ 
+CREATE PROCEDURE InserimentonewPuntoNoleggio(IN Nome VARCHAR(20),IN Sito_Web VARCHAR(50),IN Email VARCHAR(40),IN Telefono VARCHAR(20),IN Indirizzo VARCHAR(40), IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
+visu:BEGIN
+INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES (Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine);
+END;
+^
+DELIMITER ;
+
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*--------------------------inserimento NUOVA COLONNINA RICARICA---------------------*/
+DELIMITER ^ 
+CREATE PROCEDURE InserimentonewColonninaRicarica(IN Indirizzo VARCHAR(40),IN Ente_Fornitore VARCHAR(20),IN Max_KWH INT,IN Data_Inserimento DATE, IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
+visu:BEGIN
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES (Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine);
+END;
+^
+DELIMITER ;
+
 /*----------------------------------------------------------------*/
 /*------------- ELIMINAZIONE PRENOTAZIONI passate----------------*/
 DELIMITER ^
@@ -758,11 +841,6 @@ SELECT Indirizzo,
 -- INNER JOIN AutoInNoleggio
 -- ON ScooterInNoleggio.Nome=AutoInNoleggio.Nome; 
 
-
-
-
-
-
 /*ATE TABLE IF NOT EXISTS Colonnina_Elettrica(
 
 	Indirizzo VARCHAR(40) NOT NULL PRIMARY KEY,
@@ -839,7 +917,7 @@ INSERT INTO Prenotazione_Veicolo(EmailUtente,Veicolo,Prezzo_Prenotazione,Data_In
 
 
 	
-INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('prova@gmail.com','01','2016-05-02 01:05:22','2016-05-02 03:55:22');
+INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('prova@gmail.com','01','2016-05-15 01:05:22','2016-05-15 03:55:22');
 INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('pippo@gmail.com','01','2016-03-12 04:05:22','2016-03-12 07:55:22');	
 INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES ('carlo@gmail.com','01','2016-04-18 16:05:22','2016-04-18 16:55:22');	
 

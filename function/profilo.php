@@ -36,6 +36,38 @@
   			<a  class="list-group-item"><b>Indirizzo Residenza: </b><?php echo $userRow['Indirizzo_Residenza']; ?></a>
   			<a  class="list-group-item"><b>Telefono: </b><?php echo $userRow['Telefono']; ?></a>
 		 </div>
+		 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Cancella Account</button>
 		 </div>
+		
+		 <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog modal-sm">
+         <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Cancella Account</h4>
+        </div>
+        <div class="modal-body">
+          <p>Sicuro di voler eliminare questo account?</p>
+        </div>
+        <div class="modal-footer">
+          <button align="left" type="button"  id="<?php echo $_SESSION['user_email']; ?>" class="btn btn-primary pull-left Rimuovi">Si</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type='text/javascript' language='javascript'>
+$('.Rimuovi').click(function(){
+    var id = $(this).attr('id');
+      $.ajax({
+        url: '/BasiDati/function/EliminaUtente.php',
+        type:'POST',
+        data : "id=" + id
+        }).done(function(){
+                window.location.href = '/BasiDati/logout.php?logout=true';
+            } ); 
+         
+});
+</script>
 </body>
 

@@ -28,7 +28,7 @@ $stmt -> execute();
 					<label for="text">Testo Messaggio:</label>
 					<input name="form-testo" type="text" class="form-control" id="form-testo">
 				</div>
-				<button type="submit" name="btn-invio" class="btn btn-default">
+				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>
 			</form>

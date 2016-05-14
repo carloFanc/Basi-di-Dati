@@ -44,7 +44,7 @@ function cambiaFinestra(string) {
         $('#altro').show("fast").css("visibility","visible");
         cambiaContenuto('vuoto');
     }
-    
+        
 };
 
 function cambiaContenuto(string){
@@ -135,6 +135,23 @@ function cambiaContenuto(string){
     if(string=="prenColonnina"){
         $("#Contenuto").load("pages/prenota_colonnina.php");
     }
-    
+    if(string=="nuovabici"){
+        $("#Contenuto").load("pages/InsertnewBiciHtml.php");
+    }
+    if(string=="nuovoveicolo"){
+        $("#Contenuto").load("pages/InsertnewVeicoliHtml.php");
+    }
+    if(string=="nuovapostazione"){
+        $("#Contenuto").load("pages/InsertnewPostazioniHtml.php");
+    }
+    if(string=="nuovapista"){
+        $("#Contenuto").load("pages/InsertnewPisteHtml.php");
+    }
+    if(string=="nuovopuntonoleggio"){
+        $("#Contenuto").load("pages/InsertnewPuntiNoleggioHtml.php");
+    }
+    if(string=="nuovacolonnina"){
+        $("#Contenuto").load("pages/InsertnewColonnineHtml.php");
+    }
     
 };

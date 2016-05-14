@@ -6,7 +6,7 @@ $auth_user = new USER();
 
 $umail = $_SESSION['user_email'];
 $tipouser= $_SESSION['user_tipologia'];
-$stmt = $auth_user -> runQuery('CALL VisualizzaInbox(:umail)');
+$stmt = $auth_user -> runQuery('CALL VisualizzaINBOX(:umail)');
 
 $stmt -> execute(array(":umail" => $umail));
 $output_string = '';

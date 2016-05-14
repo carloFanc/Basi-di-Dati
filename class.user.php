@@ -154,16 +154,17 @@ class USER
 			$this->errorSetter($e->getMessage());
 		}				
 	}
-	public function InsertnewBici($id,$mailm, $titolo, $testo)
+	public function InsertnewBici($id,$postazione, $marca, $colore, $anno)
 	{
 		try
 		{
-			$stmt = $this->conn->prepare("CALL InserimentoSegnalazione(:id,:mailm,:titolo,:testo)");
-												  
+			$stmt = $this->conn->prepare("CALL InserimentonewBici(:id,:postazione,:marca,:colore,:anno)");
+			
 			$stmt->bindparam(":id", $id);
-			$stmt->bindparam(":mailm", $mailm);
-			$stmt->bindparam(":titolo", $titolo);		
-			$stmt->bindparam(":testo", $testo);									  
+			$stmt->bindparam(":postazione", $postazione);		
+			$stmt->bindparam(":marca", $marca);	
+			$stmt->bindparam(":colore", $colore);		
+			$stmt->bindparam(":anno", $anno);									  
 			$stmt->execute();	
 			
 			return $stmt;	
@@ -174,16 +175,109 @@ class USER
 			$this->errorSetter($e->getMessage());
 		}				
 	}
-	public function InsertnewVeicolo($id,$mailm, $titolo, $testo)
+	public function InsertnewVeicolo($Targa,$Punto_Noleggio,$Tipologia,$Nome_Modello,$Colore,$Costo_orario,$Cilindrata,$Autonomia_km,$Max_Passeggeri,$Chilometraggio_Attuale,$Foto)
 	{
 		try
 		{
-			$stmt = $this->conn->prepare("CALL InserimentoSegnalazione(:id,:mailm,:titolo,:testo)");
+			$stmt = $this->conn->prepare("CALL InserimentonewVeicolo(:targa,:puntonoleggio,:tipologia,:modello,:colore,:costorario,:cilindrata,:autonomia,:maxpasseggeri,:chilometri,:foto)");
 												  
-			$stmt->bindparam(":id", $id);
-			$stmt->bindparam(":mailm", $mailm);
-			$stmt->bindparam(":titolo", $titolo);		
-			$stmt->bindparam(":testo", $testo);									  
+			$stmt->bindparam(":targa", $Targa);
+			$stmt->bindparam(":puntonoleggio", $Punto_Noleggio);
+			$stmt->bindparam(":tipologia", $Tipologia);		
+			$stmt->bindparam(":modello", $Nome_Modello);	
+			$stmt->bindparam(":colore", $Colore);
+			$stmt->bindparam(":costorario", $Costo_orario);
+			$stmt->bindparam(":cilindrata", $Cilindrata);		
+			$stmt->bindparam(":autonomia", $Autonomia_km);	
+			$stmt->bindparam(":maxpasseggeri", $Max_Passeggeri);
+			$stmt->bindparam(":chilometri", $Chilometraggio_Attuale);		
+			$stmt->bindparam(":foto", $Foto);							  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
+	public function InsertnewPostazione($indirizzo,$numbicitotale, $numbicidisp, $lat, $long)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL InserimentonewPostazione(:ind,:numbicitotale,:numbicidisp,:lat,:long)");
+			
+			$stmt->bindparam(":ind", $indirizzo);
+			$stmt->bindparam(":numbicitotale", $numbicitotale);		
+			$stmt->bindparam(":numbicidisp", $numbicidisp);	
+			$stmt->bindparam(":lat", $lat);		
+			$stmt->bindparam(":long", $long);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
+	public function InsertnewPistaCiclabile($chilometri,$pendenza, $lat, $long)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL InserimentonewPistaCiclabile(:chilometri,:pen,:lat,:long)");
+			
+			$stmt->bindparam(":chilometri", $chilometri);
+			$stmt->bindparam(":pen", $pendenza);		
+			$stmt->bindparam(":lat", $lat);		
+			$stmt->bindparam(":long", $long);									  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
+	public function InsertnewPuntoNoleggio($nome,$sito, $email, $tel,$ind,$lat,$long)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL InserimentonewPuntoNoleggio(:nome,:sito,:email,:tel,:ind,:lat,:long)");
+			
+			$stmt->bindparam(":nome", $nome);
+			$stmt->bindparam(":sito", $sito);		
+			$stmt->bindparam(":email", $email);		
+			$stmt->bindparam(":tel", $tel);	
+			$stmt->bindparam(":ind", $ind);		
+			$stmt->bindparam(":lat", $lat);		
+			$stmt->bindparam(":long", $long);								  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
+	public function InsertnewColonninaRicarica($ind,$ente, $maxKWH, $data,$lat,$long)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL InserimentonewColonninaRicarica(:ind,:ente,:maxKWH,:data,:lat,:long)");
+			
+			$stmt->bindparam(":ind", $ind);
+			$stmt->bindparam(":ente", $ente);		
+			$stmt->bindparam(":maxKWH", $maxKWH);		
+			$stmt->bindparam(":data", $data);	
+			$stmt->bindparam(":lat", $lat);		
+			$stmt->bindparam(":long", $long);								  
 			$stmt->execute();	
 			
 			return $stmt;	

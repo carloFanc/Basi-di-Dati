@@ -6,30 +6,30 @@
 		//Validate fields if required using jQuery
 
 		var postForm = {//Fetch form data
-			
-			'id' : $( "#form-piste option:selected" ).text(),
-			'titolo' : $('input[name=form-titolo]').val() ,
-			'testo' : $('input[name=form-testo]').val()  //Store name fields value
+			'ind' : $('input[name=form-ind]').val() ,
+			'num1' : $( 'input[name=form-num1]' ).val(),
+			'num2' : $('input[name=form-num2]').val(),  
+			'lat' : $('input[name=form-lat]').val() ,
+			'long' : $('input[name=form-long]').val()
 		};
 
 		$.ajax({//Process the form using $.ajax()
 			type : 'POST', //Method type
-			url : '/BasiDati/function/InsSegnalaz.php', //Your form processing file URL
+			url : '/BasiDati/function/InsPostazioni.php', 
 			data : postForm, //Forms name
 			dataType : 'json',
 			success : function(data) {
-				if (!data.success) {//If fails
+				if (!data.success) {
 					if (data.errors) {
-						alert("Errore connessione al database");
-						cambiaContenuto('inssegalaz');
+						alert("Errore");
+						cambiaContenuto('nuovapostazione');
 					}
 				} else {
-					alert("Segnalazione Inviata");
+					alert("Postazione Inserita");
 					cambiaContenuto('vuoto');
 				}
 			}
 		});
 		event.preventDefault();
-		//Prevent the default submit
 	});
 //});
