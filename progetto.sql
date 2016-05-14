@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Veicolo_elettrico(
 	Autonomia_km INT,
 	Max_Passeggeri INT,
 	Chilometraggio_Attuale INT,
-	Foto BLOB,
+	Foto VARCHAR(200),
 	FOREIGN KEY (Punto_Noleggio) REFERENCES Punto_Noleggio(Nome) 
 	ON DELETE CASCADE
 ) ENGINE=INNODB;

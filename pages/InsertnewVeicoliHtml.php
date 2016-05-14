@@ -11,7 +11,7 @@ $stmt -> execute();
 			<h1 align="center">Inserimento Nuovo Veicolo</h1>
 			
 			
-			<form role="form"  id="InsVeicolo" >
+			<form role="form"  id="uploadimage" action="" method="post" enctype="multipart/form-data" >
 				<div class="form-group">
 					<label for="text">Targa:</label>
 					<input name="form-targa" type="text" class="form-control" id="form-targa">
@@ -59,11 +59,11 @@ $stmt -> execute();
 					<label for="text">Chilometraggio Attuale:</label>
 					<input name="form-chilometri" type="number" class="form-control" placeholder="Inserire nel caso di Auto" id="form-chilometri">
 				</div>
-				<div class="form-group">
-					<label for="text">Foto: <h4>Si accettano solo JPG E PNG</h4></label>
-					<input name="form-foto" type="file" accept=".png,.jpg" placeholder="Si accettano solo PNG E JPG" id="form-foto">
-				</div>
-				<button type="submit" name="btn-invio" class="btn btn-primary">
+				<div class="form-group"> 
+				<label for="text">Foto:</label>
+    			<input type="file" name="file" id="file" required />
+              </div>
+ <button type="submit" value="Upload" name="submit" class="btn btn-primary">
 					Invio
 				</button>
 			</form>
@@ -71,6 +71,5 @@ $stmt -> execute();
 		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
 		<script src="/BasiDati/js/bootstrap.min.js"></script>			
 		<script src="/BasiDati/js/jquery-ui.js"></script>
-		<script src="/BasiDati/js/InsVeicoli.js"></script>
-		
+		 <script src="/BasiDati/js/InsVeicoli.js"></script>  
 	</body>

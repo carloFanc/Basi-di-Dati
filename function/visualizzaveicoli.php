@@ -48,7 +48,7 @@
      						      <td class="col-md-3"><?php echo $userRow['Autonomia_km']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Max_Passeggeri']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Chilometraggio_Attuale']; ?></td>
-     						      <td><img src="data:image/jpg;base64,<?php echo base64_encode($userRow['Foto']); ?>" /></td>
+     						      <td><img src="/uploads/jpg;base64,<?php echo base64_encode($userRow['Foto']); ?>" /></td>
      						      
      							 </tr>
      							 <?php endwhile; ?>
