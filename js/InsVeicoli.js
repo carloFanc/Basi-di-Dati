@@ -39,7 +39,7 @@ $(document).ready(function(e) {
 								cambiaContenuto('nuovoveicolo');
 							}
 						} else {
-							alert("Complimenti dati inseri!");
+							alert("Veicolo inserito!");
 							cambiaContenuto("vuoto");
 						}
 					}

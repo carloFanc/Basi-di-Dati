@@ -19,11 +19,16 @@ $form_data = array(); //Pass back the data to `form.php`
 		$passeggeri = $_POST['passeggeri'];
 		$chilometri = $_POST['chilometri'];
 		$foto = $_POST['foto'];
+		$foto=str_replace( "C:\\fakepath\\", "", $foto);
 		
-		
-		
+		if($passeggeri !=null && $chilometri!=null){
 	   $user -> InsertnewVeicolo($targa,$puntonoleggio,$tipologia,$nomemodello,$colore,$costorario,$cilindrata,$autonomia,$passeggeri,$chilometri,$foto);
        $error =  $user -> errorGetter();
+		}else{
+			$user -> InsertnewVeicolo($targa,$puntonoleggio,$tipologia,$nomemodello,$colore,$costorario,$cilindrata,$autonomia,null,null,$foto);
+            $error =  $user -> errorGetter();
+			
+		}
 	   if(strcmp($error, "")==0){
 	    $form_data['success'] = true;
         $form_data['errors']  = "";	

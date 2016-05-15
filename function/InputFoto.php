@@ -1,7 +1,7 @@
 <?php
 if(isset($_FILES["file"]["type"]))
 {
-$validextensions = array("jpeg", "jpg", "png");
+$validextensions = array("jpeg", "jpg", "png","JPEG", "JPG", "PNG");
 $temporary = explode(".", $_FILES["file"]["name"]);
 $file_extension = end($temporary);
 if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")

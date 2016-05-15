@@ -635,6 +635,36 @@ END;
 ^
 DELIMITER ;
 /*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPRENINCORSO BICI----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPrenInCorsoBici(IN Id INT,IN EmailInserito VARCHAR(50))
+visu:BEGIN
+DELETE FROM Prenotazione_Bici WHERE (Id= Id AND Email = EmailInserito);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPRENINCORSO VEICOLO----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPrenInCorsoVeicoli(IN Id INT,IN EmailInserito VARCHAR(50))
+visu:BEGIN
+DELETE FROM Prenotazione_Veicolo WHERE (Id=Id AND Email = EmailInserito);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPRENINCORSO COLONNINA----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPrenInCorsoColonnina(IN Id INT,IN EmailInserito VARCHAR(50))
+visu:BEGIN
+DELETE FROM Prenotazione_Colonnina WHERE (Id=Id AND Email = EmailInserito);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
 /*------------- VISUALIZZACOLONNINE----------------*/
 
 DELIMITER ^
