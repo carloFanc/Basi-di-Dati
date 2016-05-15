@@ -18,13 +18,22 @@
 	}
 
 ?>
-
+<head>
+<link href="css/bootstrap-dialog.min.css" rel="stylesheet"> 
+</head>
 	<body>
 		<div >
 			<h1 align="center">Prenotazioni Passate</h1> 
 			
 			<?php if ($stmt->rowCount()!=0): ?>
+				<?php if($tipo=="Amministratore"): ?>
+				<div>
+					<h4>Per cancellare tutte le prenotazioni passate  <button type="button" id="Cancella" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">CLICCA QUI</button></h4>
+		 
+				</div>
+				<?php endif;?>
 				<h2>Prenotazioni Bici</h2>
+				
             	<div>
   						            
   						<table class="table table-striped">
@@ -122,4 +131,19 @@
 			   <?php endif; ?>
           <?php endif; ?>
           </div>
+          <script type="text/javascript">
+    $(document).ready(function(){
+        $("button").click(function(){
+          $.ajax({
+                type: 'POST',
+                url: '/BasiDati/function/EliminaPrenPassate.php',
+                success: function() {
+                    alert("Prenotazioni Passate eliminate con successo!");
+					cambiaContenuto('prenpassate');
+                }
+            });
+   });
+});
+</script>
+<script src="js/bootstrap-dialog.min.js"></script>
 </body>

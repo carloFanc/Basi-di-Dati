@@ -108,6 +108,9 @@ function cambiaContenuto(string){
     if(string=="classprenveicoli"){
         $("#Contenuto").load("function/classprenveicoli.php");
     }
+    if(string=="utilizzomediocol"){
+        $("#Contenuto").load("pages/utilizzomediocol.php"); 
+    }
     if(string=="visbici"){
         $("#Contenuto").load("function/visualizzabici.php");
     }
@@ -151,7 +154,7 @@ function cambiaContenuto(string){
         $("#Contenuto").load("pages/InsertnewPuntiNoleggioHtml.php");
     }
     if(string=="nuovacolonnina"){
-        $("#Contenuto").load("pages/InsertnewColonnineHtml.php");
+        $("#Contenuto").load("pages/InsertnewColonnineHtml.php"); 
     }
     
 };

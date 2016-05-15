@@ -10,13 +10,14 @@
 		.top-buffer-more {
 			margin-top: 30px;
 		}
+
 	</style>
 </head>
 <body>
 	<h1 align="center">Prenota Colonnina di Ricarica</h1>
 	<div class="container-fluid" style=" clear:both"  >
 
-		<form role="form"  id="prenColonnina" >
+		<form role="form"  id="prenColonnina" onsubmit="return false">
 			<div class="row top-buffer " >
 				<div class="col-md-6">
 					<h4>Indirizzo Colonnina:</h4>
@@ -53,7 +54,7 @@
 			</div>
 			<div class="row top-buffer-more ">
 				<div class="col-md-12" align="center">
-					<button type="submit" id="bottone" name="btn-invio" class="btn btn-primary" style="visibility: hidden">
+					<button id="bottone" name="btn-invio" class="btn btn-primary" style="visibility: hidden">
 						Invio
 					</button>
 				</div>
@@ -63,6 +64,7 @@
 
 	<script  src="/BasiDati/js/moment.js"></script>
 	<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="/BasiDati/js/prenColonnine.js"></script>
 	<script src="/BasiDati/js/jquery.nice-select.js"></script>
+		<script src="/BasiDati/js/prenColonnine.js"></script>
+
 </body>

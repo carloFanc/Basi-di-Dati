@@ -6,7 +6,7 @@ USE PIATTAFORMA;
 /* Definizione delle tabelle SQL			        */
 CREATE TABLE IF NOT EXISTS Punto_Noleggio(
 
-	Nome VARCHAR(20) NOT NULL PRIMARY KEY,
+	Nome VARCHAR(40) NOT NULL PRIMARY KEY,
 	Sito_Web VARCHAR(50),
 	Email VARCHAR(40),
 	Telefono VARCHAR(20),
@@ -636,11 +636,71 @@ END;
 DELIMITER ;
 /*------------------------------------------------------------------*/
 /*------------------------------------------------------------------*/
+/*------------- ELIMINAVEICOLO----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaVEICOLO(IN TargaInserita VARCHAR(50))
+visu:BEGIN
+DELETE FROM Veicolo_Elettrico WHERE (Targa = TargaInserita);
+END;
+^
+DELIMITER ;EliminaBICI
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINABICI----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaBICI(IN IdInserito INT)
+visu:BEGIN
+DELETE FROM Bici WHERE (Id = IdInserito);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINACOLONNINA----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaCOLONNINA(IN Ind VARCHAR(40))
+visu:BEGIN
+DELETE FROM Colonnina_Elettrica WHERE (Indirizzo = Ind);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPOSTAZIONE----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPOSTAZIONE(IN Ind VARCHAR(40))
+visu:BEGIN
+DELETE FROM Postazione_Prelievo WHERE (Indirizzo = Ind);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPISTA----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPISTA(IN IdIns INT)
+visu:BEGIN
+DELETE FROM Pista_Ciclabile WHERE (Id = IdIns);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
+/*------------- ELIMINAPUNTONOLEGGIO----------------*/
+DELIMITER ^
+CREATE PROCEDURE EliminaPUNTONOLEGGIO(IN NomeInserito VARCHAR(40))
+visu:BEGIN
+DELETE FROM Punto_Noleggio WHERE (Nome = NomeInserito);
+END;
+^
+DELIMITER ;
+/*------------------------------------------------------------------*/
+
 /*------------- ELIMINAPRENINCORSO BICI----------------*/
 DELIMITER ^
-CREATE PROCEDURE EliminaPrenInCorsoBici(IN Id INT,IN EmailInserito VARCHAR(50))
+CREATE PROCEDURE EliminaPrenInCorsoBici(IN IdInserito INT)
 visu:BEGIN
-DELETE FROM Prenotazione_Bici WHERE (Id= Id AND Email = EmailInserito);
+DELETE FROM Prenotazione_Bici WHERE (Id= IdInserito);
 END;
 ^
 DELIMITER ;
@@ -648,9 +708,9 @@ DELIMITER ;
 /*------------------------------------------------------------------*/
 /*------------- ELIMINAPRENINCORSO VEICOLO----------------*/
 DELIMITER ^
-CREATE PROCEDURE EliminaPrenInCorsoVeicoli(IN Id INT,IN EmailInserito VARCHAR(50))
+CREATE PROCEDURE EliminaPrenInCorsoVeicoli(IN IdInserito INT)
 visu:BEGIN
-DELETE FROM Prenotazione_Veicolo WHERE (Id=Id AND Email = EmailInserito);
+DELETE FROM Prenotazione_Veicolo WHERE (Id=IdInserito);
 END;
 ^
 DELIMITER ;
@@ -658,9 +718,9 @@ DELIMITER ;
 /*------------------------------------------------------------------*/
 /*------------- ELIMINAPRENINCORSO COLONNINA----------------*/
 DELIMITER ^
-CREATE PROCEDURE EliminaPrenInCorsoColonnina(IN Id INT,IN EmailInserito VARCHAR(50))
+CREATE PROCEDURE EliminaPrenInCorsoColonnina(IN IdInserito INT)
 visu:BEGIN
-DELETE FROM Prenotazione_Colonnina WHERE (Id=Id AND Email = EmailInserito);
+DELETE FROM Prenotazione_Colonnina WHERE (Id=IdInserito);
 END;
 ^
 DELIMITER ;
@@ -953,8 +1013,8 @@ INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (
 
 INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES ('admin@gmail.com','Bona','chebellofunziona','2016-02-21 17:13:22');	
 
-INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via panto cane 5','Enel',150,'2012-10-02',44.501218, 11.361283);
-INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via riproviamo 123','Hera',200,'2013-03-12',44.482425, 11.343176);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via panto cane 5','Enel',150,'2016-04-02',44.501218, 11.361283);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via riproviamo 123','Hera',200,'2016-04-12',44.482425, 11.343176);
 
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',5,7,'2016-11-15');
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via riproviamo 123',3,4,'2016-04-01');

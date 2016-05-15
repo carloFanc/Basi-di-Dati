@@ -1,15 +1,10 @@
 jQuery(document).ready(function() {
 
-	$('#datetimepicker').datetimepicker({
-		language : 'it',
-		pick12HourFormat : false,
-		pickTime : true
+	$('#datetimepicker1').datetimepicker({
+		format : 'YYYY-MM-DD hh:mm:ss'
 	});
-
 	$('#datetimepicker2').datetimepicker({
-		language : 'it',
-		pick12HourFormat : false,
-		pickTime : true
+		format : 'YYYY-MM-DD hh:mm:ss'
 	});
 
 	$('form').submit(function(event) {//Trigger on form submit
@@ -20,10 +15,10 @@ jQuery(document).ready(function() {
 		//Validate fields if required using jQuery
 
 		var postForm = {//Fetch form data
-			
-			'id' : $( "#form-bici option:selected" ).text(),
-			'date1' : $('input[name=form-date1]').val() ,
-			'date2' : $('input[name=form-date2]').val()  //Store name fields value
+
+			'id' : $("#form-bici option:selected").text(),
+			'date1' : $('input[name=form-date1]').val(),
+			'date2' : $('input[name=form-date2]').val() //Store name fields value
 		};
 
 		$.ajax({//Process the form using $.ajax()
@@ -35,8 +30,8 @@ jQuery(document).ready(function() {
 				if (!data.success) {//If fails
 					if (data.errors) {
 						var typeError1 = "prenotabile";
-					    var typeError2 = "prenotare";
-					//Returned if any error from process.php
+						var typeError2 = "prenotare";
+						//Returned if any error from process.php
 						if (data.errors.indexOf(typeError1) > -1) {
 							alert("Bici non prenotabile");
 							cambiaContenuto('prenbici');

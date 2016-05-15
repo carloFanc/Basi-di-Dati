@@ -6,23 +6,8 @@ $user = new USER();
 $stmt = $user -> runQuery('SELECT Targa FROM Veicolo_elettrico');
 $stmt -> execute();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-		<title>Prenotazioni Veicoli</title>
-		<meta name="description" content="profilo">
-		<meta name="author" content="Carlof">
-
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/s/css/bootstrap-combined.min.css" rel="stylesheet">
-
 		<link rel="stylesheet" href="/BasiDati/css/bootstrap-datetimepicker.min.css">
 	</head>
 
@@ -40,6 +25,31 @@ $stmt -> execute();
 					<?php endwhile; ?>
 					</select>	
 				</div>
+				<div class="row top-buffer "  >
+				<div class="col-md-6">
+					<h4>Data Inizio:</h4>
+				</div>
+			</div>
+			<div class="row top-buffer " >
+				<div class="input-group date col-md-6" id="datetimepicker1" style="padding-left:15px; padding-right:15px" >
+
+					<input name="form-date1" id="form-date1" type='text' class="form-control "> </input>
+					<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+				</div>
+			</div>
+			<div class="row top-buffer "  >
+				<div class="col-md-6">
+					<h4>Data Fine:</h4>
+				</div>
+			</div>
+			<div class="row top-buffer " >
+				<div class="input-group date col-md-6" id="datetimepicker2" style="padding-left:15px; padding-right:15px" >
+
+					<input name="form-date2" id="form-date2" type='text' class="form-control "> </input>
+					<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+				</div>
+			</div>	<br>
+				<!-- 
 				<div id="datetimepicker" class="input-append date">
 					<label for="date1">Data Inizio:</label>
 					<input name="form-date1" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date1"> </input>
@@ -49,17 +59,15 @@ $stmt -> execute();
 					<label for="date1">Data Fine:</label>
 					<input name="form-date2" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date2"> </input>
 					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
-				</div>
+				</div> -->
+				
 				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>
+				
 			</form>
 		</div>
-		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
-		<script src="/BasiDati/js/bootstrap.min.js"></script>			
-		<script src="/BasiDati/js/jquery-ui.js"></script>
-		<script src="/BasiDati/js/prenVeicoli.js"></script>
 		<script  src="/BasiDati/js/moment.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="/BasiDati/js/prenVeicoli.js"></script>
 	</body>
-	</html>

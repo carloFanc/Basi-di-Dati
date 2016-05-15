@@ -5,7 +5,7 @@ require_once ("../class.user.php");
 $auth_user = new USER();
 
 $umail = $_SESSION['user_email'];
-
+$tipo = $_SESSION['user_tipologia'];
 $stmt = $auth_user -> runQuery('SELECT * FROM Veicolo_elettrico;');
 $stmt -> execute();
 $stmt2 = $auth_user -> runQuery('SELECT Targa FROM Veicolo_elettrico;');
@@ -21,14 +21,7 @@ $stmt2 -> execute();
 			border: 1px solid #d9d9d9;
 			text-shadow: 1px 1px #fff;
 		}
-		.Cancella {
-			padding: 10px 10px 10px 36px;
-			font-family: "Trebuchet MS", Arial, Verdana;
-			background: #e9e9e9 url(./img/delete.png) 10px 10px no-repeat;
-			border-radius: 16px;
-			border: 1px solid #d9d9d9;
-			text-shadow: 1px 1px #fff;
-		}
+		
 	</style>
 	<link href="css/bootstrap-dialog.min.css" rel="stylesheet"> 
 </head>
@@ -37,10 +30,12 @@ $stmt2 -> execute();
 		<div >
 			<h1 align="center">Veicoli</h1> 
 			<?php if ($stmt->rowCount()!=0): ?>
+				<?php if($tipo=="Amministratore"): ?>
 				<div>
-					<h4>Per cancellare un veicolo  <button type="button" class="btn Cancella" data-toggle="modal" data-target="#myModal2">CLICCA QUI</button></h4>
+					<h4>Per cancellare un veicolo  <button type="button" class="btn btn-primary Cancella" data-toggle="modal" data-target="#myModal2">CLICCA QUI</button></h4>
 		 
 				</div>
+				<?php endif;?>
             	<div>
   						           
   						<table class="table table-striped ">
@@ -105,9 +100,7 @@ $stmt2 -> execute();
 </script>
           <script type='text/javascript' language='javascript'>
 									$('.Cancella').click(function() {
-				var id = $(this).attr('id');
-
-				var html = "<img src=\".\/uploads\/>";
+				
 				var $textAndPic = $('<div></div>');
 				$textAndPic.append('<p>Scegli Veicolo che vuoi cancellare:</p>  <div>  	<select name="form-targa" class="form-control" id="form-targa">	<?php while ($userRow=$stmt2->fetch(PDO::FETCH_ASSOC)): ?><option  value="<?php echo $userRow["Targa"]; ?>"><?php echo $userRow["Targa"]; ?></option><?php endwhile; ?>
 					</select></div> </div>');

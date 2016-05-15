@@ -49,7 +49,7 @@
         						  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							  <?php if($tipo == "Amministratore"): ?>
-     							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella1" id="<?php echo $userRow['EmailUtente']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
+     							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella1" id="<?php echo $userRow['Id']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
      							 <?php endif; ?>
      							 </tr>
      							 <?php endwhile; ?>
@@ -85,7 +85,7 @@
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
      							  <?php if($tipo == "Amministratore"): ?>
-     							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella2" id="<?php echo $userRow['EmailUtente']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
+     							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella2" id="<?php echo $userRow['Id']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
      							 <?php endif; ?>
      							 </tr>
      							 <?php endwhile; ?>
@@ -98,7 +98,7 @@
            <?php $stmt->nextRowset();?>
           
             	<?php if ($stmt->rowCount()!=0): ?>
-                <h2>Prenotazioni Colonnine</h2>
+                <h2>Prenotazioni Colonnina</h2>
             	<div>
   						<?php  $count = 3;   ?>             
   						<table class="table table-striped table-hover table-condensed">
@@ -137,39 +137,36 @@
           </div>
      <script type='text/javascript' language='javascript'>
      $('.cancella1').click(function(){
-    var id = $(this).attr('name'); 	
-    var email = $(this).attr('id');
+    var id = $(this).attr('id'); 	
     var n = 1;
       $.ajax({
         url: '/BasiDati/function/EliminaPren.php',
         type:'POST',
-        data : "id=" + id + "&email=" + email + "&n=" + n
+        data : "id=" + id + "&n=" + n
         }).done(function(){
                 cambiaContenuto('prenincorso');
             } ); 
          
 });
      $('.cancella2').click(function(){
-     	var id = $(this).attr('name'); 
-    var email = $(this).attr('id');
+     	var id = $(this).attr('id'); 
     var n = 2;
       $.ajax({
         url: '/BasiDati/function/EliminaPren.php',
         type:'POST',
-        data : "id=" + id + "&email=" + email + "&n=" + n
+        data : "id=" + id + "&n=" + n
         }).done(function(){
                 cambiaContenuto('prenincorso');
             } ); 
          
 });
 $('.cancella3').click(function(){
-	var id = $(this).attr('name'); 
-    var email = $(this).attr('id');
+	var id = $(this).attr('id'); 
     var n = 3;
       $.ajax({
         url: '/BasiDati/function/EliminaPren.php',
         type:'POST',
-        data : "id=" + id + "&email=" + email + "&n=" + n
+       data : "id=" + id + "&n=" + n
         }).done(function(){
                 cambiaContenuto('prenincorso');
             } ); 

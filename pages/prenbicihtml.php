@@ -6,6 +6,9 @@ $user = new USER();
 $stmt = $user -> runQuery('SELECT id from Bici');
 $stmt -> execute();
 ?>
+<head>
+		<link rel="stylesheet" href="/BasiDati/css/bootstrap-datetimepicker.min.css">
+	</head>
 <body>
 		 <div>
 			<h1 align="center">Prenotazione bici</h1>
@@ -20,25 +23,36 @@ $stmt -> execute();
 					<?php endwhile; ?>
 					</select>	
 				</div>
-				<div id="datetimepicker" class="input-append date">
-					<label for="date1">Data Inizio:</label>
-					<input name="form-date1" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date1"> </input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
+				<div class="row top-buffer "  >
+				<div class="col-md-6">
+					<h4>Data Inizio:</h4>
 				</div>
-				<div id="datetimepicker2" class="input-append date" class="form-group">
-					<label for="date2">Data Fine:</label>
-					<input name="form-date2" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date2"> </input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
+			</div>
+			<div class="row top-buffer " >
+				<div class="input-group date col-md-6" id="datetimepicker1" style="padding-left:15px; padding-right:15px" >
+
+					<input name="form-date1" id="form-date1" type='text' class="form-control "> </input>
+					<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 				</div>
+			</div>
+			<div class="row top-buffer "  >
+				<div class="col-md-6">
+					<h4>Data Fine:</h4>
+				</div>
+			</div>
+			<div class="row top-buffer " >
+				<div class="input-group date col-md-6" id="datetimepicker2" style="padding-left:15px; padding-right:15px" >
+
+					<input name="form-date2" id="form-date2" type='text' class="form-control "> </input>
+					<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+				</div>
+			</div>	<br>
 				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>
 			</form>
 		</div>
-		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
-		<script src="/BasiDati/js/bootstrap.min.js"></script>			
-		<script src="/BasiDati/js/jquery-ui.js"></script>
-		<script src="/BasiDati/js/prenBici.js"></script>
 		<script  src="/BasiDati/js/moment.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="/BasiDati/js/prenBici.js"></script>
 	</body>

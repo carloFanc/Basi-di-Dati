@@ -230,7 +230,7 @@
 								<a href="#" onclick="cambiaContenuto('classprenveicoli')">Classifica Utenti in base al n° prenotazioni veicoli</a>
 							</li>
 							<li>
-								<a href="#" onclick="">Utilizzo medio Colonnine di Ricarica</a>
+								<a href="#" onclick="cambiaContenuto('utilizzomediocol')">Utilizzo medio Colonnine di Ricarica</a>
 								</li>
 						</ul>
 					</div>

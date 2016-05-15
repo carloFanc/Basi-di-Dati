@@ -288,6 +288,27 @@ class USER
 			$this->errorSetter($e->getMessage());
 		}				
 	}
+	public function PrenotazioneColonnina($umail,$indirizzo,$slot1, $slot2,$data)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("CALL PrenotazioneColonnina(:umail,:indirizzo,:slot1,:slot2,:data)");
+			
+			$stmt->bindparam(":umail", $umail);
+			$stmt->bindparam(":indirizzo", $indirizzo);		
+			$stmt->bindparam(":slot1", $slot1);		
+			$stmt->bindparam(":slot2", $slot2);	
+			$stmt->bindparam(":data", $data);								  
+			$stmt->execute();	
+			
+			return $stmt;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
 	public function doLogin($umail,$upass)
 	{
 		try
@@ -332,6 +353,39 @@ class USER
 		unset($_SESSION['user_email']);
 		return true;
 	}
-
+public function getDataColonnina($indirizzo)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("SELECT Data_Inserimento FROM Colonnina_Elettrica WHERE Indirizzo=:indirizzo  ");
+			$stmt->bindparam(":indirizzo", $indirizzo);
+			$stmt->execute();
+			$userRow=$stmt->fetch(PDO::FETCH_ASSOC); 
+	        return $userRow;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
+	
+	
+	public function getAllPrenotazioniColonnina($indirizzo)
+	{
+		try
+		{
+			$stmt = $this->conn->prepare("SELECT Slot_Inizio, Slot_Fine FROM Prenotazione_Colonnina WHERE Indirizzo=:indirizzo  ");
+			$stmt->bindparam(":indirizzo", $indirizzo);
+			$stmt->execute();
+			$userRow=$stmt->fetchAll(PDO::FETCH_ASSOC); 
+	        return $userRow;	
+		}
+		catch(PDOException $e)
+		{
+			
+			$this->errorSetter($e->getMessage());
+		}				
+	}
 }
 ?>

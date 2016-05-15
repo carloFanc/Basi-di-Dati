@@ -17,8 +17,8 @@ $("#datetimepicker").on("dp.change", function(e) {
 		url : "/BasiDati/function/richiediPrenotazionisuColonnine.php",
 		data : "indirizzo=" + indirizzo + "&data=" + dataFinal
 	}).done(function(data) {
-	 var outputSelectInizio =" <h4>Dalle ore</h4>  <select name=\"slotDisponibiliInizio\" id=\"slotDisponibiliInizio\">";
-	 var outputSelectFine ="  <h4>Alle ore</h4>  <select  name=\"slotDisponibiliFine\" id=\"slotDisponibiliFine\">";
+	 var outputSelectInizio =" <h4>Dalle ore</h4>  <select name=\"slotDisponibiliInizio\" id=\"slotDisponibiliInizio1\">";
+	 var outputSelectFine ="  <h4>Alle ore</h4>  <select  name=\"slotDisponibiliFine\" id=\"slotDisponibiliFine1\">";
 	        for( i=0; i<orariSlot.length;i++){
 	        	var flag = true;
 	        	    $.each(data, function(j, item){
@@ -27,8 +27,8 @@ $("#datetimepicker").on("dp.change", function(e) {
 	          	}
                   });
 	        	if(flag){
-	        		outputSelectInizio= outputSelectInizio+"<option value=\""+orariSlot[i]+"\" id=\""+i+"\">"+orariSlot[i]+"</option>";
-	        		outputSelectFine= outputSelectFine+"<option value=\""+orariSlot[i]+"\" id=\""+i+"\">"+orariSlot[i]+"</option>";
+	        		outputSelectInizio= outputSelectInizio+"<option value=\""+i+"\"  \">"+orariSlot[i]+"</option>";
+	        		outputSelectFine= outputSelectFine+"<option value=\""+i+"\"  \">"+orariSlot[i]+"</option>";
 	        	}
 	        	
 	        	
@@ -106,4 +106,20 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
- 
+$('#bottone').click(function (){
+	
+					var indirizzo = $("#colonnina option:selected").text();
+					var dataFinal = $('#datetimepicker :input').val();
+				 	var slot1 = $('#slotDisponibiliInizio1 option:selected').val();
+					var slot2 =  $('#slotDisponibiliFine1 option:selected').val();
+					 
+					$.ajax({
+						type : "POST",
+						url : "/BasiDati/function/PrenotaRicaricaColonnina.php",
+						data : "indirizzo=" + indirizzo + "&data=" + dataFinal + "&slot1=" + slot1 + "&slot2=" + slot2
+					}).done(function() {
+						alert("Prenotazione ricarica effettuata!");
+						cambiaContenuto('vuoto');
+					});
+						
+});
