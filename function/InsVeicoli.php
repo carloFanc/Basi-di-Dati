@@ -3,8 +3,8 @@ require_once (dirname(dirname(__FILE__)) . '/session.php');
 require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 
 $user = new USER();
-$error = ""; //To store errors
-$form_data = array(); //Pass back the data to `form.php`
+$error = ""; 
+$form_data = array(); 
  if (isset($_POST['targa']) && isset($_POST['puntonoleggio']) && isset($_POST['tipologia']) && isset($_POST['nomemodello']) && isset($_POST['colore'])&& isset($_POST['costorario'])) {
 
 	 
@@ -21,10 +21,10 @@ $form_data = array(); //Pass back the data to `form.php`
 		$foto = $_POST['foto'];
 		$foto=str_replace( "C:\\fakepath\\", "", $foto);
 		
-		if($passeggeri !=null && $chilometri!=null){
+		if($_POST['tipologia']=="Auto"){
 	   $user -> InsertnewVeicolo($targa,$puntonoleggio,$tipologia,$nomemodello,$colore,$costorario,$cilindrata,$autonomia,$passeggeri,$chilometri,$foto);
        $error =  $user -> errorGetter();
-		}else{
+		}else if($_POST['tipologia']=="Scooter"){
 			$user -> InsertnewVeicolo($targa,$puntonoleggio,$tipologia,$nomemodello,$colore,$costorario,$cilindrata,$autonomia,null,null,$foto);
             $error =  $user -> errorGetter();
 			

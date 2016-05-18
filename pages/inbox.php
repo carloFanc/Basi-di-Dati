@@ -12,8 +12,8 @@ $.ajax({
         dataType: 'json',
         success: function(output_string){
                 $('#result_table').append(output_string);
-            } // End of success function of ajax form
-        }); // End of ajax call    
+            }
+        });   
 
 });
 </script>

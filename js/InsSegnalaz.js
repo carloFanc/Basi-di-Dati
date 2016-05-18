@@ -1,24 +1,21 @@
-	$('form').submit(function(event) {//Trigger on form submit
+	$('form').submit(function(event) {
 		$('#name + .throw_error').empty();
-		//Clear the messages first
+		
 		$('#success').empty();
-
-		//Validate fields if required using jQuery
-
-		var postForm = {//Fetch form data
+		var postForm = {
 			
 			'id' : $( "#form-piste option:selected" ).text(),
 			'titolo' : $('input[name=form-titolo]').val() ,
-			'testo' : $('input[name=form-testo]').val()  //Store name fields value
+			'testo' : $('input[name=form-testo]').val()  
 		};
 
-		$.ajax({//Process the form using $.ajax()
-			type : 'POST', //Method type
-			url : '/BasiDati/function/InsSegnalaz.php', //Your form processing file URL
-			data : postForm, //Forms name
+		$.ajax({
+			type : 'POST', 
+			url : '/BasiDati/function/InsSegnalaz.php', 
+			data : postForm, 
 			dataType : 'json',
 			success : function(data) {
-				if (!data.success) {//If fails
+				if (!data.success) {
 					if (data.errors) {
 						alert("Errore connessione al database");
 						cambiaContenuto('inssegalaz');
@@ -30,6 +27,6 @@
 			}
 		});
 		event.preventDefault();
-		//Prevent the default submit
+		
 	});
 //});

@@ -4,15 +4,15 @@ $(document).ready(function(e) {
 	$("#uploadimage").on('submit', (function(e) {
 		e.preventDefault();
 		$.ajax({
-			url : "/BasiDati/function/InputFoto.php", // Url to which the request is send
-			type : "POST", // Type of request to be send, called as method
-			data : new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-			contentType : false, // The content type used when sending data to the server.
-			cache : false, // To unable request pages to be cached
-			processData : false, // To send DOMDocument or non processed data file it is set to false
-			success : function()// A function to be called if request succeeds
+			url : "/BasiDati/function/InputFoto.php", 
+			type : "POST", 
+			data : new FormData(this), 
+			contentType : false, 
+			cache : false, 
+			processData : false, 
+			success : function()
 			{
-				var postForm = {//Fetch form data
+				var postForm = {
 					'targa' : $('input[name=form-targa]').val(),
 					'puntonoleggio' : $("#form-punti option:selected").text(),
 					'tipologia' : $("#form-tipo option:selected").text(),
@@ -26,10 +26,10 @@ $(document).ready(function(e) {
 					'foto' : $('input[name=file]').val() ,
 
 				};
-				$.ajax({//Process the form using $.ajax()
-					type : 'POST', //Method type
+				$.ajax({
+					type : 'POST', 
 					url : '/BasiDati/function/InsVeicoli.php',
-					data : postForm, //Forms name
+					data : postForm, 
 					dataType : 'json',
 					success : function(data) {
 						if (!data.success) {

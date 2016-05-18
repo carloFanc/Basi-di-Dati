@@ -1,17 +1,13 @@
 <?php
+require_once ("../session.php");
 
-	require_once("../session.php");
-	
-	require_once("../class.user.php");
-	$auth_user = new USER();
-	
-	
-	$umail = $_SESSION['user_email'];
-	
-	$stmt = $auth_user->runQuery('CALL ListaUtenti()');
-	$stmt->execute();
-	
+require_once ("../class.user.php");
+$auth_user = new USER();
 
+$umail = $_SESSION['user_email'];
+
+$stmt = $auth_user -> runQuery('CALL ListaUtenti()');
+$stmt -> execute();
 ?>
 
 	<body>
@@ -100,24 +96,23 @@
                </div>
           </div>
           <script>
-          
- $("#toggleColumns input").change(function() {   
-  
-  $('.'+this.value).toggle(); 
-});
+			$("#toggleColumns input").change(function() {
+
+				$('.' + this.value).toggle();
+			});
 
 </script>
 <script type='text/javascript' language='javascript'>
-$('.cancella').click(function(){
-    var id = $(this).attr('id');
-      $.ajax({
-        url: '/BasiDati/function/EliminaUtente.php',
-        type:'POST',
-        data : "id=" + id
-        }).done(function(){
-                cambiaContenuto('listautenti');
-            } ); 
-         
-});
+	$('.cancella').click(function() {
+		var id = $(this).attr('id');
+		$.ajax({
+			url : '/BasiDati/function/EliminaUtente.php',
+			type : 'POST',
+			data : "id=" + id
+		}).done(function() {
+			cambiaContenuto('listautenti');
+		});
+
+	}); 
 </script>
 </body>

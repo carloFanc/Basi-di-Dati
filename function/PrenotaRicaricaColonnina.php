@@ -3,8 +3,8 @@ require_once (dirname(dirname(__FILE__)) . '/session.php');
 require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 
 $user = new USER();
-$error = ""; //To store errors
-$form_data = array(); //Pass back the data to `form.php`
+$error = ""; 
+$form_data = array();
   if (isset($_POST['indirizzo']) && isset($_POST['data']) && isset($_POST['slot1']) && isset($_POST['slot2'])) {
  
 	    $umail = $_SESSION['user_email'];

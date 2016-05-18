@@ -5,8 +5,8 @@ require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 $user = new USER();
 $stmt = $user->runQuery('SELECT id from Pista_Ciclabile');
 $stmt->execute();
-$error = ""; //To store errors
-$form_data = array(); //Pass back the data to `form.php`
+$error = ""; 
+$form_data = array(); 
  if (isset($_POST['id']) && isset($_POST['titolo']) && isset($_POST['testo'])) {
 
 	 

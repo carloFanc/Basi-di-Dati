@@ -1,11 +1,9 @@
-	$('form').submit(function(event) {//Trigger on form submit
+	$('form').submit(function(event) {
 		$('#name + .throw_error').empty();
-		//Clear the messages first
+		
 		$('#success').empty();
 
-		//Validate fields if required using jQuery
-
-		var postForm = {//Fetch form data
+		var postForm = {
 			'nome' : $('input[name=form-nome]').val() ,
 			'sito' : $( 'input[name=form-sito]' ).val(),
 			'email' : $('input[name=form-email]').val() ,
@@ -15,10 +13,10 @@
 			'long' : $('input[name=form-long]').val()
 		};
 
-		$.ajax({//Process the form using $.ajax()
-			type : 'POST', //Method type
+		$.ajax({
+			type : 'POST', 
 			url : '/BasiDati/function/InsPuntiNoleggio.php', 
-			data : postForm, //Forms name
+			data : postForm, 
 			dataType : 'json',
 			success : function(data) {
 				if (!data.success) {

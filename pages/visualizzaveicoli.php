@@ -87,6 +87,7 @@ $stmt2 -> execute();
 				$textAndPic.append('<img width="555px" src="./uploads/' + id + '" />');
 
 				BootstrapDialog.show({
+					title:'Foto Veicolo',
 					message : $textAndPic,
 					buttons : [{
 						label : 'Close',

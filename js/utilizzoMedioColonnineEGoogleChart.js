@@ -25,15 +25,15 @@ $('#invio').click(function() {
 
 	var today_date = year + "-" + month + "-" + day;
 
-	$.ajax({//Process the form using $.ajax() PRENDO LA DATA INIZIO DELLA CREAZIONE COLONNINA
-		type : 'POST', //Method type
+	$.ajax({//PRENDO LA DATA INIZIO DELLA CREAZIONE COLONNINA
+		type : 'POST', 
 		url : '/BasiDati/function/get_date_colonnina_start.php',
 		data : "indirizzo=" + indirizzo,
 		success : function(data1) {
 			data1 = replaceAll(data1, "\"", "");
 
-			$.ajax({//Process the form using $.ajax() PRENDO TUTTE LE PRENOTAZIONI DI UNA COLONNINA E TROVO GLI SLOT TOTALI
-				type : 'POST', //Method type
+			$.ajax({// PRENDO TUTTE LE PRENOTAZIONI DI UNA COLONNINA E TROVO GLI SLOT TOTALI
+				type : 'POST', 
 				url : '/BasiDati/function/get_all_prenotazioni_of_one_colonnina.php',
 				data : "indirizzo=" + indirizzo,
 

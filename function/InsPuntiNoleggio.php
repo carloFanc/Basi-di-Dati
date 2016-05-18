@@ -5,8 +5,8 @@ require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 $user = new USER();
 $stmt = $user->runQuery('SELECT Indirizzo FROM Postazione_Prelievo');
 $stmt->execute();
-$error = ""; //To store errors
-$form_data = array(); //Pass back the data to `form.php`
+$error = ""; 
+$form_data = array(); 
  if (isset($_POST['nome']) && isset($_POST['sito']) && isset($_POST['email']) && isset($_POST['tel']) && isset($_POST['ind'])&& isset($_POST['lat'])&& isset($_POST['long'])) {
 
 	 

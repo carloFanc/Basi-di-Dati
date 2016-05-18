@@ -34,6 +34,8 @@
       					  <th>Indirizzo</th>
       					  <th>Numero Bici Disponibili</th>
       					  <th>Numero Bici Totali</th>
+      					  <th>Latitudine</th>
+      					  <th>Longitudine</th>
      					 </tr>
     					</thead>
   		  						<tbody>
@@ -42,6 +44,8 @@
       							  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Numero_Bici_Disponibili']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Numero_Bici_Totale']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Latitudine']; ?></td>
+     						      <td class="col-md-3"><?php echo $userRow['Longitudine']; ?></td>
      							 </tr>
      							 <?php endwhile; ?>
      							 <?php $stmt->closeCursor(); $stmt2 = $auth_user->runQuery('SELECT Indirizzo FROM Postazione_Prelievo;'); $stmt2->execute();		?>

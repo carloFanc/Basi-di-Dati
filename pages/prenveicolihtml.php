@@ -49,18 +49,6 @@ $stmt -> execute();
 					<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 				</div>
 			</div>	<br>
-				<!-- 
-				<div id="datetimepicker" class="input-append date">
-					<label for="date1">Data Inizio:</label>
-					<input name="form-date1" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date1"> </input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
-				</div>
-				<div id="datetimepicker2" class="input-append date" class="form-group">
-					<label for="date1">Data Fine:</label>
-					<input name="form-date2" data-format="yyyy-MM-dd hh:mm:ss" type="text" id="form-date2"> </input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
-				</div> -->
-				
 				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>

@@ -1,9 +1,7 @@
 
 jQuery(document).ready(function() {
     
-    /*
-        Login form validation
-    */
+    
     $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });
@@ -22,9 +20,7 @@ jQuery(document).ready(function() {
     	
     });
     
-    /*
-        Registration form validation
-    */
+    
     $('.registration-form input[type="text"], .registration-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });

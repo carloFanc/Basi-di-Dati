@@ -50,8 +50,8 @@ $.ajax({
         success: function(output_string){
                 $('#indirizzi').append(output_string);
                 $('select').niceSelect();
-            } // End of success function of ajax form
-        }); // End of ajax call    
+            } 
+        }); 
 
 });
 function timeConverter(UNIX_timestamp){

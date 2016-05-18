@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Pista_Ciclabile(
 
 	Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	Chilometri INT,
-	Pendenza_Media DECIMAL(6,4),
+	Pendenza_Media DECIMAL(6,2),
 	Latitudine FLOAT(10,6),
 	Longitudine FLOAT(10,6) 
 	) ENGINE=INNODB;
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS Segnalazione(
 
 CREATE TABLE IF NOT EXISTS Colonnina_Elettrica(
 
-	Indirizzo VARCHAR(40) NOT NULL PRIMARY KEY,
+	Indirizzo VARCHAR(50) NOT NULL PRIMARY KEY,
 	Ente_Fornitore VARCHAR(20),
 	Max_KWH INT,
 	Data_Inserimento DATE,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Colonnina(
 
 	Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	EmailUtente VARCHAR(20) NOT NULL,
-	Indirizzo VARCHAR(20) NOT NULL,
+	Indirizzo VARCHAR(50) NOT NULL,
 	Slot_Inizio INT, 
 	Slot_Fine INT,
 	Data_pren DATE,
@@ -419,7 +419,7 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPostazioni()
 BEGIN
-SELECT Indirizzo,Numero_Bici_Disponibili,Numero_Bici_Totale FROM Postazione_Prelievo;
+SELECT Indirizzo,Numero_Bici_Disponibili,Numero_Bici_Totale,Latitudine,Longitudine FROM Postazione_Prelievo;
 END;
 ^
 DELIMITER ;
@@ -977,23 +977,37 @@ INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Lon
 INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES ('Avis','www.avisautonoleggio.it','avis@gmail.com',0516341632,'Via Nicolo Dall Arca 2',44.506678, 11.330749);
 
 
-INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('123ABC456','Hertz','Auto','TT','Grigio',20,213,2000,4,120,NULL);
-INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('4BCG554KS','Hertz','Scooter','Vespa','Rosso',5,20,500,NULL,NULL,NULL);
-INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('LAL123TFG','Avis','Auto','Maggiolino','Azzurro',12,100,1000,4,120,NULL);
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('123ABC456','Hertz','Auto','Renault Zoe','Grigio',25,88,125,4,12500,'zoe1.jpg');
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('4BCG554KS','Hertz','Scooter','Volt City60','Rosso',15,43,99,NULL,NULL,'City60-volt1.png');
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('LAL123TFG','Avis','Auto','Nissan Leaf','Rosso',30,99,199,5,15000,'nissan-leaf1.jpg');
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('FF95JGKHF','Hertz','Scooter','Trefor Tripl','Bianco',23,39,125,NULL,NULL,'trefor-tripl.jpg');
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('ALOPR6D6F','Avis','Auto','Tesla ModelS','Rosso',45,77,144,5,11000,'Tesla-modelS.jpg');
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('WOW202049','Car Italy','Auto','E-UP','Bianca',33,34,166,5,3000,'up_e-up.jpg');
+INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('Z58GZ36HZ','Car Italy','Scooter','Askoll eS1','Bianco',64,88,123,NULL,NULL,NULL);
 
 
 
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via santo stefano 3',20,14,44.495603, 11.353665);
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via prepappo 6',1000,571,44.500912,11.337266);
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via lollone',199,571,44.498241, 11.327787);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via santo stefano 3',10,9,44.495603, 11.353665);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via irnerio 4',25,24,44.500859, 11.346164);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via clavature 2',22,18,44.493449, 11.343733);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via paglia 2',15,11,44.488376, 11.340799);
 
 
-INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('01','via santo stefano 3','X1','Blu','2014');
-INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('25','via prepappo 6','LOLW','Rossa','1990');
-INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('123','via lollone','AZ5','Azzurra','1934');
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('01','via santo stefano 3','Scott Genius','Blu','2014');
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('02','via irnerio 4','Diadora','Rosso','2011');
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('03','via paglia 2','SRAM','Azzurro','2010');
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('04','via clavature 2','Synchros','Nero','2016');
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('05','via irnerio 4','XBionic','Bianco','2008');
+INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('06','via clavature 2','Topeak','Grigio','2999');
 
 
-INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (12,30.12,44.504853,11.345467);
+INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (25,30.12,44.499554, 11.326543);
+INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (11,11,44.504853,11.345467);
+INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (8,0,44.486669, 11.339229);
+INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (3,99.99,44.521599, 11.362375);
+
+
+
 
 INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) VALUES ('carlo@gmail.com','carlo','Paoluci','password','Semplice','1989-12-12','Monteparco','via santoparco',331231231);
 INSERT INTO Utente(Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono) VALUES ('pippo@gmail.com','Pippo','Ponti','password123','Premium','1993-05-11','Bononia','via ciaociao 3',323333222);
@@ -1014,12 +1028,16 @@ INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (
 INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES ('admin@gmail.com','Bona','chebellofunziona','2016-02-21 17:13:22');	
 
 INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via panto cane 5','Enel',150,'2016-04-02',44.501218, 11.361283);
-INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via riproviamo 123','Hera',200,'2016-04-12',44.482425, 11.343176);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via parigi 12','Hera',200,'2016-03-27',44.496566, 11.341283);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via saragozza 74','AIM Energy',233,'2016-05-02',44.490060, 11.332197);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via santo stefano 103','Hera',145,'2016-05-01',44.486947, 11.353282);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via Giovanni Amendola 12','Edison Energia',200,'2016-03-12',44.504589, 11.341035);
+
 
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',5,7,'2016-11-15');
-INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via riproviamo 123',3,4,'2016-04-01');
-INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',3,4,'2016-08-15');
-INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via panto cane 5',7,9,'2016-08-15');
+INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via parigi 12',3,4,'2016-04-01');
+INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via saragozza 74',3,4,'2016-08-15');
+INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('pippo@gmail.com','via santo stefano 103',7,9,'2016-08-15');
 
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento/*,Foto*/) VALUES ('01','pippo@gmail.com','Segnalazioneprova','incidente','2015-11-12 13:49:02');
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento/*Foto*/) VALUES ('01','pippo@gmail.com','Segnalazioneprova2','incidente','2016-04-18 16:17:02');

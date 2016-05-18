@@ -18,7 +18,7 @@ function cambiaFinestra(string) {
         cambiaContenuto('vuoto');
     }
     if(string=="profilo"){
-        $("#Contenuto").load("function/profilo.php");
+        $("#Contenuto").load("pages/profilo.php");
     }
     if(string=="bici"){
         $('#bici').show("fast").css("visibility","visible");
@@ -53,28 +53,28 @@ function cambiaContenuto(string){
         $('#Home').show("fast").css("visibility","visible");
     }
 	if(string=="vuoto"){
-        $("#Contenuto").load("function/htmlvuota.html");
+        $("#Contenuto").load("pages/htmlvuota.html");
     }
     if(string=="inbox"){
-        $("#Contenuto").load("function/inbox.php");
+        $("#Contenuto").load("pages/inbox.php");
     }
 	if(string=="forum"){
-        $("#Contenuto").load("function/forum.php");
+        $("#Contenuto").load("pages/forum.php");
     }
     if(string=="post"){
         $("#Contenuto").load("pages/invioPost.html");
     }
 	if(string=="prenincorso"){
-        $("#Contenuto").load("function/prenincorso.php");
+        $("#Contenuto").load("pages/prenincorso.php");
     }
     if(string=="prenpassate"){
-        $("#Contenuto").load("function/prenpassate.php");
+        $("#Contenuto").load("pages/prenpassate.php");
     }
     if(string=="postazioni"){
-        $("#Contenuto").load("function/postazioni.php");
+        $("#Contenuto").load("pages/postazioni.php");
     }
     if(string=="postazionimaps"){
-      $("#Contenuto").load("function/postazioniMaps.php");     
+      $("#Contenuto").load("pages/postazioniMaps.php");     
     }
     if(string=="getDistanceLatLongBici"
     ||string=="getDistanceLatLongPisteCiclabili"
@@ -97,25 +97,25 @@ function cambiaContenuto(string){
     	
  }
     if(string=="pisteciclabili"){
-        $("#Contenuto").load("function/pisteciclabili.php");
+        $("#Contenuto").load("pages/pisteciclabili.php");
     }
     if(string=="puntinoleggio"){
-        $("#Contenuto").load("function/puntinoleggio.php");
+        $("#Contenuto").load("pages/puntinoleggio.php");
     }
 	if(string=="classprenbici"){
-        $("#Contenuto").load("function/classprenbici.php");
+        $("#Contenuto").load("pages/classprenbici.php");
     }
     if(string=="classprenveicoli"){
-        $("#Contenuto").load("function/classprenveicoli.php");
+        $("#Contenuto").load("pages/classprenveicoli.php");
     }
     if(string=="utilizzomediocol"){
         $("#Contenuto").load("pages/utilizzomediocol.php"); 
     }
     if(string=="visbici"){
-        $("#Contenuto").load("function/visualizzabici.php");
+        $("#Contenuto").load("pages/visualizzabici.php");
     }
     if(string=="visveicoli"){
-        $("#Contenuto").load("function/visualizzaveicoli.php");
+        $("#Contenuto").load("pages/visualizzaveicoli.php");
     }
     if(string=="inviomsgpersonale"){
         $("#Contenuto").load("pages/invioMessaggioPersonale.html");
@@ -130,10 +130,10 @@ function cambiaContenuto(string){
         $("#Contenuto").load("pages/InsSegnalazhtml.php");
     }
     if(string=="viscolonnine"){
-        $("#Contenuto").load("function/viscolonnine.php");
+        $("#Contenuto").load("pages/viscolonnine.php");
     }
     if(string=="listautenti"){
-        $("#Contenuto").load("function/ListaUtenti.php");
+        $("#Contenuto").load("pages/ListaUtenti.php");
     }
     if(string=="prenColonnina"){
         $("#Contenuto").load("pages/prenota_colonnina.php");

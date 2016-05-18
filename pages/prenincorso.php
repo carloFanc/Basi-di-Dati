@@ -48,9 +48,7 @@
      						      <td align="left" class="col-md-3"><?php echo $userRow['IdBici']; ?></td>
         						  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
-     							  <?php if($tipo == "Amministratore"): ?>
      							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella1" id="<?php echo $userRow['Id']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
-     							 <?php endif; ?>
      							 </tr>
      							 <?php endwhile; ?>
       						  </tbody>
@@ -84,9 +82,7 @@
      							  <td align="left" class="col-md-3"><?php echo $userRow['Prezzo_Prenotazione']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_Fine']; ?></td>
-     							  <?php if($tipo == "Amministratore"): ?>
      							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella2" id="<?php echo $userRow['Id']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
-     							 <?php endif; ?>
      							 </tr>
      							 <?php endwhile; ?>
       						  </tbody>
@@ -122,9 +118,7 @@
      							  <td align="left" class="col-md-3"><?php echo $userRow['Slot_Inizio']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Slot_Fine']; ?></td>
      							  <td align="left" class="col-md-3"><?php echo $userRow['Data_pren']; ?></td>
-     							  <?php if($tipo == "Amministratore"): ?>
      							  <td align="left" style="border: 0;" class="col-md-3"><div class="cancella3" id="<?php echo $userRow['Id']; ?>"><img src="/BasiDati/img/delete.png" ></img></div></td>
-     							 <?php endif; ?>
      							 </tr>
      							 <?php endwhile; ?> 
       						  </tbody>
