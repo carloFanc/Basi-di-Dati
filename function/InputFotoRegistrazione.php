@@ -13,12 +13,12 @@ echo "Return Code: " . $_FILES["file"]["error"] . "<br/><br/>";
 }
 else
 {
-if (file_exists("uploads/veicoli/" . $_FILES["file"]["name"])) { 
+if (file_exists("uploads/utenti/" . $_FILES["file"]["name"])) { 
 }
 else
 {
 $sourcePath = $_FILES['file']['tmp_name']; 
-$targetPath = "../uploads/veicoli/".$_FILES['file']['name']; 
+$targetPath = "../uploads/utenti/".$_FILES['file']['name']; 
 move_uploaded_file($sourcePath,$targetPath) ; 
 }
 }

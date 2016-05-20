@@ -19,11 +19,11 @@
 				</div>
 				<div class="form-group">
 					<label for="text">Latitudine:</label>
-					<input name="form-lat" type="number" class="form-control" id="form-lat">
+					<input name="form-lat" type="text" class="form-control" id="form-lat">
 				</div>
 				<div class="form-group">
 					<label for="text">Longitudine:</label>
-					<input name="form-long" type="number" class="form-control" id="form-long">
+					<input name="form-long" type="text" class="form-control" id="form-long">
 				</div>
 				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio

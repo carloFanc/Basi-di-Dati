@@ -82,9 +82,9 @@ $stmt2 -> execute();
 			$('.Mostra').click(function() {
 				var id = $(this).attr('id');
 
-				var html = "<img src=\".\/uploads\/>";
+				var html = "<img src=\".\/uploads\/veicoli\/>";
 				var $textAndPic = $('<div></div>');
-				$textAndPic.append('<img width="555px" src="./uploads/' + id + '" />');
+				$textAndPic.append('<img width="555px" src="./uploads/veicoli/' + id + '" />');
 
 				BootstrapDialog.show({
 					title:'Foto Veicolo',
