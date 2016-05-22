@@ -17,7 +17,7 @@ $stmt -> execute();
 		}
 
 	</style>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
  
 	
 </head>
@@ -55,8 +55,8 @@ $stmt -> execute();
 		</div>
 		<div style="width:65%; float: right;">
 			<div id="datiUtilizzo"> 
-				 </div></div>
-		  
+				 </div> <div id="veriDati" align="center"></div></div>
+		   
 		</div>
 		
 		</div>

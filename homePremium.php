@@ -37,6 +37,7 @@
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/nice-select.css">
 		<script type="text/javascript">
         window.onload = function() {
         $('#menuEContenuto').hide("fast").css("visibility","hidden");
@@ -48,6 +49,7 @@
         };
         }; 
         </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	</head>
 	
 	<body>
@@ -249,5 +251,6 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/scripts.js"></script>
+	    <script src=" js/jquery.nice-select.js"></script> 
 	</body>
 </html>

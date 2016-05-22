@@ -28,5 +28,5 @@
 		});
 		event.preventDefault();
 		
-	});
-//});
+	}); 
+	$('select').niceSelect();

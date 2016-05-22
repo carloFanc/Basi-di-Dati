@@ -8,20 +8,36 @@ $stmt -> execute();
 ?>
 <head>
 		<link rel="stylesheet" href="/BasiDati/css/bootstrap-datetimepicker.min.css">
+ 
+	<style>
+		.top-buffer {
+			margin-top: 10px;
+		}
+		.top-buffer-more {
+			margin-top: 30px;
+		}
+
+	</style>
 	</head>
 <body>
 		 <div>
 			<h1 align="center">Prenotazione bici</h1>
-			
-			
+					 	<div class="container-fluid" >
+
+			<div class=" row">
 			<form role="form"  id="PrenBici" >
-				<div class="form-group">
-					<label for="bici">Bici:</label>
-					<select name="form-bici" class="form-control" id="form-bici">
+				<div class="form-group col-md-1" style="float: left;">
+					<label for="bici"><h4>Bici:</h4></label>
+				</div>
+				<div class="col-md-6"  style="float: left;">
+				  <select name="form-bici"  id="form-bici">
   					<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
 					<option  value="<?php echo $userRow["id"] ?>"><?php echo $userRow["id"] ?></option>
 					<?php endwhile; ?>
 					</select>	
+				
+				</div>
+			 
 				</div>
 				<div class="row top-buffer "  >
 				<div class="col-md-6">
@@ -52,7 +68,9 @@ $stmt -> execute();
 				</button>
 			</form>
 		</div>
-		<script  src="/BasiDati/js/moment.js"></script>
+		</div>
+
+	<script src="/BasiDati/js/moment-with-locales.min.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
 		<script src="/BasiDati/js/prenBici.js"></script>
 	</body>

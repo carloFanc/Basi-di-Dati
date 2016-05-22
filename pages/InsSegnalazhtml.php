@@ -12,13 +12,17 @@ $stmt -> execute();
 			
 			
 			<form role="form"  id="InsSegn" >
-				<div class="form-group">
-					<label for="bici">Piste Ciclabili:</label>
-					<select name="form-piste" class="form-control" id="form-piste">
+				<div class=" row">
+			<div class="form-group col-md-1" style="float: left;">
+					<label for="piste">Piste Ciclabili:</label>
+				</div>
+                <div class="col-md-6"  style="float: left;">
+				  <select name="form-piste"  id="form-piste">
   					<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
 					<option  value="<?php echo $userRow["id"] ?>"><?php echo $userRow["id"] ?></option>
 					<?php endwhile; ?>
 					</select>	
+				</div>
 				</div>
 				<div class="form-group">
 					<label for="text">Titolo:</label>
@@ -33,9 +37,6 @@ $stmt -> execute();
 				</button>
 			</form>
 		</div>
-		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
-		<script src="/BasiDati/js/bootstrap.min.js"></script>			
-		<script src="/BasiDati/js/jquery-ui.js"></script>
 		<script src="/BasiDati/js/InsSegnalaz.js"></script>
 		
 	</body>

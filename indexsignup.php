@@ -15,35 +15,7 @@ if ($user -> is_loggedin() != "") {
 	}
 }
 
-if (isset($_POST['btn-signup'])) {
-	$uname = strip_tags($_POST['form-first-name']);
-	$ucogn = strip_tags($_POST['form-last-name']);
-	$umail = strip_tags($_POST['form-email']);
-	$upass = strip_tags($_POST['form-pass']);
-	$udata = strip_tags($_POST['form-date']);
-	$uluogo = strip_tags($_POST['form-luogo']);
-	$uresidenza = strip_tags($_POST['form-resid']);
-	$utel = strip_tags($_POST['form-tel']);
-    $foto = strip_tags($_POST['file']);
-	try {
-		$stmt = $user -> runQuery("SELECT Email FROM Utente WHERE Email=:umail");
-		$stmt -> execute(array(':umail' => $umail));
-		$row = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-		if ($row['Email'] == $umail) {
-			echo '<script type="text/javascript">alert("email già esistente! Riprova");
-					window.location = \'indexsignup.php\'</script>';
-		} else {
-			if ($user -> register($uname, $ucogn, $umail, $upass, $udata, $uluogo, $uresidenza, $utel)) {
-				echo '<script type="text/javascript">alert("Utente registrato correttamente");
-					window.location = \'index.php\'</script>';
-
-			}
-		}
-	} catch(PDOException $e) {
-		echo $e -> getMessage('Error');
-	}
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,12 +34,12 @@ if (isset($_POST['btn-signup'])) {
 		<link rel="stylesheet" href="css/form-elementsLogin.css">
 		<link rel="stylesheet" href="css/styleLogin.css">
 		<link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"> 
+        <link rel="stylesheet" href="css/bootstrap-dialog.min.css" > 
 
 		<link rel="shortcut icon" href="assets/ico/favicon.png">
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
 
 	</head>
 
@@ -102,7 +74,7 @@ if (isset($_POST['btn-signup'])) {
 									</div>
 								</div>
 								<div class="form-bottom">
-									<form role="form" action="" method="post" class="registration-form">
+									<form role="form"  id="uploadimage" action="" method="post" enctype="multipart/form-data" >
 										<div class="form-group">
 											<label class="sr-only" for="form-first-name">Nome</label>
 											<input type="text" name="form-first-name" placeholder="Nome..." class="form-first-name form-control" id="form-first-name">
@@ -119,10 +91,16 @@ if (isset($_POST['btn-signup'])) {
 											<label class="sr-only" for="form-pass">Password</label>
 											<input type="password" name="form-pass" placeholder="Password..." class="form-pass form-control" id="form-pass">
 										</div>
-										<div class="form-group">
+                						<div class="input-group date form-group" id="datetimepicker" style="clear:both">
+				 					    <input type='text' class="form-control" placeholder="Data di Nascita..." id="form-date" name="form-date" id="data"></input>
+                                        <span class="input-group-addon">
+                    				    <span class="glyphicon glyphicon-calendar"></span>
+                   						 </span>
+                						</div>
+										<!-- <div class="form-group">
 											<label class="sr-only" for="form-date">Data di Nascita</label>
 											<input type="text" name="form-date" placeholder="Data di Nascita..." class="form-date form-control datepicker" id="data">
-										</div>
+										</div> -->
 										<div class="form-group">
 											<label class="sr-only" for="form-luogo">Luogo di Nascita</label>
 											<input type="text" name="form-luogo" placeholder="Luogo di Nascita..." class="form-luogo form-control" id="form-luogo">
@@ -139,7 +117,7 @@ if (isset($_POST['btn-signup'])) {
 											<label for="text">Foto:</label>
 											<input type="file" name="file" id="file" required />
 										</div>
-										<button type="submit" name="btn-signup" class="btn">
+										<button type="submit" name="btn-signup" id="btn-signup" class="btn">
 											Registrati!
 										</button>
 									</form>
@@ -155,11 +133,15 @@ if (isset($_POST['btn-signup'])) {
 		</div>
 
 		<!-- Javascript -->
+		
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/scriptsLogin.js"></script>
-
+		
+		<script  src="js/moment-with-locales.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/bootstrap-dialog.min.js"></script>
+		<script src="js/InsSignUp.js"></script>
 	</body>
 
 </html>

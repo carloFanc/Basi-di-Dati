@@ -63,7 +63,7 @@ $stmt -> execute();
 				<label for="text">Foto:</label>
     			<input type="file" name="file" id="file" required />
               </div>
- <button type="submit" value="Upload" name="submit" class="btn btn-primary">
+              <button type="submit" value="Upload" name="submit" class="btn btn-primary">
 					Invio
 				</button>
 			</form>

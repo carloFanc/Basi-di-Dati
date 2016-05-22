@@ -1,10 +1,13 @@
+$('select').niceSelect();
 jQuery(document).ready(function() {
 
 	$('#datetimepicker1').datetimepicker({
-		format : 'YYYY-MM-DD hh:mm:ss'
+		format : 'YYYY-MM-DD HH:mm:ss',
+		locale:'it'
 	});
 	$('#datetimepicker2').datetimepicker({
-		format : 'YYYY-MM-DD hh:mm:ss'
+		format : 'YYYY-MM-DD HH:mm:ss',
+		locale:'it'
 	});
 
 	$('form').submit(function(event) {
@@ -51,3 +54,4 @@ jQuery(document).ready(function() {
 		event.preventDefault();
 	});
 });
+

@@ -55,7 +55,7 @@ $stmt -> execute();
 				
 			</form>
 		</div>
-		<script  src="/BasiDati/js/moment.js"></script>
+		<script  src="/BasiDati/js/moment-with-locales.min.js"></script>
 		<script src="/BasiDati/js/bootstrap-datetimepicker.min.js"></script>
 		<script src="/BasiDati/js/prenVeicoli.js"></script>
 	</body>

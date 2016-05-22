@@ -27,12 +27,12 @@ class USER {
 
 	}
 
-	public function register($uname, $ucogn, $umail, $upass, $udata, $uluogo, $uresidenza, $utel) {
+	public function register($uname, $ucogn, $umail, $upass, $udata, $uluogo, $uresidenza, $utel, $foto) {
 		try {
 
 			$utip = 'Semplice';
-			$stmt = $this -> conn -> prepare("INSERT INTO Utente(Email, Nome, Cognome, Password, Tipologia, Data_Nascita, Luogo_Nascita, Indirizzo_Residenza, Telefono) 
-		                                               VALUES(:umail, :uname, :ucogn, :upass, :utip, :udata, :uluogo, :uresidenza, :utel)");
+			$stmt = $this -> conn -> prepare("INSERT INTO Utente(Email, Nome, Cognome, Password, Tipologia, Data_Nascita, Luogo_Nascita, Indirizzo_Residenza, Telefono,Foto) 
+		                                               VALUES(:umail, :uname, :ucogn, :upass, :utip, :udata, :uluogo, :uresidenza, :utel, :foto)");
 
 			$stmt -> bindparam(":umail", $umail);
 			$stmt -> bindparam(":uname", $uname);
@@ -43,6 +43,7 @@ class USER {
 			$stmt -> bindparam(":uluogo", $uluogo);
 			$stmt -> bindparam(":uresidenza", $uresidenza);
 			$stmt -> bindparam(":utel", $utel);
+			$stmt -> bindparam(":foto", $foto);
 			$stmt -> execute();
 
 			return $stmt;
@@ -320,6 +321,18 @@ class USER {
 	public function getAllPrenotazioniColonnina($indirizzo) {
 		try {
 			$stmt = $this -> conn -> prepare("SELECT Slot_Inizio, Slot_Fine FROM Prenotazione_Colonnina WHERE Indirizzo=:indirizzo  ");
+			$stmt -> bindparam(":indirizzo", $indirizzo);
+			$stmt -> execute();
+			$userRow = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+			return $userRow;
+		} catch(PDOException $e) {
+
+			$this -> errorSetter($e -> getMessage());
+		}
+	}
+public function getPrenotazioniColonninaUltimaData($indirizzo) {
+		try {
+			$stmt = $this -> conn -> prepare("SELECT MAX(Data_pren) AS Data_pren FROM Prenotazione_Colonnina WHERE Indirizzo=:indirizzo  ");
 			$stmt -> bindparam(":indirizzo", $indirizzo);
 			$stmt -> execute();
 			$userRow = $stmt -> fetchAll(PDO::FETCH_ASSOC);

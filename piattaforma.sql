@@ -457,7 +457,7 @@ CREATE PROCEDURE UtentiConPrenotazioniBici()
 BEGIN
 SET @n = 0;
 DROP TEMPORARY TABLE IF EXISTS foo;
-CREATE TEMPORARY TABLE foo SELECT   @n := @n + 1 AS Id , Email
+CREATE TEMPORARY TABLE foo SELECT  DISTINCT @n := @n + 1 AS Id ,   Email
                            FROM Utente,Prenotazione_Bici,  (SELECT @n := 0) m
                            WHERE ((Utente.Email=Prenotazione_Bici.EmailUtente) AND (Prenotazione_Bici.Data_Inizio > now()));
 END;
@@ -949,19 +949,19 @@ INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUE
 INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES ('admin@gmail.com','Inserimento veicolo','Inserito nuovo veicolo','2016-05-17 22:11:10');	
 
 
-INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via panto cane 5','Enel',150,'2016-04-02',44.501218, 11.361283);
-INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via parigi 12','Hera',200,'2016-03-27',44.496566, 11.341283);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via panto cane 5','Enel',150,'2016-05-02',44.501218, 11.361283);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via parigi 12','Hera',200,'2016-05-07',44.496566, 11.341283);
 INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via saragozza 74','AIM Energy',233,'2016-05-02',44.490060, 11.332197);
 INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via santo stefano 103','Hera',145,'2016-05-01',44.486947, 11.353282);
-INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via Giovanni Amendola 12','Edison Energia',200,'2016-03-12',44.504589, 11.341035);
+INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES ('via Giovanni Amendola 12','Edison Energia',200,'2016-05-12',44.504589, 11.341035);
 
 
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente2@gmail.com','via panto cane 5',5,7,'2016-11-15');
-INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente2@gmail.com','via parigi 12',3,4,'2016-04-01');
+INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente2@gmail.com','via parigi 12',3,4,'2016-06-01');
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente3@gmail.com','via saragozza 74',3,4,'2016-08-15');
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente3@gmail.com','via santo stefano 103',7,9,'2016-08-15');
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente2@gmail.com','via Giovanni Amendola 12',12,17,'2016-07-01');
-INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente3@gmail.com','via santo stefano 103',1,6,'2016-08-03');
+INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES ('utente3@gmail.com','via santo stefano 103',1,6,'2016-09-22');
 
 
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES ('1','utente2@gmail.com','Buca','incidente','2015-11-12 13:49:02');
