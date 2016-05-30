@@ -19,12 +19,30 @@
 			success : function(data) {
 				if (!data.success) {
 					if (data.errors) {
-						alert("Errore");
-						cambiaContenuto('nuovabici');
+						BootstrapDialog.show({
+							title : 'ERRORE',
+							message : 'Errore',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('nuovabici');
+								}
+							}]
+						});
 					}
 				} else {
-					alert("Bici Inserita");
-					cambiaContenuto('vuoto');
+					BootstrapDialog.show({
+							title : 'Bici Inserita',
+							message : 'Bici Inserita',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 				}
 			}
 		});

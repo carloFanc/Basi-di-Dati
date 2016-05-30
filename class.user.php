@@ -87,7 +87,7 @@ class USER {
 
 	public function InsertBici($mailm, $id, $date1, $date2) {
 		try {
-			$stmt = $this -> conn -> prepare("INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (:mailm,:id,:date1,:date2)");
+			$stmt = $this -> conn -> prepare("CALL PrenotazioneBici(:mailm,:id,:date1,:date2)");
 
 			$stmt -> bindparam(":mailm", $mailm);
 			$stmt -> bindparam(":id", $id);

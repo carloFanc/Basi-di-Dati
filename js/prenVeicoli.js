@@ -9,9 +9,13 @@ jQuery(document).ready(function() {
 		locale:'it'
 	});
 
-	$('form').submit(function(event) {
+	
+});
+
+$('select').niceSelect();
+
+$('form').submit(function(event) {
 		$('#name + .throw_error').empty();
-		
 		$('#success').empty();
 
 		var postForm = {
@@ -31,20 +35,46 @@ jQuery(document).ready(function() {
 					if (data.errors) {
 						var typeError1 = "prenotabile";
 						if (data.errors.indexOf(typeError1) > -1) {
-							alert("veicolo non prenotabile");
-							cambiaContenuto('prenveicoli');
+							BootstrapDialog.show({
+							title : 'Veicolo non prenotabile',
+							message : 'Veicolo non prenotabile',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('prenveicoli');
+								}
+							}]
+						});
 						} else {
-							alert("Errore connessione al database");
-							cambiaContenuto('prenveicoli');
+							BootstrapDialog.show({
+							title : 'Errore',
+							message : 'Errore connessione al database',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('prenveicoli');
+								}
+							}]
+						});
 						}
 					}
 				} else {
-					alert("Veicolo Prenotato");
-					cambiaContenuto('vuoto');
+					BootstrapDialog.show({
+							title : 'Veicolo Prenotato!',
+							message : 'Veicolo Prenotato!',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 
 				}
 			}
 		});
 		event.preventDefault();
 	});
-});

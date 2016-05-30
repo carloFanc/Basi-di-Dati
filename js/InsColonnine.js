@@ -25,12 +25,30 @@ $('#datetimepicker').datetimepicker({
 			success : function(data) {
 				if (!data.success) {
 					if (data.errors) {
-						alert("Errore");
-						cambiaContenuto('nuovacolonnina');
+						BootstrapDialog.show({
+							title : 'Errore',
+							message : 'Errore',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('nuovacolonnina');
+								}
+							}]
+						});
 					}
 				} else {
-					alert("Colonnina Inserita");
-					cambiaContenuto('vuoto');
+					BootstrapDialog.show({
+							title : 'Colonnina Inserita',
+							message : 'Colonnina Inserita',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 				}
 			}
 		});

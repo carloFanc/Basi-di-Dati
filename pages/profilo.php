@@ -54,7 +54,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Cancella Account</button>
 		 </div>
 		
-		 <div class="modal fade" id="myModal" role="dialog">
+		 <div class="modal fade" id="myModal2" role="dialog">
          <div class="modal-dialog modal-sm">
          <div class="modal-content">
          <div class="modal-header">
@@ -65,7 +65,7 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
           <p>Sicuro di voler eliminare questo account?</p>
         </div>
         <div class="modal-footer">
-          <button align="left" type="button"  id="<?php echo $_SESSION['user_email']; ?>" class="btn btn-primary pull-left Rimuovi">Si</button>
+          <button align="left" type="button"  id="<?php echo $_SESSION['user_email']; ?>" class="Rimuovi btn btn-primary pull-left ">Si</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
         </div>
       </div>
@@ -105,6 +105,5 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 	}); 
 </script>
-<script src="js/bootstrap-dialog.min.js"></script>
 </body>
 

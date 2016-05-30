@@ -17,12 +17,30 @@
 			success : function(data) {
 				if (!data.success) {
 					if (data.errors) {
-						alert("Errore connessione al database");
-						cambiaContenuto('inssegalaz');
+						BootstrapDialog.show({
+							title : 'Errore',
+							message : 'Errore',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('inssegalaz');
+								}
+							}]
+						});
 					}
 				} else {
-					alert("Segnalazione Inviata");
-					cambiaContenuto('vuoto');
+					BootstrapDialog.show({
+							title : 'Segnalazione Inviata',
+							message : 'Segnalazione Inviata',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 				}
 			}
 		});

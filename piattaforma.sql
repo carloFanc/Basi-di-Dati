@@ -1,4 +1,4 @@
-drop database PIATTAFORMA;
+DROP DATABASE PIATTAFORMA;
 CREATE DATABASE PIATTAFORMA;
 USE PIATTAFORMA;
 
@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS Veicolo_elettrico(
 	Foto VARCHAR(200),
 	FOREIGN KEY (Punto_Noleggio) REFERENCES Punto_Noleggio(Nome) 
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Postazione_Prelievo(
 
 	Indirizzo VARCHAR(40) NOT NULL PRIMARY KEY,
 	Numero_Bici_Totale INT,
-	Numero_Bici_Disponibili INT,
 	Latitudine FLOAT(10,6),
 	Longitudine FLOAT(10,6) 
 	) ENGINE=INNODB;
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS Bici(
 	Anno_Acquisizione INT,
 	FOREIGN KEY (Postazione_Prelievo) REFERENCES Postazione_Prelievo(Indirizzo) 
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Pista_Ciclabile(
@@ -85,9 +86,11 @@ CREATE TABLE IF NOT EXISTS Messaggio(
 	Testo_Messaggio VARCHAR(500),
 	DataInvio DATETIME,
 	FOREIGN KEY (Email_Mittente) REFERENCES Utente(Email)
-	ON DELETE CASCADE,
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (Email_Destinatario) REFERENCES Utente(Email)
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
 	
 	
@@ -100,9 +103,11 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Veicolo(
 	Data_Inizio DATETIME, 
 	Data_Fine DATETIME,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
-	ON DELETE CASCADE,
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (Veicolo) REFERENCES Veicolo_elettrico(Targa)
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Prenotazione_Bici(
@@ -112,9 +117,11 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Bici(
 	Data_Inizio DATETIME, 
 	Data_Fine DATETIME,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
-	ON DELETE CASCADE,
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (IdBici) REFERENCES Bici(Id)
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS ForumPost(
@@ -126,6 +133,7 @@ CREATE TABLE IF NOT EXISTS ForumPost(
 	Data_Inserimento DATETIME,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
 	
 CREATE TABLE IF NOT EXISTS Segnalazione(
@@ -137,9 +145,11 @@ CREATE TABLE IF NOT EXISTS Segnalazione(
 	Testo_Messaggio VARCHAR(500),
 	Data_Inserimento DATETIME,
 	FOREIGN KEY (Pista_Ciclabile) REFERENCES Pista_Ciclabile(Id)
-	ON DELETE CASCADE,
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Colonnina_Elettrica(
@@ -161,17 +171,12 @@ CREATE TABLE IF NOT EXISTS Prenotazione_Colonnina(
 	Slot_Fine INT,
 	Data_pren DATE,
 	FOREIGN KEY (EmailUtente) REFERENCES Utente(Email)
-	ON DELETE CASCADE,
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
 	FOREIGN KEY (Indirizzo) REFERENCES Colonnina_Elettrica(Indirizzo)
 	ON DELETE CASCADE
+	ON UPDATE CASCADE
 	) ENGINE=INNODB;
-
-
-
-
-
-
-
 
 /* -------------------------------------------------------------*/
 /* --------------------Definizione TRIGGER--------------------- */
@@ -230,7 +235,7 @@ DELIMITER ;
 
 /*Controllo che la creazione dei post sia fatta solo da utenti amministratori*/
 DELIMITER * 
-CREATE TRIGGER controlloInserimentoAmministratore BEFORE INSERT ON ForumPost
+CREATE TRIGGER controlloInserimentoPostAmministratore BEFORE INSERT ON ForumPost
      FOR EACH ROW 
      BEGIN
      DECLARE admin_status VARCHAR(20);
@@ -261,14 +266,14 @@ CREATE TRIGGER InserimentoMessaggioInbox AFTER INSERT ON ForumPost
 *
 DELIMITER ;
 /*Elimino Messaggi Globali in inbox dopo che un admin ha tolto un messaggio nel forum*/
-DELIMITER * 
-CREATE TRIGGER AggiornaInbox AFTER DELETE ON ForumPost
-     FOR EACH ROW 
-     BEGIN
-     DECLARE id INT;
-     SET @id = Id; 
-     DELETE FROM Messaggio WHERE (Id_Messaggio = @id);
-	  END
+DELIMITER *
+CREATE TRIGGER AggiornaInbox BEFORE DELETE ON ForumPost
+FOR EACH ROW
+BEGIN
+DECLARE id INT;
+SET @id = Id;
+DELETE FROM Messaggio WHERE (Id_Messaggio = @id);
+END
 *
 DELIMITER ;
 
@@ -353,9 +358,6 @@ CREATE TRIGGER checkPrenotazioneColonnine BEFORE INSERT ON Prenotazione_Colonnin
      END
 *
 DELIMITER ;
-
-
-
  /* Aggiornamento tipo Utente*/
 DELIMITER $
 CREATE TRIGGER AggiornaTipoUtente1 AFTER INSERT ON Prenotazione_Bici
@@ -398,7 +400,10 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPostazioni()
 BEGIN
-SELECT Indirizzo,Numero_Bici_Disponibili,Numero_Bici_Totale,Latitudine,Longitudine FROM Postazione_Prelievo;
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SELECT Indirizzo,Numero_Bici_Totale,Latitudine,Longitudine FROM Postazione_Prelievo;
+COMMIT;
 END;
 ^
 DELIMITER ;
@@ -406,12 +411,13 @@ DELIMITER ;
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPisteCiclabili()
 BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SELECT Id,Chilometri,Pendenza_Media,Latitudine,Longitudine FROM Pista_Ciclabile;
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-/*-------------------------------------------------------------*/
 /*-----view temporanea per il trigger checkPrenotazioneBici----*/
 DELIMITER ^
 CREATE PROCEDURE DatePrenotazioniBici(IN Id INT)
@@ -423,8 +429,6 @@ CREATE TEMPORARY TABLE lol SELECT  @n := @n + 1 AS Id,Data_Inizio,Data_Fine
                            WHERE IdBici = Id;
 END;
 ^
-
-/*-------------------------------------------------------------*/
 /*-----view temporanea per il trigger checkPrenotazioneVeicoli----*/
 DELIMITER ^
 CREATE PROCEDURE DatePrenotazioniVeicoli(IN TargaVeicolo VARCHAR(30))
@@ -436,8 +440,6 @@ CREATE TEMPORARY TABLE lol2 SELECT  @n := @n + 1 AS Id,Data_Inizio,Data_Fine
                            WHERE Veicolo  = TargaVeicolo;
 END;
 ^ 
-
-/*-------------------------------------------------------------*/
 /*-----view temporanea per il trigger checkPrenotazioneColonnine----*/
 DELIMITER ^
 CREATE PROCEDURE SlotPrenotazioniColonnine(IN datap DATE)
@@ -449,8 +451,6 @@ CREATE TEMPORARY TABLE lol3 SELECT  @n := @n + 1 AS Id,Slot_Inizio,Slot_Fine
                            WHERE Data_pren = datap;
 END;
 ^
-
-/*---------------------------------------------------------------------------*/
 /*-----view temporanea per il trigger InserimentoMSGUtenticonPrenotazioni----*/
 DELIMITER ^
 CREATE PROCEDURE UtentiConPrenotazioniBici() 
@@ -462,12 +462,11 @@ CREATE TEMPORARY TABLE foo SELECT  DISTINCT @n := @n + 1 AS Id ,   Email
                            WHERE ((Utente.Email=Prenotazione_Bici.EmailUtente) AND (Prenotazione_Bici.Data_Inizio > now()));
 END;
 ^
-/*-------------------------------------------------------*/
 /*------------- visualizza PUNTI NOLEGGIO----------------*/
 
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPuntiNoleggio()
-visu:BEGIN
+BEGIN
 CREATE OR REPLACE VIEW ScooterinNoleggioParziale AS
     						 SELECT Punto_Noleggio.Nome,count(*)  as Numero_Scooter
     						 FROM Veicolo_elettrico,Punto_Noleggio
@@ -499,42 +498,21 @@ ON ScooterInNoleggio.Nome=AutoInNoleggio.Nome;
 END;
 ^
 DELIMITER ;
-/*---------------------------------------------------------------------*/
-/*------------- inserimento Prenotazioni BICI e VEICOLI----------------*/
-DELIMITER ^
-CREATE PROCEDURE PrenotazioneBici(IN EmailUtente VARCHAR(50),IN IdBici INT,IN Data_Inizio DATETIME,IN Data_Fine DATETIME)
-visu:BEGIN
-		INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (EmailUtente,IdBici,Data_Inizio,Data_Fine);
 
-END;
-^
-DELIMITER ;
-
-DELIMITER ^ 
-CREATE PROCEDURE PrenotazioneVeicolo(IN EmailUtente VARCHAR(50),IN TargaVeicolo VARCHAR(50),IN Data_Inizio DATETIME,IN Data_Fine DATETIME)
-visu:BEGIN
- DECLARE prezzo INT;
- DECLARE datadiff INT;
- SET prezzo = ((SELECT Costo_orario FROM Veicolo_elettrico WHERE Targa = TargaVeicolo))*(SELECT HOUR(TIMEDIFF(Data_Fine, Data_Inizio)));
- INSERT INTO Prenotazione_Veicolo(EmailUtente,Veicolo,Data_Inizio,Data_Fine,Prezzo_Prenotazione) VALUES (EmailUtente,TargaVeicolo,Data_Inizio,Data_Fine,prezzo);
-END;
-^
-DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- VISUALIZZAPRENOTAZIONINCORSO/PASSATE----------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPrenotazioninCorso(IN Email VARCHAR(50))
-visu:BEGIN
+BEGIN
 SELECT * FROM Prenotazione_Bici WHERE ((EmailUtente = Email) AND (Data_Inizio > NOW())) ;
 SELECT * FROM Prenotazione_Veicolo WHERE ((EmailUtente = Email) AND (Data_Inizio > NOW())) ;
 SELECT * FROM Prenotazione_Colonnina WHERE ((EmailUtente = Email) AND (Data_pren > NOW())) ;
 END;
 ^
 DELIMITER ;
-
+/*------------------------------------------------------------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPrenotazioniPassate(IN Email VARCHAR(50))
-visu:BEGIN
+BEGIN
 SELECT * FROM Prenotazione_Bici WHERE ((EmailUtente = Email) AND (Data_Inizio < NOW())) ;
 SELECT * FROM Prenotazione_Veicolo WHERE ((EmailUtente = Email) AND (Data_Inizio < NOW())) ;
 SELECT * FROM Prenotazione_Colonnina WHERE ((EmailUtente = Email) AND (Data_pren < NOW())) ;
@@ -544,7 +522,7 @@ DELIMITER ;
 /*------------------------------------------------------------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPrenotazioniTotaliPassate()
-visu:BEGIN
+BEGIN
 SELECT * FROM Prenotazione_Bici WHERE (Data_Inizio < NOW());
 SELECT * FROM Prenotazione_Veicolo WHERE (Data_Inizio < NOW());
 SELECT * FROM Prenotazione_Colonnina WHERE (Data_pren < NOW());
@@ -552,10 +530,9 @@ END;
 ^
 DELIMITER ;
 /*------------------------------------------------------------------*/
-/*------------------------------------------------------------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaPrenotazioniTotaliinCorso()
-visu:BEGIN
+BEGIN
 SELECT * FROM Prenotazione_Bici WHERE (Data_Inizio > NOW()) ;
 SELECT * FROM Prenotazione_Veicolo WHERE (Data_Inizio > NOW()) ;
 SELECT * FROM Prenotazione_Colonnina WHERE (Data_pren > NOW()) ;
@@ -566,7 +543,7 @@ DELIMITER ;
 /*------------- VISUALIZZAPOSTFORUM----------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaForum()
-visu:BEGIN
+BEGIN
 SELECT * FROM ForumPost
 ORDER BY Data_Inserimento DESC;
 END;
@@ -576,10 +553,20 @@ DELIMITER ;
 /*------------- VISUALIZZAINBOX----------------*/
 DELIMITER ^
 CREATE PROCEDURE VisualizzaINBOX(IN Email VARCHAR(50))
-visu:BEGIN
+BEGIN
 SELECT Id_Messaggio,Email_Mittente,Titolo,Email_Destinatario,Tipo,Testo_Messaggio,DataInvio 
 FROM Messaggio WHERE (Email_Destinatario = Email) OR (Tipo = 'Globale')
 ORDER BY DataInvio DESC;
+END;
+^
+DELIMITER;
+/*------------------------------------------------------------------*/
+/*------------- VISUALIZZACOLONNINE----------------*/
+
+DELIMITER ^
+CREATE PROCEDURE VisualizzaColonnine()
+BEGIN
+SELECT * FROM Colonnina_Elettrica;
 END;
 ^
 DELIMITER ;
@@ -587,17 +574,23 @@ DELIMITER ;
 /*------------- ELIMINAMSGINBOX----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaINBOX(IN Id VARCHAR(50))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Messaggio WHERE (Id_Messaggio = Id);
+COMMIT;
 END;
 ^
 DELIMITER ;
 /*------------------------------------------------------------------*/
 /*------------- ELIMINAPOST----------------*/
 DELIMITER ^
-CREATE PROCEDURE EliminaPOST(IN Id VARCHAR(50))
-visu:BEGIN
-DELETE FROM ForumPost WHERE (Id = Id);
+CREATE PROCEDURE EliminaPOST(IN IdInserito VARCHAR(50))
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+DELETE FROM ForumPost WHERE (Id = IdInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
@@ -605,8 +598,11 @@ DELIMITER ;
 /*------------- ELIMINAUTENTE----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaUTENTE(IN EmailInserito VARCHAR(50))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Utente WHERE (Email = EmailInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
@@ -614,212 +610,264 @@ DELIMITER ;
 /*------------- ELIMINAVEICOLO----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaVEICOLO(IN TargaInserita VARCHAR(50))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Veicolo_Elettrico WHERE (Targa = TargaInserita);
+COMMIT;
 END;
 ^
-DELIMITER ;EliminaBICI
-/*------------------------------------------------------------------*/
+DELIMITER ;
 /*------------- ELIMINABICI----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaBICI(IN IdInserito INT)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Bici WHERE (Id = IdInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINACOLONNINA----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaCOLONNINA(IN Ind VARCHAR(40))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Colonnina_Elettrica WHERE (Indirizzo = Ind);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINAPOSTAZIONE----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPOSTAZIONE(IN Ind VARCHAR(40))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Postazione_Prelievo WHERE (Indirizzo = Ind);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINAPISTA----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPISTA(IN IdIns INT)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Pista_Ciclabile WHERE (Id = IdIns);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINAPUNTONOLEGGIO----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPUNTONOLEGGIO(IN NomeInserito VARCHAR(40))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Punto_Noleggio WHERE (Nome = NomeInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINAPRENINCORSO BICI----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPrenInCorsoBici(IN IdInserito INT)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Prenotazione_Bici WHERE (Id= IdInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINAPRENINCORSO VEICOLO----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPrenInCorsoVeicoli(IN IdInserito INT)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Prenotazione_Veicolo WHERE (Id=IdInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
 /*------------- ELIMINAPRENINCORSO COLONNINA----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPrenInCorsoColonnina(IN IdInserito INT)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Prenotazione_Colonnina WHERE (Id=IdInserito);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*----------------------------------------------------------------*/
 /*------------- ELIMINAZIONE PRENOTAZIONI PASSATE(ADMIN)----------------*/
 DELIMITER ^
 CREATE PROCEDURE EliminaPrenotazioni()
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 DELETE FROM Prenotazione_Bici WHERE (Data_Inizio < NOW());
 DELETE FROM Prenotazione_Veicolo WHERE (Data_Inizio < NOW());
 DELETE FROM Prenotazione_Colonnina WHERE (Data_pren < NOW());
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*------------------------------------------------------------------*/
-/*------------- VISUALIZZACOLONNINE----------------*/
-
+/*------------- inserimento Prenotazioni BICI e VEICOLI----------------*/
 DELIMITER ^
-CREATE PROCEDURE VisualizzaColonnine()
-visu:BEGIN
-SELECT * FROM Colonnina_Elettrica;
-
+CREATE PROCEDURE PrenotazioneBici(IN EmailUtente VARCHAR(50),IN IdBici INT,IN Data_Inizio DATETIME,IN Data_Fine DATETIME)
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+IF(Data_Fine > Data_Inizio) THEN
+INSERT INTO Prenotazione_Bici(EmailUtente,IdBici,Data_Inizio,Data_Fine) VALUES (EmailUtente,IdBici,Data_Inizio,Data_Fine);
+ELSE 
+SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Vincolo violato: non prenotabile';
+END IF;
+COMMIT;
 END;
 ^
 DELIMITER ;
 
-/*------------------------------------------------------------------*/
+DELIMITER ^ 
+CREATE PROCEDURE PrenotazioneVeicolo(IN EmailUtente VARCHAR(50),IN TargaVeicolo VARCHAR(50),IN Data_Inizio DATETIME,IN Data_Fine DATETIME)
+BEGIN
+ DECLARE prezzo INT;
+ DECLARE datadiff INT;
+ SET AUTOCOMMIT = 0;
+START TRANSACTION;
+ SET prezzo = ((SELECT Costo_orario FROM Veicolo_elettrico WHERE Targa = TargaVeicolo))*(SELECT HOUR(TIMEDIFF(Data_Fine, Data_Inizio)));
+ IF(Data_Fine > Data_Inizio) THEN
+ INSERT INTO Prenotazione_Veicolo(EmailUtente,Veicolo,Data_Inizio,Data_Fine,Prezzo_Prenotazione) VALUES (EmailUtente,TargaVeicolo,Data_Inizio,Data_Fine,prezzo);
+ELSE 
+SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Vincolo violato: non prenotabile';
+END IF;
+COMMIT;
+END;
+^
+DELIMITER ;
 /*------------- Inserimento SEGNALAZIONE----------------*/
 
 DELIMITER ^
 CREATE PROCEDURE InserimentoSegnalazione(IN Pista_Ciclabile INT,IN EmailUtente VARCHAR(50),IN Titolo VARCHAR(100),IN Testo_Messaggio VARCHAR(500))
-visu:BEGIN
+BEGIN
+
 DECLARE timenow DATETIME;
 SET timenow = NOW();
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Segnalazione(Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES (Pista_Ciclabile,EmailUtente,Titolo,Testo_Messaggio,timenow);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*----------------------------------------------------------------*/
 /*------------- inserimento PRENOTAZIONE COLONNINA----------------*/
 DELIMITER ^
 CREATE PROCEDURE PrenotazioneColonnina(IN EmailUtente VARCHAR(50),IN Indirizzo VARCHAR(50),IN Slot_Inizio INT,IN Slot_Fine INT,IN Data_pren DATE)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+IF(Slot_Fine > Slot_Inizio) THEN
 INSERT INTO Prenotazione_Colonnina(EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren) VALUES (EmailUtente,Indirizzo,Slot_Inizio,Slot_Fine,Data_pren);
+ELSE 
+SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Vincolo violato: non prenotabile';
+END IF;
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-/*----------------------------------------------------------------*/
 /*--------------------------inserimento POST---------------------*/
 DELIMITER ^
 CREATE PROCEDURE InserimentoPost(IN EmailUtente VARCHAR(50),IN Titolo VARCHAR(100),IN Testo_Messaggio VARCHAR(500))
-visu:BEGIN
+BEGIN
 DECLARE timenow DATETIME;
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET timenow = NOW();
 INSERT INTO ForumPost(EmailUtente,Titolo,Testo_Messaggio,Data_Inserimento) VALUES (EmailUtente,Titolo,Testo_Messaggio,timenow);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*----------------------------------------------------------------*/
 /*--------------------------inserimento NUOVA BICI---------------------*/
 DELIMITER ^ 
 CREATE PROCEDURE InserimentonewBici(IN Id INT , IN Postazione VARCHAR(20),IN Marca VARCHAR(20),IN Colore VARCHAR(20),IN Anno INT)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES (Id,Postazione,Marca,Colore,Anno);
+COMMIT;
 END;
 ^
 DELIMITER ;
-/*----------------------------------------------------------------*/
 /*--------------------------inserimento NUOVO VEICOLO---------------------*/
 DELIMITER ^ 
 CREATE PROCEDURE InserimentonewVeicolo(IN Targa VARCHAR(20),IN PuntoNoleggio VARCHAR(20) , IN Tipologia VARCHAR(20),IN NomeModello VARCHAR(40),IN Colore VARCHAR(40),IN CostoH INT,IN Cilindrata INT,IN AutonomiaKm INT,IN MaxPasseggeri INT,IN Km_Attuale INT,IN Foto BLOB)
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES (Targa,PuntoNoleggio,Tipologia,NomeModello,Colore,CostoH,Cilindrata,AutonomiaKm,MaxPasseggeri,Km_Attuale,Foto);
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-/*----------------------------------------------------------------*/
 /*---------------inserimento NUOVA POSTAZIONE---------------------*/
 DELIMITER ^ 
 CREATE PROCEDURE InserimentonewPostazione(IN Indirizzo VARCHAR(40),IN Numero_Bici_Totale INT, IN Numero_Bici_Disponibili INT,IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES (Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine);
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-/*----------------------------------------------------------------*/
 /*----------inserimento NUOVA PISTA CICLABILE---------------------*/
 DELIMITER ^ 
 CREATE PROCEDURE InserimentonewPistaCiclabile(IN Chilometri INT,IN Pendenza_Media DECIMAL(6,4), IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Pista_Ciclabile(Chilometri,Pendenza_Media,Latitudine,Longitudine) VALUES (Chilometri,Pendenza_Media,Latitudine,Longitudine);
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-/*----------------------------------------------------------------*/
 /*-----------inserimento NUOVO PUNTO NOLEGGIO---------------------*/
 DELIMITER ^ 
 CREATE PROCEDURE InserimentonewPuntoNoleggio(IN Nome VARCHAR(20),IN Sito_Web VARCHAR(50),IN Email VARCHAR(40),IN Telefono VARCHAR(20),IN Indirizzo VARCHAR(40), IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Punto_Noleggio(Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine) VALUES (Nome,Sito_Web,Email,Telefono,Indirizzo,Latitudine,Longitudine);
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-/*----------------------------------------------------------------*/
 /*-------inserimento NUOVA COLONNINA RICARICA---------------------*/
 DELIMITER ^ 
 CREATE PROCEDURE InserimentonewColonninaRicarica(IN Indirizzo VARCHAR(40),IN Ente_Fornitore VARCHAR(20),IN Max_KWH INT,IN Data_Inserimento DATE, IN Latitudine FLOAT(10,6),IN Longitudine FLOAT(10,6))
-visu:BEGIN
+BEGIN
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 INSERT INTO Colonnina_Elettrica(Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine) VALUES (Indirizzo,Ente_Fornitore,Max_KWH,Data_Inserimento,Latitudine,Longitudine);
+COMMIT;
 END;
 ^
 DELIMITER ;
-
-
-
-
-
-
-
-
-
-
-/*--------------------------------------------------------------------------*/
 /*------ CLASSIFICA UTENTI ORDER BY Numero PRENOTAZIONI BICI----------------*/
 DELIMITER ^
 CREATE PROCEDURE ClassificaPrenBici()
-visu:BEGIN
+BEGIN
 DROP TABLE IF EXISTS Pren2;
 CREATE TEMPORARY TABLE Pren2
 SELECT EmailUtente,COUNT(*) AS Numero_Prenotazioni_Bici FROM Prenotazione_Bici GROUP BY EmailUtente;
@@ -828,12 +876,10 @@ SELECT * from Pren2 ORDER BY Numero_Prenotazioni_Bici DESC;
 END;
 ^
 DELIMITER ;
-
-/*--------------------------------------------------------------------------*/
 /*--------- CLASSIFICA UTENTI ORDER BY Numero PRENOTAZIONI Veicoli----------*/
 DELIMITER ^
 CREATE PROCEDURE ClassificaPrenVeicoli()
-visu:BEGIN
+BEGIN
 DROP TABLE IF EXISTS Pren;
 CREATE TEMPORARY TABLE Pren 
 SELECT EmailUtente,COUNT(*) AS Numero_Prenotazioni_Veicoli FROM Prenotazione_Veicolo GROUP BY EmailUtente;
@@ -843,26 +889,10 @@ END;
 
 ^
 DELIMITER ;
-
-/*--------------------------------------------------------------------------*/
-/*------------------CLASSIFICA utilizzo medio COLONNINE---------------------*/
-DELIMITER ^
-CREATE PROCEDURE ClassificaColonnine()
-visu:BEGIN
-DROP VIEW IF EXISTS colonnineslot;
-CREATE VIEW colonnineslot AS
-    						 SELECT Indirizzo,Slot_Fine-Slot_Inizio AS Slot_Occupati
-    						 FROM Prenotazione_Colonnina
-							 GROUP BY Indirizzo;						                              
-select * from colonnineslot;
-END;
-^
-DELIMITER ;
-/*------------------------------------------*/
 /*------------- LISTA UTENTI----------------*/
 DELIMITER ^
 CREATE PROCEDURE ListaUtenti()
-visu:BEGIN
+BEGIN
 SELECT Email,Nome,Cognome,password,Tipologia,Data_Nascita,Luogo_Nascita,Indirizzo_Residenza,Telefono 
 FROM Utente;
 
@@ -893,10 +923,10 @@ INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore
 INSERT INTO Veicolo_elettrico(Targa,Punto_Noleggio,Tipologia,Nome_Modello,Colore,Costo_orario,Cilindrata,Autonomia_km,Max_Passeggeri,Chilometraggio_Attuale,Foto) VALUES ('Z58GZ36HZ','Car Italy','Scooter','Askoll eS1','Bianco',64,88,123,NULL,NULL,NULL);
 
 
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via santo stefano 3',10,9,44.495603, 11.353665);
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via irnerio 4',25,24,44.500859, 11.346164);
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via clavature 2',22,18,44.493449, 11.343733);
-INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Numero_Bici_Disponibili,Latitudine,Longitudine) VALUES ('via paglia 2',15,11,44.488376, 11.340799);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Latitudine,Longitudine) VALUES ('via santo stefano 3',10,44.495603, 11.353665);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Latitudine,Longitudine) VALUES ('via irnerio 4',25,44.500859, 11.346164);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Latitudine,Longitudine) VALUES ('via clavature 2',22,44.493449, 11.343733);
+INSERT INTO Postazione_Prelievo(Indirizzo,Numero_Bici_Totale,Latitudine,Longitudine) VALUES ('via paglia 2',15,44.488376, 11.340799);
 
 
 INSERT INTO Bici(Id,Postazione_Prelievo,Marca,Colore,Anno_Acquisizione) VALUES ('01','via santo stefano 3','Scott Genius','Blu','2014');

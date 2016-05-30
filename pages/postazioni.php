@@ -24,7 +24,7 @@
 				<div>
 					<h4>Per cancellare una Postazione Prelievo  <button type="button" id="Cancella" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">CLICCA QUI</button></h4>
 		 
-				</div>
+				</div><?php else:?> <div id="Cancella"></div>
 				<?php endif; ?>
             	<div>
   						           
@@ -32,7 +32,6 @@
     					<thead class="personale">
       					<tr>
       					  <th>Indirizzo</th>
-      					  <th>Numero Bici Disponibili</th>
       					  <th>Numero Bici Totali</th>
       					  <th>Latitudine</th>
       					  <th>Longitudine</th>
@@ -42,7 +41,6 @@
   		  							<?php while ($userRow=$stmt->fetch(PDO::FETCH_ASSOC)): ?>
       							<tr>
       							  <td class="col-md-3"><?php echo $userRow['Indirizzo']; ?></td>
-     						      <td class="col-md-3"><?php echo $userRow['Numero_Bici_Disponibili']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Numero_Bici_Totale']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Latitudine']; ?></td>
      						      <td class="col-md-3"><?php echo $userRow['Longitudine']; ?></td>

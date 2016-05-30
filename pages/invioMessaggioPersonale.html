@@ -34,8 +34,17 @@
 						url : "/BasiDati/function/inviomsgpersonale.php",
 						data : "email=" + email + "&titolo=" + titolo + "&text=" + text
 					}).done(function() {
-						alert("Messaggio Inviato!");
-						cambiaContenuto('vuoto');
+						BootstrapDialog.show({
+							title : 'Messaggio Inviato!',
+							message : 'Messaggio Inviato!',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 					});
 				});
 

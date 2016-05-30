@@ -4,8 +4,6 @@ require_once (dirname(dirname(__FILE__)) . '/class.user.php');
 $user = new USER();
 $stmt = $user->runQuery('SELECT id from Pista_Ciclabile');
 $stmt->execute();
-$error = ""; 
-$form_data = array(); 
  if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['mail']) 
   && isset($_POST['pass']) && isset($_POST['data']) && isset($_POST['luogo']) 
   && isset($_POST['res']) && isset($_POST['tel']) && isset($_POST['foto'])) {

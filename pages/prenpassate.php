@@ -138,12 +138,20 @@
                 type: 'POST',
                 url: '/BasiDati/function/EliminaPrenPassate.php',
                 success: function() {
-                    alert("Prenotazioni Passate eliminate con successo!");
-					cambiaContenuto('prenpassate');
+                	BootstrapDialog.show({
+							title : 'Success',
+							message : 'Prenotazioni Passate eliminate con successo!',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('prenpassate');
+								}
+							}]
+						});
                 }
             });
    });
 });
 </script>
-<script src="js/bootstrap-dialog.min.js"></script>
 </body>

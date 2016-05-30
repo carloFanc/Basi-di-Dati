@@ -24,7 +24,7 @@
 				<div>
 					<h4>Per cancellare una Pista Ciclabile  <button type="button" id="Cancella" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">CLICCA QUI</button></h4>
 		 
-				</div>
+				</div><?php else:?> <div id="Cancella"></div>
 				<?php endif;?>
             	<div >
   						           

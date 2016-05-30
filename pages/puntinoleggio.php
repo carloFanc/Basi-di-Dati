@@ -82,5 +82,4 @@ $('#Cancella').click(function() {
 					});
 					});
 </script>
-<script src="js/bootstrap-dialog.min.js"></script>
 </body>

@@ -34,13 +34,30 @@ $(document).ready(function(e) {
 					success : function(data) {
 						if (!data.success) {
 							if (data.errors) {
-								alert(data.errors);
-								alert("Errore");
-								cambiaContenuto('nuovoveicolo');
+								BootstrapDialog.show({
+							title : 'Errore',
+							message : 'Errore',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('nuovoveicolo');
+								}
+							}]
+						});
 							}
 						} else {
-							alert("Veicolo inserito!");
-							cambiaContenuto("vuoto");
+							BootstrapDialog.show({
+							title : 'Veicolo Inserito',
+							message : 'Veicolo Inserito',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 						}
 					}
 				});

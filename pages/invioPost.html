@@ -13,7 +13,7 @@
 					<input name="form-txt" type="text" class="form-control" id="form-text">
 
 				</div>
-				<button type="submit" name="btn-invio" class="btn btn-default">
+				<button type="submit" name="btn-invio" class="btn btn-primary">
 					Invio
 				</button>
 			</form>
@@ -29,8 +29,17 @@
 						url : "/BasiDati/function/invioPost.php",
 						data : "titolo=" + titolo + "&text=" + text
 					}).done(function() {
-						alert("Post inviato!");
-						cambiaContenuto('vuoto');
+						BootstrapDialog.show({
+							title : 'Post Inviato!',
+							message : 'Post Inviato!',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 					});
 				});
 

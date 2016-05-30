@@ -58,7 +58,7 @@
 									//oop through each location.
 									$.each(data, function() {
 										var marker;
-										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Numero Bici Totali: ' + this.Numero_Bici_Totale + '<br>' + 'Numero Bici Disponibili: ' + this.Numero_Bici_Disponibili + '<br>';
+										var contenuto = '<p><b>' + this.Indirizzo + '</p></b><br>' + 'Numero Bici Totali: ' + this.Numero_Bici_Totale + '<br>';
 										var infowindow = new google.maps.InfoWindow({
 											content : contenuto
 										});

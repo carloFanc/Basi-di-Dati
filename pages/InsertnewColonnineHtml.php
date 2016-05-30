@@ -21,7 +21,7 @@
 					<label for="text">MAX KWH:</label>
 					<input name="form-max" type="number" class="form-control" id="form-max">
 				</div>
-				<h4>Data Inserimento:</h4>
+				<label for="text">Data Inserimento:</label>
                 <div class="input-group date" id="datetimepicker" style="clear:both">
 				 
                     <input type='text' class="form-control" id="form-data" name="form-data"></input>

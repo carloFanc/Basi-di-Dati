@@ -37,9 +37,6 @@
 				</button>
 			</form>
 		</div>
-		<script src="/BasiDati/js/jquery-1.11.1.min.js"></script>
-		<script src="/BasiDati/js/bootstrap.min.js"></script>			
-		<script src="/BasiDati/js/jquery-ui.js"></script>
 		<script src="/BasiDati/js/InsPuntiNoleggio.js"></script>
 		
 	</body>

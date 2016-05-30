@@ -34,7 +34,7 @@ $stmt2 -> execute();
 				<div>
 					<h4>Per cancellare un veicolo  <button type="button" class="btn btn-primary Cancella" data-toggle="modal" data-target="#myModal2">CLICCA QUI</button></h4>
 		 
-				</div>
+				</div><?php else:?> <div id="Cancella"></div>
 				<?php endif;?>
             	<div>
   						           
@@ -134,5 +134,4 @@ $stmt2 -> execute();
 					});
 </script>
  
-	<script src="js/bootstrap-dialog.min.js"></script>
 </body>

@@ -1,29 +1,27 @@
 <?php
+require_once ("session.php");
 
-	require_once("session.php");
-	
-	require_once("class.user.php");
-	$auth_user = new USER();
-	
-	if($auth_user->is_loggedin()!=""){
-		$tipologia = $_SESSION['user_tipologia'];
-	
-	if(strcmp ($tipologia , "Semplice") ==0 ){
-			$auth_user->redirect('homeSemplice.php');
-		}else if(strcmp ($tipologia , "Premium") ==0){
-			
-		}else if(strcmp ($tipologia , "Amministratore") ==0){
-			$auth_user->redirect('homeAmministratore.php');
-		}
+require_once ("class.user.php");
+$auth_user = new USER();
+
+if ($auth_user -> is_loggedin() != "") {
+	$tipologia = $_SESSION['user_tipologia'];
+
+	if (strcmp($tipologia, "Semplice") == 0) {
+		$auth_user -> redirect('homeSemplice.php');
+	} else if (strcmp($tipologia, "Premium") == 0) {
+
+	} else if (strcmp($tipologia, "Amministratore") == 0) {
+		$auth_user -> redirect('homeAmministratore.php');
+	}
 }
-	
-	$umail = $_SESSION['user_email'];
-	
-	$stmt = $auth_user->runQuery("SELECT * FROM Utente WHERE Email=:umail");
-	$stmt->execute(array(":umail"=>$umail));
-	
-	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
+$umail = $_SESSION['user_email'];
+
+$stmt = $auth_user -> runQuery("SELECT * FROM Utente WHERE Email=:umail");
+$stmt -> execute(array(":umail" => $umail));
+
+$userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,16 +36,17 @@
 		<link href="css/home.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="css/jquery-ui.css">
 		<link rel="stylesheet" href="css/nice-select.css">
+		<link rel="stylesheet" href="css/bootstrap-dialog.min.css" > 
 		<script type="text/javascript">
-        window.onload = function() {
-        $('#menuEContenuto').hide("fast").css("visibility","hidden");
-        cambiaContenuto('Home');
-         
-        document.getElementById("HomeImg").onclick = function() {
-         $('#menuEContenuto').hide("fast").css("visibility","hidden");
-         cambiaContenuto('Home');
-        };
-        }; 
+			window.onload = function() {
+				$('#menuEContenuto').hide("fast").css("visibility", "hidden");
+				cambiaContenuto('Home');
+
+				document.getElementById("HomeImg").onclick = function() {
+					$('#menuEContenuto').hide("fast").css("visibility", "hidden");
+					cambiaContenuto('Home');
+				};
+			};
         </script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	</head>
@@ -247,10 +246,11 @@
 		</div>
 
 		<!-- script references -->
-		<script src="js/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
-		<script src="js/scripts.js"></script>
 	    <script src=" js/jquery.nice-select.js"></script> 
+	    <script src="js/bootstrap-dialog.min.js"></script>
+	    <script src="js/scripts.js"></script>
 	</body>
 </html>

@@ -19,12 +19,30 @@
 			success : function(data) {
 				if (!data.success) {
 					if (data.errors) {
-						alert("Errore");
-						cambiaContenuto('nuovapostazione');
+						BootstrapDialog.show({
+							title : 'Errore',
+							message : 'Errore',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('nuovapostazione');
+								}
+							}]
+						});
 					}
 				} else {
-					alert("Postazione Inserita");
-					cambiaContenuto('vuoto');
+					BootstrapDialog.show({
+							title : 'Postazione Inserita',
+							message : 'Postazione Inserita',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 				}
 			}
 		});

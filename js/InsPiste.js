@@ -20,12 +20,30 @@
 			success : function(data) {
 				if (!data.success) {
 					if (data.errors) {
-						alert("Errore");
-						cambiaContenuto('nuovapista');
+						BootstrapDialog.show({
+							title : 'Errore',
+							message : 'Errore',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('nuovapista');
+								}
+							}]
+						});
 					}
 				} else {
-					alert("Pista Ciclabile Inserita");
-					cambiaContenuto('vuoto');
+					BootstrapDialog.show({
+							title : 'Pista Ciclabile Inserita',
+							message : 'Pista Ciclabile Inserita',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('vuoto');
+								}
+							}]
+						});
 				}
 			}
 		});

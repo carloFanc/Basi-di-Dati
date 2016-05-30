@@ -1,5 +1,4 @@
 <?php
-
 require_once ("session.php");
 
 require_once ("class.user.php");
@@ -36,6 +35,8 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="css/jquery-ui.css">
+		<link rel="stylesheet" href="css/nice-select.css">
+	    <link rel="stylesheet" href="css/bootstrap-dialog.min.css" > 
 		<script type="text/javascript">
         window.onload = function() {
         $('#menuEContenuto').hide("fast").css("visibility","hidden");
@@ -226,6 +227,8 @@ $userRow = $stmt -> fetch(PDO::FETCH_ASSOC);
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
+		<script src=" js/jquery.nice-select.js"></script>
+		<script src="js/bootstrap-dialog.min.js"></script> 
 		<script src="js/scripts.js"></script>
 	</body>
 </html>

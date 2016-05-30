@@ -116,10 +116,42 @@ $('#bottone').click(function (){
 					$.ajax({
 						type : "POST",
 						url : "/BasiDati/function/PrenotaRicaricaColonnina.php",
-						data : "indirizzo=" + indirizzo + "&data=" + dataFinal + "&slot1=" + slot1 + "&slot2=" + slot2
-					}).done(function() {
-						alert("Prenotazione ricarica effettuata!");
-						cambiaContenuto('vuoto');
-					});
-						
+						data : "indirizzo=" + indirizzo + "&data=" + dataFinal + "&slot1=" + slot1 + "&slot2=" + slot2,
+					dataType : 'json',
+		success : function(data) {
+			if (!data.success) {
+				if (data.errors) {
+					var typeError1 = "prenotabile";
+
+					if (data.errors.indexOf(typeError1) > -1) {
+						BootstrapDialog.show({
+							title : 'Colonnina non prenotabile',
+							message : 'Colonnina non prenotabile',
+							buttons : [{
+								label : 'Chiudi',
+								action : function(dialog) {
+									dialog.close();
+									cambiaContenuto('prenColonnina');
+
+								}
+							}]
+						});
+						} else {
+				BootstrapDialog.show({
+					title : 'Colonnina Prenotata',
+					message : 'Colonnina Prenotata',
+					buttons : [{
+						label : 'Chiudi',
+						action : function(dialog) {
+							dialog.close();
+							cambiaContenuto('vuoto');
+						}
+					}]
+				});
+
+			}
+					}	
+					}
+					}
+});
 });

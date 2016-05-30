@@ -23,9 +23,9 @@ $stmt -> execute();
 		 <div>
 			<h1 align="center">Prenotazione bici</h1>
 					 	<div class="container-fluid" >
-
+<form role="form"  id="PrenBici" >
 			<div class=" row">
-			<form role="form"  id="PrenBici" >
+			
 				<div class="form-group col-md-1" style="float: left;">
 					<label for="bici"><h4>Bici:</h4></label>
 				</div>
